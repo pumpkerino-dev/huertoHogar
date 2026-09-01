@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Nueva carpeta.iml" filepath="$PROJECT_DIR$/.idea/Nueva carpeta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/css/css.iml" filepath="$PROJECT_DIR$/css/css.iml" />
+      <module fileurl="file://$PROJECT_DIR$/img/img.iml" filepath="$PROJECT_DIR$/img/img.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js/js.iml" filepath="$PROJECT_DIR$/js/js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/paginas/paginas.iml" filepath="$PROJECT_DIR$/paginas/paginas.iml" />
+    </modules>
+  </component>
+</project>
