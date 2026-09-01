@@ -20,3 +20,7 @@ Proyecto Front End basado en:
 ## Estado
 
 Proyecto en etapa inicial de desarrollo.
+
+## Mockup
+
+https://www.figma.com/design/H54gaMejDVqFZlvjF2YcNy/Mockups--?node-id=0-1&t=QxWNVJ8JNkrBeoW3-1
