@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huerto Hogar - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-icon">🌱</span>
+          <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+        </a>
+
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+          <button class="search-filter" type="button" aria-label="Filtros">☰</button>
+        </div>
+
+        <a href="#" class="account-link">
+          <span class="account-icon">👤</span>
+          Mi Cuenta
+        </a>
+      </div>
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="frutas.html">Frutas</a></li>
+          <li><a href="verduras.html">Verduras</a></li>
+          <li><a href="organicos.html">Orgánicos</a></li>
+          <li><a href="lacteos.html">Lácteos</a></li>
+          <li><a href="index.html">Nosotros</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="auth-section">
+        <div class="auth-heading">
+          <span class="auth-heading-icon">🌱</span>
+          <h1>HUERTO HOGAR</h1>
+          <p class="auth-heading-subtitle">DEL CAMPO AL HOGAR</p>
+        </div>
+
+        <div class="auth-card">
+          <!-- Iniciar sesión -->
+          <form id="login-form" class="auth-col" novalidate>
+            <h2>Iniciar Sesión</h2>
+            <p class="auth-col-subtitle">Bienvenido de vuelta, disfruta lo fresco del huerto</p>
+
+            <label class="field-label" for="login-email">Correo Electrónico</label>
+            <input type="email" id="login-email" name="email" placeholder="ejemplo@correo.cl" required />
+
+            <label class="field-label" for="login-password">Contraseña</label>
+            <input type="password" id="login-password" name="password" placeholder="••••••••" required />
+
+            <div class="field-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="remember-me" name="remember" />
+                Recordarme
+              </label>
+              <a href="#" class="link-muted">Olvidé mi contraseña</a>
+            </div>
+
+            <p class="form-message" id="login-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+
+            <div class="divider"><span>O continuar con</span></div>
+
+            <div class="social-row">
+              <button type="button" class="btn btn-social" data-provider="Google">Google</button>
+              <button type="button" class="btn btn-social" data-provider="Apple">Apple</button>
+            </div>
+          </form>
+
+          <!-- Crear cuenta -->
+          <form id="register-form" class="auth-col" novalidate>
+            <h2>Crear Cuenta</h2>
+            <p class="auth-col-subtitle">Únete a la red y apoya a pequeños agricultores</p>
+
+            <label class="field-label" for="register-name">Nombre Completo</label>
+            <input type="text" id="register-name" name="name" placeholder="ej: María José Silva" required />
+
+            <label class="field-label" for="register-email">Correo Electrónico</label>
+            <input type="email" id="register-email" name="email" placeholder="ejemplo@correo.cl" required />
+
+            <div class="field-grid">
+              <div>
+                <label class="field-label" for="register-password">Contraseña</label>
+                <input type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required />
+              </div>
+              <div>
+                <label class="field-label" for="register-phone">Teléfono</label>
+                <input type="tel" id="register-phone" name="phone" placeholder="ej: +56 9 1234 5678" required />
+              </div>
+            </div>
+
+            <label class="field-label" for="register-address">Dirección de Despacho (Regional / Santiago)</label>
+            <input type="text" id="register-address" name="address" placeholder="Calle, Número, Comuna, Ciudad" required />
+
+            <label class="checkbox-label terms-label">
+              <input type="checkbox" id="accept-terms" name="terms" required />
+              Acepto los <a href="#">Términos y Condiciones</a> y Políticas de Envío.
+            </label>
+
+            <p class="form-message" id="register-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-icon">🌱</span>
+            <span class="brand-text">
+              <span class="brand-title">HUERTO HOGAR</span>
+              <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+            </span>
+          </a>
+          <p>
+            Conectamos a las familias de Chile con productores agrícolas locales.
+            Comprometidos con la sustentabilidad y el comercio justo.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Categorías</h3>
+          <ul>
+            <li><a href="frutas.html">Frutas Frescas</a></li>
+            <li><a href="verduras.html">Verduras del Valle</a></li>
+            <li><a href="organicos.html">Productos Orgánicos</a></li>
+            <li><a href="lacteos.html">Lácteos Artesanales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>HuertoHogar</h3>
+          <ul>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Nuestros Agricultores</a></li>
+            <li><a href="#">Políticas de Despacho</a></li>
+            <li><a href="#">Sustentabilidad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Ayuda</h3>
+          <ul>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Seguimiento de Envío</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 HuertoHogar SpA. Todos los derechos reservados.</p>
+        <p>Diseñado con ❤️ en el Maule, Chile.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
