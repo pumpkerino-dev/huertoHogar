@@ -1,0 +1,45 @@
+/* ==========================================================================
+                                BOTONES
+   ========================================================================== */
+/* Utiles para otras paginas igualmente :) */
+
+.btn {
+  border: none;
+  border-radius: var(--radius);
+
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  padding: 10px 12px;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  margin-top: 12px;
+}
+.btn-primary:hover {
+  background: var(--green-dark);
+}
+
+/* Botones sociales */
+.btn-social {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-weight: 500;
+}
+.btn-social:hover {
+  background: var(--bg);
+}

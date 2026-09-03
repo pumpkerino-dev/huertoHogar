@@ -1,0 +1,35 @@
+/* ==========================================================================
+   HUERTO HOGAR
+   Variables globales
+   ========================================================================== */
+
+:root {
+  /* Colores principales */
+  --green: #2e8b57;
+  --green-dark: #256e46;
+  --green-light: #eaf3ee;
+
+  /* Colores secundarios */
+  --mustard: #ffd700;
+  --brown: #8b4513;
+
+  /* Textos */
+  --text-main: #333333;
+  --text-muted: #666666;
+
+  /* Fondos y bordes */
+  --bg: #f7f7f7;
+  --white: #ffffff;
+  --border: #e0ddd6;
+
+  /* Estados */
+  --error: #b3261e;
+
+  /* Bordes */
+  --radius: 8px;
+  --radius-card: 10px;
+
+  /* Tipografías */
+  --font-body: "Montserrat", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+}

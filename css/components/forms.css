@@ -1,0 +1,63 @@
+/* ==========================================================================
+                            FORMULARIOS
+   ========================================================================== */
+
+.field-label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  color: var(--text-main);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+}
+
+.auth-col input[type="text"],
+.auth-col input[type="email"],
+.auth-col input[type="password"],
+.auth-col input[type="tel"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+  background: var(--white);
+  color: var(--text-main);
+  font-size: 0.72rem;
+  transition: border-color 0.2s ease;
+}
+
+.auth-col input::placeholder {
+  color: #999999;
+}
+
+.auth-col input:focus {
+  border-color: var(--green);
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-main);
+  font-size: 0.65rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  accent-color: var(--green);
+}
+
+/* Mensajes */
+.form-message {
+  min-height: 1em;
+  margin: 6px 0 0;
+  color: var(--error);
+  font-size: 0.68rem;
+}
+.form-message.success {
+  color: var(--green-dark);
+}

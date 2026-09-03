@@ -1,0 +1,63 @@
+/* ==========================================================================
+                                    FOOTER
+   ========================================================================== */
+/* Esta seccion es reutilizables para todos los html :) */
+
+.site-footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+/* Parte superior */
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 42px 24px 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+/* Marca */
+.footer-brand p {
+  max-width: 280px;
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Columnas */
+.footer-col h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 0.85rem;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.footer-col a:hover {
+  color: var(--green-dark);
+}
+
+/* Parte inferior */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+}
