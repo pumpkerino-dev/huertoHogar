@@ -1,0 +1,902 @@
+/* ==========================================================================
+   HOME PAGE
+   ========================================================================== */
+
+
+/* ==========================================================================
+   CONTENEDOR GENERAL
+   ========================================================================== */
+
+.home-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.home-hero {
+    width: 100vw;
+    height: 492px;
+    overflow: hidden;
+    margin-left: calc(50% - 50vw);
+}
+
+.home-hero-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+}
+
+
+/* ==========================================================================
+   TITULOS DE SECCION
+   ========================================================================== */
+
+.section-heading {
+    margin-bottom: 24px;
+    transform: translateX(-41px);
+}
+
+.section-heading h2 {
+    margin: 0 0 6px;
+
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+
+    color: var(--brown);
+
+    /* Evita que el título se comprima */
+    white-space: nowrap;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+
+    /* Evita que el subtítulo se comprima */
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   CATEGORIAS
+   ========================================================================== */
+
+.categories-section {
+    background-color: var(--bg);
+    max-width: none;
+}
+
+
+/* Contenedor interno para mantener el contenido centrado */
+
+.categories-inner {
+    width: 100%;
+    max-width: 1200px;
+    transform: translateX(127px);
+}
+
+
+/* Grid */
+
+.category-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 302px);
+
+    justify-content: center;
+
+    gap: 24px;
+}
+
+.category-card {
+    width: 302px;
+    height: 271px;
+
+    display: block;
+
+    overflow: hidden;
+
+    background-color: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Imagen */
+
+.category-image {
+    width: 302px;
+    height: 160px;
+
+    overflow: hidden;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* Texto */
+
+.category-content {
+    width: 302px;
+    height: 111px;
+
+    padding: 16px 9px;
+}
+
+.category-content h3 {
+    margin: 0 0 7px;
+
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    color: var(--brown);
+}
+
+.category-content p {
+    margin: 0;
+
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   OFERTAS
+   ========================================================================== */
+
+.offers-heading {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 24px;
+}
+
+.offers-heading .section-heading {
+    margin-bottom: 0;
+}
+
+.offers-link {
+    flex-shrink: 0;
+
+    transform: translateX(40px);
+
+    margin-bottom: 2px;
+
+    color: var(--green);
+
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.offers-link:hover {
+    color: var(--green-dark);
+}
+
+
+/* ==========================================================================
+   GRID PRODUCTOS
+   ========================================================================== */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 302px);
+
+    justify-content: center;
+
+    gap: 24px;
+}
+
+
+/* ==========================================================================
+   TARJETA PRODUCTO
+   ========================================================================== */
+
+.product-card {
+    width: 302px;
+    height: 334px;
+
+    overflow: hidden;
+
+    background-color: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Imagen */
+
+.product-image {
+    width: 302px;
+    height: 180px;
+
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* Contenido */
+
+.product-content {
+    width: 302px;
+    height: 154px;
+
+    padding: 12px 16px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.product-origin {
+    margin-bottom: 4px;
+
+    color: var(--text-muted);
+
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    line-height: 1.2;
+}
+
+.product-content h3 {
+    margin: 0 0 5px;
+
+    color: var(--text-main);
+
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.product-price {
+    margin: 0 0 10px;
+
+    color: var(--brown);
+
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   BOTON PRODUCTO
+   ========================================================================== */
+
+.product-button {
+    width: 270px;
+    height: 35px;
+
+    margin: 0;
+    margin-top: 22px;
+
+    align-self: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--green);
+    color: var(--white);
+
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.1s ease;
+}
+
+.product-button:hover {
+    background-color: var(--green-dark);
+}
+
+.product-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ==========================================================================
+   NUESTRA MISION Y PRESENCIA
+   ========================================================================== */
+
+.mission-presence-section {
+    width: 100%;
+    height: 548px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+
+    max-width: none;
+    background-color: var(--bg);
+}
+
+
+/* ==========================================================================
+   CONTENEDOR DE MISION + PRESENCIA
+   ========================================================================== */
+
+.mission-presence-grid {
+    width: 1260px;
+    max-width: none;
+    height: 388px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   BLOQUE MISION
+   ========================================================================== */
+
+.mission-content {
+    width: 585px;
+    height: 252px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    flex-shrink: 0;
+}
+
+.mission-content h2 {
+    width: 449px;
+    height: 48px;
+
+    margin: 0 0 16px;
+
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+
+    line-height: 48px;
+
+    color: var(--brown);
+}
+
+.mission-content > p {
+    width: 585px;
+    height: 104px;
+
+    margin: 0 0 16px;
+
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    color: var(--text-main);
+}
+
+
+/* ==========================================================================
+   BENEFICIOS DE MISION
+   ========================================================================== */
+
+.mission-benefits {
+    width: 585px;
+    height: 52px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.mission-benefit {
+    width: 585px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+}
+
+.mission-benefit-icon {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    margin-right: 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mission-benefit p {
+    width: 553px;
+    margin: 0;
+
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 26px;
+
+    color: var(--text-main);
+}
+
+
+/* ==========================================================================
+   BLOQUE PRESENCIA
+   ========================================================================== */
+
+.presence-card {
+    width: 635px;
+    height: 388px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   MAPA
+   ========================================================================== */
+
+.presence-map {
+    width: 120px;
+    height: 340px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+}
+
+.presence-map img {
+    width: 120px;
+    height: 340px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================================================
+   CONTENIDO DE PRESENCIA
+   ========================================================================== */
+
+.presence-content {
+    width: 443px;
+    height: 340px;
+
+    margin-left: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+}
+
+.presence-content h3 {
+    width: max-content;
+    height: 24px;
+
+    margin: 0 0 16px;
+
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    line-height: 24px;
+
+    color: var(--brown);
+}
+
+.presence-content > p {
+    width: 443px;
+    height: 16px;
+
+    margin: 0 0 20px;
+
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 16px;
+
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   LISTA DE SEDES
+   ========================================================================== */
+
+.presence-list {
+    width: 443px;
+    height: 192px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.presence-item {
+    width: 443px;
+    height: 18px;
+
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 18px;
+
+    color: var(--text-main);
+
+    list-style: none;
+}
+
+.presence-item::before {
+    content: "•";
+
+    color: var(--green);
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    margin-right: 8px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1300px) {
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: repeat(2, 302px);
+    }
+
+}
+
+
+/* ==========================================================================
+   AJUSTE DE TITULOS Y ENLACE
+   ========================================================================== */
+
+@media (max-width: 1280px) {
+
+    .section-heading {
+        transform: translateX(0);
+    }
+
+    .offers-link {
+        transform: translateX(0);
+    }
+
+    .mission-presence-grid {
+        width: 100%;
+        padding: 0 24px;
+
+        box-sizing: border-box;
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .mission-presence-section {
+        height: auto;
+        padding: 60px 24px;
+    }
+
+    .mission-presence-grid {
+        width: 100%;
+        height: auto;
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: 40px;
+
+        padding: 0;
+    }
+
+    .mission-content {
+        width: 585px;
+        max-width: 100%;
+    }
+
+    .mission-content > p,
+    .mission-benefits,
+    .mission-benefit {
+        max-width: 100%;
+    }
+
+    .presence-card {
+        width: 635px;
+        max-width: 100%;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .home-section {
+        padding: 36px 16px;
+    }
+
+    .home-hero {
+        height: 320px;
+    }
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: 302px;
+    }
+
+    .offers-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    /* Mision */
+
+    .mission-presence-section {
+        padding: 48px 16px;
+    }
+
+    .mission-content {
+        width: 100%;
+        height: auto;
+    }
+
+    .mission-content h2 {
+        width: 100%;
+        height: auto;
+
+        line-height: 1.2;
+    }
+
+    .mission-content > p {
+        width: 100%;
+        height: auto;
+    }
+
+    .mission-benefits {
+        width: 100%;
+        height: auto;
+        gap: 12px;
+    }
+
+    .mission-benefit {
+        width: 100%;
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .mission-benefit p {
+        width: calc(100% - 32px);
+        line-height: 1.5;
+    }
+
+
+    /* Presencia */
+
+    .presence-card {
+        width: 100%;
+        height: auto;
+
+        padding: 24px;
+
+        align-items: flex-start;
+    }
+
+    .presence-map {
+        width: 90px;
+        height: 260px;
+    }
+
+    .presence-map img {
+        width: 90px;
+        height: 260px;
+    }
+
+    .presence-content {
+        width: calc(100% - 114px);
+        height: auto;
+
+        margin-left: 24px;
+    }
+
+    .presence-content > p {
+        width: 100%;
+        height: auto;
+        line-height: 1.5;
+    }
+
+    .presence-list {
+        width: 100%;
+        height: auto;
+        gap: 8px;
+    }
+
+    .presence-item {
+        width: 100%;
+        height: auto;
+        line-height: 1.5;
+    }
+
+}
+
+
+/* ==========================================================================
+   PANTALLAS MUY PEQUEÑAS
+   ========================================================================== */
+
+@media (max-width: 350px) {
+
+    .section-heading {
+        transform: none;
+    }
+
+    .section-heading h2,
+    .section-heading p {
+        white-space: normal;
+    }
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .category-card,
+    .product-card,
+    .category-image,
+    .category-content,
+    .product-image,
+    .product-content {
+        width: 100%;
+    }
+
+    .category-card {
+        height: auto;
+    }
+
+    .category-content {
+        min-height: 111px;
+        height: auto;
+    }
+
+    .product-card {
+        height: auto;
+    }
+
+    .product-content {
+        min-height: 154px;
+        height: auto;
+    }
+
+
+    /* Mision */
+
+    .mission-presence-section {
+        padding: 40px 12px;
+    }
+
+    .mission-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .presence-card {
+        flex-direction: column;
+        align-items: center;
+
+        padding: 20px;
+    }
+
+    .presence-map {
+        width: 120px;
+        height: 220px;
+
+        margin-bottom: 20px;
+    }
+
+    .presence-map img {
+        width: 120px;
+        height: 220px;
+    }
+
+    .presence-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+}

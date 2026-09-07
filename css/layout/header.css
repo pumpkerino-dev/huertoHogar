@@ -187,6 +187,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  min-width: max-content;
 }
 
 .cart-icon img {
