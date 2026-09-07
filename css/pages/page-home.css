@@ -1,12 +1,32 @@
-/* ==========================================================================
-   HOME PAGE
-   ========================================================================== */
+ /* ==========================================================================
+       HOME PAGE
+       ==========================================================================
+       Este archivo contiene los estilos exclusivos de la página principal.
+
+       Estructura:
+       1. Contenedor general
+       2. Hero
+       3. Títulos de sección
+       4. Categorías
+       5. Ofertas
+       6. Misión y presencia
+       7. Responsive
+       ========================================================================== */
 
 
-/* ==========================================================================
-   CONTENEDOR GENERAL
-   ========================================================================== */
+    /* ==========================================================================
+       1. CONTENEDOR GENERAL
+       ========================================================================== */
 
+    /*
+     * Contenedor utilizado por las secciones normales de la página.
+     *
+     * max-width:
+     * Define el ancho máximo del contenido.
+     *
+     * padding:
+     * Espacio interno superior/inferior y lateral.
+     */
 .home-section {
     width: 100%;
     max-width: 1200px;
@@ -16,88 +36,151 @@
 
 
 /* ==========================================================================
-   HERO
+   2. HERO
    ========================================================================== */
 
+/*
+ * Hero principal de la página.
+ *
+ * width: 100vw;
+ * Hace que la imagen ocupe todo el ancho de la ventana.
+ *
+ * height:
+ * Altura del hero en escritorio.
+ *
+ * margin-left:
+ * Compensa el centrado del contenedor para llevar el hero
+ * hasta los extremos izquierdo y derecho de la ventana.
+ */
 .home-hero {
     width: 100vw;
     height: 492px;
-    overflow: hidden;
     margin-left: calc(50% - 50vw);
+
+    overflow: hidden;
 }
 
+/*
+ * Imagen utilizada por el hero.
+ */
 .home-hero-image {
     width: 100%;
     height: 100%;
     display: block;
+
+    /*
+     * Ajusta la imagen exactamente al tamaño del hero.
+     */
     object-fit: fill;
 }
 
 
 /* ==========================================================================
-   TITULOS DE SECCION
+   3. TÍTULOS DE SECCIÓN
    ========================================================================== */
 
+/*
+ * Contenedor general de:
+ * - Categorías Destacadas
+ * - Ofertas Especiales
+ *
+ * IMPORTANTE:
+ * El translateX controla el desplazamiento horizontal del título
+ * y subtítulo en escritorio.
+ */
 .section-heading {
     margin-bottom: 24px;
+
+    /*
+     * Ajuste horizontal del bloque de título.
+     * Negativo = izquierda.
+     * Positivo = derecha.
+     */
     transform: translateX(-41px);
 }
 
+/*
+ * Título principal de cada sección.
+ */
 .section-heading h2 {
     margin: 0 0 6px;
 
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
-
     color: var(--brown);
 
-    /* Evita que el título se comprima */
+    /*
+     * Evita que el título se divida en varias líneas.
+     */
     white-space: nowrap;
 }
 
+/*
+ * Texto secundario debajo del título.
+ */
 .section-heading p {
     margin: 0;
 
-    color: var(--text-muted);
     font-family: var(--font-body);
     font-size: 0.9rem;
+    color: var(--text-muted);
 
-    /* Evita que el subtítulo se comprima */
+    /*
+     * Evita que el subtítulo se divida en varias líneas.
+     */
     white-space: nowrap;
 }
 
 
 /* ==========================================================================
-   CATEGORIAS
+   4. CATEGORÍAS DESTACADAS
    ========================================================================== */
 
+/*
+ * Sección completa de categorías.
+ *
+ * max-width: none;
+ * Permite que el fondo ocupe todo el ancho de la pantalla.
+ */
 .categories-section {
-    background-color: var(--bg);
     max-width: none;
+    background-color: var(--bg);
 }
 
-
-/* Contenedor interno para mantener el contenido centrado */
-
+/*
+ * Contenedor interno de categorías.
+ *
+ * Su objetivo es mantener el contenido centrado aunque el fondo
+ * de .categories-section ocupe todo el ancho.
+ */
 .categories-inner {
     width: 100%;
     max-width: 1200px;
+
+    /*
+     * Ajuste horizontal del contenido respecto al centro.
+     */
     transform: translateX(127px);
 }
 
 
-/* Grid */
+/* ---------- Grid de categorías ---------- */
 
+/*
+ * Distribución de las cuatro tarjetas.
+ */
 .category-grid {
     display: grid;
 
     grid-template-columns: repeat(4, 302px);
-
     justify-content: center;
 
     gap: 24px;
 }
+
+
+/* ---------- Tarjeta de categoría ---------- */
 
 .category-card {
     width: 302px;
@@ -121,6 +204,9 @@
             box-shadow 0.2s ease;
 }
 
+/*
+ * Efecto visual al pasar el mouse.
+ */
 .category-card:hover {
     transform: translateY(-2px);
 
@@ -128,7 +214,7 @@
 }
 
 
-/* Imagen */
+/* ---------- Imagen de categoría ---------- */
 
 .category-image {
     width: 302px;
@@ -147,15 +233,22 @@
 }
 
 
-/* Texto */
+/* ---------- Texto de categoría ---------- */
 
 .category-content {
     width: 302px;
     height: 111px;
 
+    /*
+     * Primer valor = arriba/abajo.
+     * Segundo valor = izquierda/derecha.
+     */
     padding: 16px 9px;
 }
 
+/*
+ * Nombre de la categoría.
+ */
 .category-content h3 {
     margin: 0 0 7px;
 
@@ -166,20 +259,27 @@
     color: var(--brown);
 }
 
+/*
+ * Descripción de la categoría.
+ */
 .category-content p {
     margin: 0;
 
-    color: var(--text-muted);
     font-family: var(--font-body);
     font-size: 0.78rem;
     line-height: 1.5;
+
+    color: var(--text-muted);
 }
 
 
 /* ==========================================================================
-   OFERTAS
+   5. OFERTAS ESPECIALES
    ========================================================================== */
 
+/*
+ * Contenedor de título + enlace "Ver todas las ofertas".
+ */
 .offers-heading {
     display: flex;
 
@@ -191,25 +291,40 @@
     margin-bottom: 24px;
 }
 
+/*
+ * El título de ofertas no necesita margen inferior adicional,
+ * porque .offers-heading ya controla la separación.
+ */
 .offers-heading .section-heading {
     margin-bottom: 0;
 }
 
+
+/* ---------- Enlace de ofertas ---------- */
+
 .offers-link {
     flex-shrink: 0;
 
+    /*
+     * Ajuste horizontal del enlace.
+     * Positivo = derecha.
+     * Negativo = izquierda.
+     */
     transform: translateX(40px);
 
     margin-bottom: 2px;
-
-    color: var(--green);
 
     font-family: var(--font-body);
     font-size: 0.82rem;
     font-weight: 600;
 
+    color: var(--green);
+
     text-decoration: none;
 
+    /*
+     * Evita que el enlace se divida.
+     */
     white-space: nowrap;
 
     transition: color 0.2s ease;
@@ -220,24 +335,19 @@
 }
 
 
-/* ==========================================================================
-   GRID PRODUCTOS
-   ========================================================================== */
+/* ---------- Grid de productos ---------- */
 
 .product-grid {
     display: grid;
 
     grid-template-columns: repeat(4, 302px);
-
     justify-content: center;
 
     gap: 24px;
 }
 
 
-/* ==========================================================================
-   TARJETA PRODUCTO
-   ========================================================================== */
+/* ---------- Tarjeta de producto ---------- */
 
 .product-card {
     width: 302px;
@@ -264,7 +374,7 @@
 }
 
 
-/* Imagen */
+/* ---------- Imagen del producto ---------- */
 
 .product-image {
     width: 302px;
@@ -283,8 +393,14 @@
 }
 
 
-/* Contenido */
+/* ---------- Contenido del producto ---------- */
 
+/*
+ * Altura total del contenido inferior de la tarjeta.
+ *
+ * box-sizing: border-box:
+ * Hace que el width/height incluyan el padding.
+ */
 .product-content {
     width: 302px;
     height: 154px;
@@ -297,48 +413,62 @@
     flex-direction: column;
 }
 
+/*
+ * Origen del producto.
+ */
 .product-origin {
     margin-bottom: 4px;
-
-    color: var(--text-muted);
 
     font-family: var(--font-body);
     font-size: 0.68rem;
     line-height: 1.2;
+
+    color: var(--text-muted);
 }
 
+/*
+ * Nombre del producto.
+ */
 .product-content h3 {
     margin: 0 0 5px;
-
-    color: var(--text-main);
 
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 600;
+
+    color: var(--text-main);
 }
 
+/*
+ * Precio del producto.
+ */
 .product-price {
     margin: 0 0 10px;
-
-    color: var(--brown);
 
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 700;
+
+    color: var(--brown);
 }
 
 
-/* ==========================================================================
-   BOTON PRODUCTO
-   ========================================================================== */
+/* ---------- Botón del producto ---------- */
 
 .product-button {
     width: 270px;
     height: 35px;
 
     margin: 0;
+
+    /*
+     * Separación adicional entre el precio y el botón.
+     */
     margin-top: 22px;
 
+    /*
+     * Centra horizontalmente el botón dentro del contenido.
+     */
     align-self: center;
 
     padding: 0;
@@ -370,9 +500,18 @@
 
 
 /* ==========================================================================
-   NUESTRA MISION Y PRESENCIA
+   6. NUESTRA MISIÓN Y PRESENCIA
    ========================================================================== */
 
+/*
+ * Sección completa.
+ *
+ * height:
+ * Altura exacta de la sección en el diseño de escritorio.
+ *
+ * background-color:
+ * Fondo gris muy claro utilizado en el mockup.
+ */
 .mission-presence-section {
     width: 100%;
     height: 548px;
@@ -383,14 +522,24 @@
     align-items: center;
 
     max-width: none;
+
     background-color: var(--bg);
 }
 
 
-/* ==========================================================================
-   CONTENEDOR DE MISION + PRESENCIA
-   ========================================================================== */
+/* ---------- Contenedor de misión + presencia ---------- */
 
+/*
+ * Este contenedor agrupa las dos columnas:
+ *
+ * Izquierda:
+ * Misión
+ *
+ * Derecha:
+ * Mapa + 9 sedes
+ *
+ * 585px + 40px + 635px = 1260px
+ */
 .mission-presence-grid {
     width: 1260px;
     max-width: none;
@@ -408,9 +557,7 @@
 }
 
 
-/* ==========================================================================
-   BLOQUE MISION
-   ========================================================================== */
+/* ---------- Bloque de misión ---------- */
 
 .mission-content {
     width: 585px;
@@ -423,6 +570,9 @@
     flex-shrink: 0;
 }
 
+
+/* ---------- Título de misión ---------- */
+
 .mission-content h2 {
     width: 449px;
     height: 48px;
@@ -432,11 +582,13 @@
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
-
     line-height: 48px;
 
     color: var(--brown);
 }
+
+
+/* ---------- Texto principal de misión ---------- */
 
 .mission-content > p {
     width: 585px;
@@ -452,9 +604,7 @@
 }
 
 
-/* ==========================================================================
-   BENEFICIOS DE MISION
-   ========================================================================== */
+/* ---------- Beneficios ---------- */
 
 .mission-benefits {
     width: 585px;
@@ -474,6 +624,9 @@
     align-items: center;
 }
 
+
+/* ---------- Iconos de beneficios ---------- */
+
 .mission-benefit-icon {
     width: 20px;
     height: 20px;
@@ -487,6 +640,9 @@
     justify-content: center;
 }
 
+
+/* ---------- Texto de beneficios ---------- */
+
 .mission-benefit p {
     width: 553px;
     margin: 0;
@@ -499,9 +655,7 @@
 }
 
 
-/* ==========================================================================
-   BLOQUE PRESENCIA
-   ========================================================================== */
+/* ---------- Bloque de presencia ---------- */
 
 .presence-card {
     width: 635px;
@@ -518,9 +672,7 @@
 }
 
 
-/* ==========================================================================
-   MAPA
-   ========================================================================== */
+/* ---------- Mapa ---------- */
 
 .presence-map {
     width: 120px;
@@ -541,14 +693,15 @@
 }
 
 
-/* ==========================================================================
-   CONTENIDO DE PRESENCIA
-   ========================================================================== */
+/* ---------- Contenido de presencia ---------- */
 
 .presence-content {
     width: 443px;
     height: 340px;
 
+    /*
+     * Distancia entre el mapa y el contenido.
+     */
     margin-left: 24px;
 
     display: flex;
@@ -557,7 +710,13 @@
     box-sizing: border-box;
 }
 
+
+/* ---------- Título "Nuestras 9 Sedes" ---------- */
+
 .presence-content h3 {
+    /*
+     * max-content evita que el título se parta.
+     */
     width: max-content;
     height: 24px;
 
@@ -566,11 +725,13 @@
     font-family: var(--font-heading);
     font-size: 1.15rem;
     font-weight: 700;
-
     line-height: 24px;
 
     color: var(--brown);
 }
+
+
+/* ---------- Descripción de presencia ---------- */
 
 .presence-content > p {
     width: 443px;
@@ -586,9 +747,7 @@
 }
 
 
-/* ==========================================================================
-   LISTA DE SEDES
-   ========================================================================== */
+/* ---------- Lista de sedes ---------- */
 
 .presence-list {
     width: 443px;
@@ -617,24 +776,35 @@
     list-style: none;
 }
 
+
+/* ---------- Viñeta verde ---------- */
+
 .presence-item::before {
     content: "•";
+
+    margin-right: 8px;
 
     color: var(--green);
 
     font-size: 1rem;
     font-weight: 700;
-
-    margin-right: 8px;
 }
 
 
 /* ==========================================================================
-   RESPONSIVE
+   7. RESPONSIVE
+   ========================================================================== */
+
+
+/* ==========================================================================
+   TABLETS / LAPTOPS PEQUEÑOS
    ========================================================================== */
 
 @media (max-width: 1300px) {
 
+    /*
+     * En este tamaño las cuatro tarjetas ya no caben en una sola fila.
+     */
     .category-grid,
     .product-grid {
         grid-template-columns: repeat(2, 302px);
@@ -644,11 +814,15 @@
 
 
 /* ==========================================================================
-   AJUSTE DE TITULOS Y ENLACE
+   AJUSTE DE TÍTULOS Y ENLACE
    ========================================================================== */
 
 @media (max-width: 1280px) {
 
+    /*
+     * Quitamos los desplazamientos manuales cuando la pantalla
+     * comienza a reducirse.
+     */
     .section-heading {
         transform: translateX(0);
     }
@@ -657,6 +831,9 @@
         transform: translateX(0);
     }
 
+    /*
+     * El bloque de misión deja de utilizar un ancho fijo de 1260px.
+     */
     .mission-presence-grid {
         width: 100%;
         padding: 0 24px;
@@ -667,8 +844,15 @@
 }
 
 
+/* ==========================================================================
+   PANTALLAS MEDIANAS
+   ========================================================================== */
+
 @media (max-width: 1000px) {
 
+    /*
+     * Misión y presencia pasan a una disposición vertical.
+     */
     .mission-presence-section {
         height: auto;
         padding: 60px 24px;
@@ -686,6 +870,9 @@
         padding: 0;
     }
 
+
+    /* Misión */
+
     .mission-content {
         width: 585px;
         max-width: 100%;
@@ -697,6 +884,9 @@
         max-width: 100%;
     }
 
+
+    /* Presencia */
+
     .presence-card {
         width: 635px;
         max-width: 100%;
@@ -705,20 +895,36 @@
 }
 
 
+/* ==========================================================================
+   MÓVILES
+   ========================================================================== */
+
 @media (max-width: 700px) {
 
+    /*
+     * Reduce el espacio lateral de las secciones.
+     */
     .home-section {
         padding: 36px 16px;
     }
+
+
+    /* Hero */
 
     .home-hero {
         height: 320px;
     }
 
+
+    /* Categorías y productos */
+
     .category-grid,
     .product-grid {
         grid-template-columns: 302px;
     }
+
+
+    /* Ofertas */
 
     .offers-heading {
         align-items: flex-start;
@@ -727,7 +933,9 @@
     }
 
 
-    /* Mision */
+    /* ----------------------------------------------------------------------
+       Misión
+       ---------------------------------------------------------------------- */
 
     .mission-presence-section {
         padding: 48px 16px;
@@ -753,22 +961,27 @@
     .mission-benefits {
         width: 100%;
         height: auto;
+
         gap: 12px;
     }
 
     .mission-benefit {
         width: 100%;
         height: auto;
+
         align-items: flex-start;
     }
 
     .mission-benefit p {
         width: calc(100% - 32px);
+
         line-height: 1.5;
     }
 
 
-    /* Presencia */
+    /* ----------------------------------------------------------------------
+       Presencia
+       ---------------------------------------------------------------------- */
 
     .presence-card {
         width: 100%;
@@ -778,6 +991,9 @@
 
         align-items: flex-start;
     }
+
+
+    /* Mapa reducido */
 
     .presence-map {
         width: 90px;
@@ -789,6 +1005,9 @@
         height: 260px;
     }
 
+
+    /* Contenido */
+
     .presence-content {
         width: calc(100% - 114px);
         height: auto;
@@ -799,18 +1018,24 @@
     .presence-content > p {
         width: 100%;
         height: auto;
+
         line-height: 1.5;
     }
+
+
+    /* Lista */
 
     .presence-list {
         width: 100%;
         height: auto;
+
         gap: 8px;
     }
 
     .presence-item {
         width: 100%;
         height: auto;
+
         line-height: 1.5;
     }
 
@@ -823,6 +1048,9 @@
 
 @media (max-width: 350px) {
 
+    /*
+     * A partir de aquí el contenido puede volver a ocupar varias líneas.
+     */
     .section-heading {
         transform: none;
     }
@@ -832,10 +1060,18 @@
         white-space: normal;
     }
 
+
+    /* ----------------------------------------------------------------------
+       Grid
+       ---------------------------------------------------------------------- */
+
     .category-grid,
     .product-grid {
         grid-template-columns: minmax(0, 1fr);
     }
+
+
+    /* Las tarjetas ocupan el ancho disponible */
 
     .category-card,
     .product-card,
@@ -846,6 +1082,9 @@
         width: 100%;
     }
 
+
+    /* Categorías */
+
     .category-card {
         height: auto;
     }
@@ -854,6 +1093,9 @@
         min-height: 111px;
         height: auto;
     }
+
+
+    /* Productos */
 
     .product-card {
         height: auto;
@@ -865,7 +1107,9 @@
     }
 
 
-    /* Mision */
+    /* ----------------------------------------------------------------------
+       Misión
+       ---------------------------------------------------------------------- */
 
     .mission-presence-section {
         padding: 40px 12px;
@@ -875,12 +1119,20 @@
         font-size: 1.6rem;
     }
 
+
+    /* ----------------------------------------------------------------------
+       Presencia
+       ---------------------------------------------------------------------- */
+
     .presence-card {
         flex-direction: column;
         align-items: center;
 
         padding: 20px;
     }
+
+
+    /* Mapa */
 
     .presence-map {
         width: 120px;
@@ -894,9 +1146,13 @@
         height: 220px;
     }
 
+
+    /* Contenido */
+
     .presence-content {
         width: 100%;
         margin-left: 0;
     }
 
 }
+

@@ -1,42 +1,43 @@
-<!--
-  Home-Page
--->
-<!doctype html>
+    <!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Huerto Hogar - Home Page</title>
 
-    <!-- Tipografias: Montserrat + Playfair Display -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fuentes utilizadas en todo el sitio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
             rel="stylesheet"
-    />
+    >
 
     <!-- CSS global -->
-    <link rel="stylesheet" href="css/base/variables.css" />
-    <link rel="stylesheet" href="css/base/reset.css" />
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/base/reset.css">
 
     <!-- Componentes reutilizables -->
-    <link rel="stylesheet" href="css/layout/header.css" />
-    <link rel="stylesheet" href="css/layout/footer.css" />
-    <link rel="stylesheet" href="css/components/buttons.css" />
-    <link rel="stylesheet" href="css/components/forms.css" />
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/footer.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/forms.css">
 
-    <!-- CSS especifico de page-home -->
-    <link rel="stylesheet" href="css/pages/page-home.css" />
+    <!-- CSS específico de esta página -->
+    <link rel="stylesheet" href="css/pages/page-home.css">
 
-    <!-- Responsive -->
-    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Reglas responsive -->
+    <link rel="stylesheet" href="css/responsive.css">
+
 </head>
 
+
 <body>
+
 
 <!-- =========================================================================
      HEADER
@@ -46,13 +47,14 @@
 
     <div class="header-inner">
 
+        <!-- Logo y nombre del sitio -->
         <a href="page-home.html" class="brand">
 
             <span class="brand-icon">
                 <img
                         src="img/logo.png"
                         alt="Logo Huerto Hogar"
-                />
+                >
             </span>
 
             <span class="brand-text">
@@ -70,39 +72,36 @@
         </a>
 
 
+        <!-- Barra de búsqueda -->
         <div class="search-bar">
 
             <span class="search-icon">
-
                 <img
                         src="img/lupa.png"
                         alt="Buscar"
-                />
-
+                >
             </span>
 
             <input
                     type="text"
                     placeholder="Buscar frutas, verduras, orgánicos..."
-            />
+            >
 
             <button
                     class="search-filter"
                     type="button"
                     aria-label="Filtros"
             >
-
                 <img
                         src="img/filtro.png"
                         alt="Filtros"
-                />
-
+                >
             </button>
 
         </div>
 
 
-        <!-- Mi Cuenta -->
+        <!-- Acceso a la cuenta -->
         <a
                 href="login.html"
                 class="account-link"
@@ -113,7 +112,7 @@
                 <img
                         src="img/icono-usuario.png"
                         alt="Cuenta"
-                />
+                >
 
             </span>
 
@@ -133,7 +132,7 @@
                 <img
                         src="img/carrito.png"
                         alt="Carrito"
-                />
+                >
 
             </span>
 
@@ -154,6 +153,7 @@
     </div>
 
 
+    <!-- Navegación principal -->
     <nav class="site-nav">
 
         <ul>
@@ -218,7 +218,7 @@
                 src="img/img_1.png"
                 alt="Campo agrícola de HuertoHogar"
                 class="home-hero-image"
-        />
+        >
 
     </section>
 
@@ -229,6 +229,7 @@
 
     <section class="home-section categories-section">
 
+        <!-- Contenedor que mantiene el contenido centrado -->
         <div class="categories-inner">
 
             <div class="section-heading">
@@ -244,6 +245,7 @@
             </div>
 
 
+            <!-- Tarjetas de categorías -->
             <div class="category-grid">
 
 
@@ -259,7 +261,7 @@
                         <img
                                 src="img/categoria-frutas.png"
                                 alt="Frutas frescas"
-                        />
+                        >
 
                     </div>
 
@@ -291,7 +293,7 @@
                         <img
                                 src="img/categoria-verduras.png"
                                 alt="Verduras frescas"
-                        />
+                        >
 
                     </div>
 
@@ -323,7 +325,7 @@
                         <img
                                 src="img/categorias-organicos.png"
                                 alt="Productos orgánicos"
-                        />
+                        >
 
                     </div>
 
@@ -355,7 +357,7 @@
                         <img
                                 src="img/categoria-lacteos.png"
                                 alt="Productos lácteos"
-                        />
+                        >
 
                     </div>
 
@@ -381,7 +383,6 @@
     </section>
 
 
-
     <!-- =====================================================================
          OFERTAS ESPECIALES
          ===================================================================== -->
@@ -403,6 +404,7 @@
             </div>
 
 
+            <!-- Enlace al catálogo filtrado por ofertas -->
             <a
                     href="product-catalog.html?ofertas=true"
                     class="offers-link"
@@ -413,6 +415,7 @@
         </div>
 
 
+        <!-- Tarjetas de productos -->
         <div class="product-grid">
 
 
@@ -425,15 +428,15 @@
                     <img
                             src="img/manzana-fuji.png"
                             alt="Manzanas Fuji"
-                    />
+                    >
 
                 </div>
 
                 <div class="product-content">
 
-                <span class="product-origin">
-                    Valle del Maule
-                </span>
+                    <span class="product-origin">
+                        Valle del Maule
+                    </span>
 
                     <h3>
                         Manzanas Fuji
@@ -465,15 +468,15 @@
                     <img
                             src="img/miel-organica.png"
                             alt="Miel Orgánica"
-                    />
+                    >
 
                 </div>
 
                 <div class="product-content">
 
-                <span class="product-origin">
-                    Apicultores locales
-                </span>
+                    <span class="product-origin">
+                        Apicultores locales
+                    </span>
 
                     <h3>
                         Miel Orgánica
@@ -505,15 +508,15 @@
                     <img
                             src="img/zanahorias-organicas.png"
                             alt="Zanahorias Orgánicas"
-                    />
+                    >
 
                 </div>
 
                 <div class="product-content">
 
-                <span class="product-origin">
-                    Región de O'Higgins
-                </span>
+                    <span class="product-origin">
+                        Región de O'Higgins
+                    </span>
 
                     <h3>
                         Zanahorias Orgánicas
@@ -545,15 +548,15 @@
                     <img
                             src="img/leche-entera.png"
                             alt="Leche Entera 1L"
-                    />
+                    >
 
                 </div>
 
                 <div class="product-content">
 
-                <span class="product-origin">
-                    OSORNO
-                </span>
+                    <span class="product-origin">
+                        OSORNO
+                    </span>
 
                     <h3>
                         Leche Entera 1L
@@ -580,8 +583,6 @@
     </section>
 
 
-
-
     <!-- =====================================================================
          NUESTRA MISIÓN Y PRESENCIA
          ===================================================================== -->
@@ -591,16 +592,15 @@
         <div class="mission-presence-grid">
 
 
-            <!-- =============================================================
-                 MISIÓN
-                 ============================================================= -->
+            <!-- -----------------------------------------------------------------
+                 Misión
+                 ----------------------------------------------------------------- -->
 
             <div class="mission-content">
 
                 <h2>
                     Nuestra Misión y Presencia
                 </h2>
-
 
                 <p>
                     Buscamos democratizar el acceso a productos agrícolas
@@ -610,10 +610,9 @@
                 </p>
 
 
+                <!-- Beneficios de la misión -->
                 <div class="mission-benefits">
 
-
-                    <!-- Beneficio 1 -->
 
                     <div class="mission-benefit">
 
@@ -628,8 +627,6 @@
 
                     </div>
 
-
-                    <!-- Beneficio 2 -->
 
                     <div class="mission-benefit">
 
@@ -649,33 +646,29 @@
             </div>
 
 
-            <!-- =============================================================
-                 PRESENCIA
-                 ============================================================= -->
+            <!-- -----------------------------------------------------------------
+                 Presencia y sedes
+                 ----------------------------------------------------------------- -->
 
             <div class="presence-card">
 
-
                 <!-- Mapa -->
-
                 <div class="presence-map">
 
                     <img
                             src="img/mapa-chile.png"
                             alt="Mapa de Chile"
-                    />
+                    >
 
                 </div>
 
 
-                <!-- Contenido -->
-
+                <!-- Información de sedes -->
                 <div class="presence-content">
 
                     <h3>
                         Nuestras 9 Sedes
                     </h3>
-
 
                     <p>
                         Nuestra red de distribución local abarca la geografía de Chile:
@@ -685,39 +678,39 @@
                     <ul class="presence-list">
 
                         <li class="presence-item">
-                             Viña del Mar
+                            Viña del Mar
                         </li>
 
                         <li class="presence-item">
-                             Valparaíso
+                            Valparaíso
                         </li>
 
                         <li class="presence-item">
-                             Santiago (Matriz)
+                            Santiago (Matriz)
                         </li>
 
                         <li class="presence-item">
-                             Talca
+                            Talca
                         </li>
 
                         <li class="presence-item">
-                             Nacimiento
+                            Nacimiento
                         </li>
 
                         <li class="presence-item">
-                             Concepción
+                            Concepción
                         </li>
 
                         <li class="presence-item">
-                             Villarrica
+                            Villarrica
                         </li>
 
                         <li class="presence-item">
-                             Valdivia
+                            Valdivia
                         </li>
 
                         <li class="presence-item">
-                             Puerto Montt
+                            Puerto Montt
                         </li>
 
                     </ul>
@@ -756,7 +749,7 @@
                     <img
                             src="img/logo.png"
                             alt="Logo Huerto Hogar"
-                    />
+                    >
 
                 </span>
 
@@ -902,6 +895,7 @@
     </div>
 
 
+    <!-- Información inferior del footer -->
     <div class="footer-bottom">
 
         <p>
@@ -917,6 +911,7 @@
 </footer>
 
 
+<!-- JavaScript principal -->
 <script
         type="module"
         src="js/script.js"
@@ -925,3 +920,4 @@
 </body>
 
 </html>
+
