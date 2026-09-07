@@ -134,6 +134,7 @@
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: max-content;
 }
 
 .account-link:hover {
@@ -152,6 +153,52 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.cart-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cart-total {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.cart-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cart-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-info:hover {
+  color: var(--green-dark);
 }
 
 /* Navegacion */
