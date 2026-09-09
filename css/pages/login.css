@@ -97,7 +97,6 @@
 }
 
 /* Recordarme / contraseña */
-
 .field-row {
   display: flex;
   justify-content: space-between;
@@ -153,4 +152,14 @@
 .social-row {
   display: flex;
   gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+  .auth-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
 }

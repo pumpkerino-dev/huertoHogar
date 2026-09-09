@@ -125,6 +125,14 @@
   object-fit: contain;
 }
 
+/* Acciones a la derecha (cuenta + carrito) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
 /* Mi cuenta */
 .account-link {
   display: flex;
@@ -155,49 +163,52 @@
   object-fit: contain;
 }
 
+/* Carrito */
 .cart-link {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  gap: 8px;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.cart-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.cart-title {
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.cart-total {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
 .cart-icon {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--green);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.cart-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.cart-icon svg {
+  width: 15px;
+  height: 15px;
+  color: var(--white);
 }
 
-.cart-info:hover {
+.account-icon svg,
+.account-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.cart-title {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+.cart-total {
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--green-dark);
 }
 
@@ -221,6 +232,11 @@
   transition: color 0.2s ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a.active {
   color: var(--green-dark);
+}
+
+.site-nav a.active {
+  font-weight: 600;
 }

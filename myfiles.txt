@@ -1,0 +1,1601 @@
+/* ============================================================ */
+/* ARCHIVO: ./login-register.html */
+/* ============================================================ */
+
+<!--
+  SISTEMA DE REGISTROS :^]
+-->
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huerto Hogar - Iniciar Sesión</title>
+
+  <!-- Tipografias: Montserrat (cuerpo) + Playfair Display (titulos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- REVISAR AQUI: HREF LIGADO A RUTA DE ESTILOS DE CSS. Line a reemplazar: css/estilos.css -->
+  <!-- Tipografias -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="css/base/variables.css" />
+  <link rel="stylesheet" href="css/base/reset.css" />
+
+  <!-- Componentes reutilizables -->
+  <link rel="stylesheet" href="css/layout/header.css" />
+  <link rel="stylesheet" href="css/layout/footer.css" />
+  <link rel="stylesheet" href="css/components/buttons.css" />
+  <link rel="stylesheet" href="css/components/forms.css" />
+
+  <!-- CSS especifico del Login -->
+  <link rel="stylesheet" href="css/pages/login.css" />
+
+  <!-- Popups / modales -->
+  <link rel="stylesheet" href="css/components/modal.css" />
+
+  <!-- Responsive -->
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- JavaScript -->
+  <script type="module" src="js/pages/auth.js"></script>
+  <script type="module" src="js/components/modal.js"></script>
+</head>
+
+<body>
+  <!-- encabezado -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="page-home.html" class="brand">
+        <span class="brand-icon">
+          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+        </span>
+
+        <span class="brand-text">
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
+      </a>
+
+      <div class="search-bar">
+        <span class="search-icon">
+          <img src="img/lupa.png" alt="Buscar" />
+        </span>
+
+        <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+
+        <button class="search-filter" type="button" aria-label="Filtros">
+          <img src="img/filtro.png" alt="Filtros" />
+        </button>
+      </div>
+
+      <!-- Mi Cuenta lleva a la página de inicio de sesión -->
+      <a href="login.html" class="account-link">
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
+        Mi Cuenta
+      </a>
+    </div>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="page-home.html">Nosotros</a></li>
+        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="auth-section">
+      <div class="auth-heading">
+        <span class="auth-heading-icon">
+          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+        </span>
+
+        <h1>HUERTO HOGAR</h1>
+        <p class="auth-heading-subtitle">DEL CAMPO AL HOGAR</p>
+      </div>
+
+      <div class="auth-card">
+
+        <!-- Iniciar sesion -->
+        <form id="login-form" class="auth-col" novalidate>
+          <h2>Iniciar Sesión</h2>
+
+          <p class="auth-col-subtitle">
+            Bienvenido de vuelta, disfruta lo fresco del huerto
+          </p>
+
+          <label class="field-label" for="login-email">
+            Correo Electrónico
+          </label>
+
+          <input type="email" id="login-email" name="email" placeholder="ejemplo@correo.cl" required />
+
+          <label class="field-label" for="login-password">
+            Contraseña
+          </label>
+
+          <input type="password" id="login-password" name="password" placeholder="••••••••" required />
+
+          <div class="field-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember-me" name="remember" />
+              Recordarme
+            </label>
+
+            <a href="#" class="link-muted">
+              Olvidé mi contraseña
+            </a>
+          </div>
+
+          <p class="form-message" id="login-message" role="alert"></p>
+
+          <button type="submit" class="btn btn-primary">
+            Iniciar Sesión
+          </button>
+
+          <div class="divider">
+            <span>O continuar con</span>
+          </div>
+
+          <div class="social-row">
+            <button type="button" class="btn btn-social" data-provider="Google">
+              Google
+            </button>
+
+            <button type="button" class="btn btn-social" data-provider="Apple">
+              Apple
+            </button>
+          </div>
+        </form>
+
+        <!-- Crear cuenta -->
+        <form id="register-form" class="auth-col" novalidate>
+          <h2>Crear Cuenta</h2>
+
+          <p class="auth-col-subtitle">
+            Únete a la red y apoya a pequeños agricultores
+          </p>
+
+          <label class="field-label" for="register-name">
+            Nombre Completo
+          </label>
+
+          <input type="text" id="register-name" name="name" placeholder="ej: María José Silva" required />
+
+          <label class="field-label" for="register-email">
+            Correo Electrónico
+          </label>
+
+          <input type="email" id="register-email" name="email" placeholder="ejemplo@correo.cl" required />
+
+          <div class="field-grid">
+            <div>
+              <label class="field-label" for="register-password">
+                Contraseña
+              </label>
+
+              <input type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres"
+                minlength="8" required />
+            </div>
+
+            <div>
+              <label class="field-label" for="register-phone">
+                Teléfono
+              </label>
+
+              <input type="tel" id="register-phone" name="phone" placeholder="ej: +56 9 1234 5678" required />
+            </div>
+          </div>
+
+          <label class="field-label" for="register-address">
+            Dirección de Despacho (Regional / Santiago)
+          </label>
+
+          <input type="text" id="register-address" name="address" placeholder="Calle, Número, Comuna, Ciudad"
+            required />
+
+          <label class="checkbox-label terms-label">
+            <input type="checkbox" id="accept-terms" name="terms" required />
+
+            Acepto los
+            <a href="#" data-modal-target="modal-terminos">Términos y Condiciones</a>
+            y
+            <a href="#" data-modal-target="modal-politicas">Políticas de Envío</a>.
+          </label>
+
+          <p class="form-message" id="register-message" role="alert"></p>
+
+          <button type="submit" class="btn btn-primary">
+            Crear Cuenta
+          </button>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- pie de pagina -->
+  <footer class="site-footer">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="page-home.html" class="brand">
+          <span class="brand-icon">
+            <img src="img/logo.png" alt="Logo Huerto Hogar" />
+          </span>
+
+          <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+        </a>
+
+        <p>
+          Conectamos a las familias de Chile con productores agrícolas
+          locales. Comprometidos con la sustentabilidad y el comercio justo.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Categorías</h3>
+
+        <ul>
+          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>HuertoHogar</h3>
+
+        <ul>
+          <!-- "Sobre Nosotros" también corresponde a page-home.html -->
+          <li><a href="page-home.html">Sobre Nosotros</a></li>
+          <li><a href="#">Nuestros Agricultores</a></li>
+          <li><a href="#">Políticas de Despacho</a></li>
+          <li><a href="#">Sustentabilidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Ayuda</h3>
+
+        <ul>
+          <li>
+            <a href="#">Preguntas Frecuentes</a>
+          </li>
+          <li>
+            <a href="#">Contacto</a>
+          </li>
+          <li>
+            <a href="#">Términos y Condiciones</a>
+          </li>
+          <li>
+            <a href="#">Seguimiento de Envío</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © 2026 HuertoHogar SpA. Todos los derechos reservados.
+      </p>
+      <p>
+        Diseñado con ❤️ en el Maule, Chile.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal: Términos y Condiciones -->
+  <div class="modal-overlay" id="modal-terminos">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Términos y Condiciones</h2>
+        <button class="modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Al crear una cuenta en HuertoHogar, aceptas que tus datos personales (nombre, correo, teléfono y dirección de despacho) sean utilizados exclusivamente para procesar tus pedidos y mejorar tu experiencia de compra.</p>
+        <p>HuertoHogar se compromete a conectar a las familias chilenas con productores agrícolas locales, garantizando la frescura y calidad de cada producto ofrecido en nuestro catálogo.</p>
+        <p>El uso de la plataforma implica la aceptación de nuestras políticas de precios, disponibilidad de stock y condiciones de pago vigentes al momento de la compra.</p>
+        <p>Nos reservamos el derecho de actualizar estos términos periódicamente. Cualquier cambio será notificado a través del correo electrónico registrado en tu cuenta.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Políticas de Envío -->
+  <div class="modal-overlay" id="modal-politicas">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Políticas de Envío</h2>
+        <button class="modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>HuertoHogar realiza despachos a las principales ciudades de Chile, incluyendo Santiago, Puerto Montt, Villarica, Nacimiento, Viña del Mar, Valparaíso y Concepción.</p>
+        <p>Los tiempos de entrega varían según la ubicación, siendo de 24 a 48 horas hábiles en la Región Metropolitana y de 3 a 5 días hábiles en regiones.</p>
+        <p>Puedes seleccionar la fecha de entrega preferida al momento de confirmar tu pedido, sujeto a disponibilidad. Recibirás notificaciones sobre el estado de tu envío hasta que llegue a tu domicilio.</p>
+        <p>En caso de productos frescos dañados durante el transporte, contáctanos dentro de las 24 horas siguientes a la recepción para gestionar un reemplazo o reembolso.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+/* ============================================================ */
+/* ARCHIVO: ./lacteos.html */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./readme.md */
+/* ============================================================ */
+
+# HuertoHogar
+
+Proyecto Front End para la implementación del sitio web de **HuertoHogar**, tienda online dedicada a la distribución de productos frescos y naturales en Chile.
+
+## Documentación
+
+La documentación del proyecto se encuentra en la carpeta `docs/`.
+
+* `caso-huertohogar.pdf`: documento oficial del caso.
+* `aprobacion-modelo.md`: registro de la propuesta presentada y su posterior aprobación.
+
+## Tecnologías
+
+Proyecto Front End basado en:
+
+* HTML5
+* CSS3
+* JavaScript
+
+## Estado
+
+Proyecto en etapa inicial de desarrollo.
+
+## Mockup
+
+https://www.figma.com/design/H54gaMejDVqFZlvjF2YcNy/Mockups--?node-id=0-1&t=QxWNVJ8JNkrBeoW3-1
+
+
+/* ============================================================ */
+/* ARCHIVO: ./organicos.html */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./frutas.html */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./css/responsive.css */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./css/layout/header.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                                HEADER
+   ========================================================================== */
+/* Esta seccion es reutilizables para todos los html :) */
+
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Contenedor superior */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Marca */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 1.05rem;
+  letter-spacing: 0.4px;
+}
+
+.brand-subtitle {
+  color: var(--green-dark);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  flex: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 6px 12px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.75rem;
+  color: var(--text-main);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-icon {
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.search-filter {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-filter img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mi cuenta */
+.account-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: max-content;
+}
+
+.account-link:hover {
+  color: var(--green-dark);
+}
+
+.account-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.cart-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cart-total {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.cart-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cart-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-info:hover {
+  color: var(--green-dark);
+}
+
+/* Navegacion */
+.site-nav {
+  border-top: 1px solid var(--border);
+}
+
+.site-nav ul {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.site-nav a {
+  font-size: 0.72rem;
+  color: var(--text-main);
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--green-dark);
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/layout/footer.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                                    FOOTER
+   ========================================================================== */
+/* Esta seccion es reutilizables para todos los html :) */
+
+.site-footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+/* Parte superior */
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 42px 24px 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+/* Marca */
+.footer-brand p {
+  max-width: 280px;
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Columnas */
+.footer-col h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 0.85rem;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.footer-col a:hover {
+  color: var(--green-dark);
+}
+
+/* Parte inferior */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/components/modal.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                                MODAL / POPUP
+   ========================================================================== */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.is-open {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+}
+
+.modal-header h2 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--text-muted);
+  padding: 4px 8px;
+}
+
+.modal-close:hover {
+  color: var(--text-main);
+}
+
+.modal-body {
+  padding: 20px 24px 28px;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.modal-body p {
+  margin: 0 0 12px;
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/components/forms.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                            FORMULARIOS
+   ========================================================================== */
+
+.field-label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  color: var(--text-main);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+}
+
+.auth-col input[type="text"],
+.auth-col input[type="email"],
+.auth-col input[type="password"],
+.auth-col input[type="tel"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+  background: var(--white);
+  color: var(--text-main);
+  font-size: 0.72rem;
+  transition: border-color 0.2s ease;
+}
+
+.auth-col input::placeholder {
+  color: #999999;
+}
+
+.auth-col input:focus {
+  border-color: var(--green);
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-main);
+  font-size: 0.65rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  accent-color: var(--green);
+}
+
+/* Mensajes */
+.form-message {
+  min-height: 1em;
+  margin: 6px 0 0;
+  color: var(--error);
+  font-size: 0.68rem;
+}
+.form-message.success {
+  color: var(--green-dark);
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/components/buttons.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                                BOTONES
+   ========================================================================== */
+/* Utiles para otras paginas igualmente :) */
+
+.btn {
+  border: none;
+  border-radius: var(--radius);
+
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  padding: 10px 12px;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  margin-top: 12px;
+}
+.btn-primary:hover {
+  background: var(--green-dark);
+}
+
+/* Botones sociales */
+.btn-social {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-weight: 500;
+}
+.btn-social:hover {
+  background: var(--bg);
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/pages/login.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                            LOGIN / REGISTER
+   ========================================================================== */
+
+/* Contenedor principal */
+.auth-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 34px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Encabezado del login */
+.auth-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-heading-icon {
+  width: 220px;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-heading-icon img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.auth-heading h1 {
+  margin: 7px 0 1px;
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1.05rem;
+  letter-spacing: 0.4px;
+}
+
+.auth-heading-subtitle {
+  margin: 0;
+  color: var(--green-dark);
+  font-size: 0.48rem;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+}
+
+/* Tarjeta principal */
+.auth-card {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* Columnas */
+.auth-col {
+  min-width: 0;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-col:first-child {
+  border-right: 1px solid var(--border);
+}
+
+/* Titulos */
+.auth-col h2 {
+  margin: 0 0 4px;
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1rem;
+}
+
+.auth-col-subtitle {
+  margin: 0 0 10px;
+  color: var(--text-muted);
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+/* Campos en dos columnas */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Recordarme / contraseña */
+
+.field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
+}
+
+.link-muted {
+  color: var(--green-dark);
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.link-muted:hover {
+  text-decoration: underline;
+}
+
+/* Terminos */
+.terms-label {
+  margin-top: 10px;
+  align-items: flex-start;
+  line-height: 1.35;
+}
+
+.terms-label a {
+  color: var(--green-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Separador */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 13px 0 9px;
+  color: var(--text-muted);
+  font-size: 0.6rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.divider span {
+  padding: 0 8px;
+}
+
+/* Redes sociales */
+.social-row {
+  display: flex;
+  gap: 8px;
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/base/reset.css */
+/* ============================================================ */
+
+/* ==========================================================================
+                                RESET
+   ========================================================================== */
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./css/base/variables.css */
+/* ============================================================ */
+
+/* ==========================================================================
+   HUERTO HOGAR
+   Variables globales
+   ========================================================================== */
+
+:root {
+  /* Colores principales */
+  --green: #2e8b57;
+  --green-dark: #256e46;
+  --green-light: #eaf3ee;
+
+  /* Colores secundarios */
+  --mustard: #ffd700;
+  --brown: #8b4513;
+
+  /* Textos */
+  --text-main: #333333;
+  --text-muted: #666666;
+
+  /* Fondos y bordes */
+  --bg: #f7f7f7;
+  --white: #ffffff;
+  --border: #e0ddd6;
+
+  /* Estados */
+  --error: #b3261e;
+
+  /* Bordes */
+  --radius: 8px;
+  --radius-card: 10px;
+
+  /* Tipografías */
+  --font-body: "Montserrat", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+/* ============================================================ */
+/* ARCHIVO: ./js/scripts.js */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./js/utils/validation.js */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./js/utils/messages.js */
+/* ============================================================ */
+
+
+
+/* ============================================================ */
+/* ARCHIVO: ./js/components/modal.js */
+/* ============================================================ */
+
+// Logica genérica de popups/modales (Términos, Políticas, etc.)
+document.addEventListener("DOMContentLoaded", () => {
+  const triggers = document.querySelectorAll("[data-modal-target]");
+  const overlays = document.querySelectorAll(".modal-overlay");
+
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) modal.classList.add("is-open");
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove("is-open");
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetId = trigger.dataset.modalTarget;
+      openModal(targetId);
+    });
+  });
+
+  overlays.forEach((overlay) => {
+    // Cerrar con el botón X
+    const closeBtn = overlay.querySelector(".modal-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => closeModal(overlay));
+    }
+
+    // Cerrar al hacer clic fuera de la caja (en el fondo oscuro)
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closeModal(overlay);
+    });
+  });
+
+  // Cerrar con la tecla Escape
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      overlays.forEach((overlay) => closeModal(overlay));
+    }
+  });
+});
+
+/* ============================================================ */
+/* ARCHIVO: ./js/pages/auth.js */
+/* ============================================================ */
+
+// Logica de autenticacion frontend
+
+import {
+    isValidEmail,
+    validatePassword,
+    isValidName,
+    isValidPhone,
+    isValidAddress
+} from "js/utils/validation.js";
+
+import {
+    showMessage,
+    clearMessage
+} from "js/utils/messages.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+
+    const loginMessage = document.getElementById("login-message");
+    const registerMessage = document.getElementById("register-message");
+
+    // =========================================================
+    // INICIAR SESION
+    // =========================================================
+    if (loginForm) {
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            clearMessage(loginMessage);
+
+            const emailInput = document.getElementById("login-email");
+            const passwordInput = document.getElementById("login-password");
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            // -------------------------------------------------
+            // Validacion de campos obligatorios
+            if (!email || !password) {
+                showMessage(
+                    loginMessage,
+                    "Completa tu correo y contraseña.",
+                    false
+                );
+                return;
+            }
+            // -------------------------------------------------
+            // ValidaciOn del correo
+            if (!isValidEmail(email)) {
+                showMessage(
+                    loginMessage,
+                    "Ingresa un correo electrónico válido.",
+                    false
+                );
+                emailInput.focus();
+                return;
+            }
+            // -------------------------------------------------
+            // Validacion de contraseña
+            if (password.length < 8) {
+                showMessage(
+                    loginMessage,
+                    "La contraseña debe tener al menos 8 caracteres.",
+                    false
+                );
+                passwordInput.focus();
+                return;
+            }
+            // -------------------------------------------------
+            // Validaciones superadas
+            showMessage(
+                loginMessage,
+                "Los datos ingresados son válidos. La autenticación se realizará mediante el backend.",
+                true
+            );
+        });
+    }
+
+    // =========================================================
+    // CREAR CUENTA
+    // =========================================================
+    if (registerForm) {
+        registerForm.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+            clearMessage(registerMessage);
+
+            const nameInput = document.getElementById("register-name");
+            const emailInput = document.getElementById("register-email");
+            const passwordInput = document.getElementById("register-password");
+            const phoneInput = document.getElementById("register-phone");
+            const addressInput = document.getElementById("register-address");
+            const termsInput = document.getElementById("accept-terms");
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const phone = phoneInput.value.trim();
+            const address = addressInput.value.trim();
+            const acceptsTerms = termsInput.checked;
+
+            // -------------------------------------------------
+            // Campos obligatorios
+            if (
+                !name ||
+                !email ||
+                !password ||
+                !phone ||
+                !address
+            ) {
+                showMessage(
+                    registerMessage,
+                    "Completa todos los campos obligatorios.",
+                    false
+                );
+                return;
+            }
+            // -------------------------------------------------
+            // Nombre
+            if (!isValidName(name)) {
+
+                showMessage(
+                    registerMessage,
+                    "Ingresa un nombre válido.",
+                    false
+                );
+
+                nameInput.focus();
+
+                return;
+            }
+            // -------------------------------------------------
+            // Correo
+            if (!isValidEmail(email)) {
+
+                showMessage(
+                    registerMessage,
+                    "Ingresa un correo electrónico válido.",
+                    false
+                );
+
+                emailInput.focus();
+
+                return;
+            }
+            // -------------------------------------------------
+            // Contraseña
+            const passwordErrors = validatePassword(password);
+
+            if (passwordErrors.length > 0) {
+
+                showMessage(
+                    registerMessage,
+                    "Contraseña no válida: " + passwordErrors.join(" "),
+                    false
+                );
+
+                passwordInput.focus();
+
+                return;
+            }
+            // -------------------------------------------------
+            // Telefono
+            if (!isValidPhone(phone)) {
+                showMessage(
+                    registerMessage,
+                    "Ingresa un número telefónico válido.",
+                    false
+                );
+                phoneInput.focus();
+                return;
+            }
+            // -------------------------------------------------
+            // Direccion
+            if (!isValidAddress(address)) {
+                showMessage(
+                    registerMessage,
+                    "Ingresa una dirección válida.",
+                    false
+                );
+                addressInput.focus();
+                return;
+            }
+            // -------------------------------------------------
+            // Terminos y condiciones
+            if (!acceptsTerms) {
+                showMessage(
+                    registerMessage,
+                    "Debes aceptar los Términos y Condiciones.",
+                    false
+                );
+                termsInput.focus();
+                return;
+            }
+            // -------------------------------------------------
+            // Validaciones superadas
+            showMessage(
+                registerMessage,
+                "Todos los datos son válidos. La creación de la cuenta se realizará mediante el backend.",
+                true
+            );
+        });
+    }
+
+    // =========================================================
+    // LOGIN SOCIAL
+    // =========================================================
+    const socialButtons = document.querySelectorAll(".btn-social");
+    socialButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const provider = button.dataset.provider;
+            showMessage(
+                loginMessage,
+                `El inicio de sesión con ${provider} estará disponible próximamente.`,
+                true
+            );
+        });
+    });
+});
+
+/* ============================================================ */
+/* ARCHIVO: ./docs/aprobacion-modelo.md */
+/* ============================================================ */
+
+# Aprobación del Modelo - HuertoHogar
+
+## Proyecto
+
+**Nombre:** HuertoHogar
+**Tipo:** Proyecto Front End
+**Repositorio:** `https://github.com/pumpkerino-dev/huertoHogar`
+
+---
+
+## 1. Propuesta enviada
+
+Se presentó un modelo estructural para el sitio web de HuertoHogar, considerando los requerimientos establecidos en el documento del caso.
+
+El modelo contempla las siguientes funcionalidades principales:
+
+* Sistema de registro y creación de cuentas.
+* Secciones para modificar datos personales, direcciones y métodos de pago.
+* Apartado para consultar pedidos, su estado y progreso.
+* Catálogo de productos con nombre, precio, origen y disponibilidad.
+* Sección exclusiva para clientes registrados, permitiendo valorar productos adquiridos.
+
+El diseño presentado inicialmente se considera referencial para efectos del mockup. La implementación final deberá respetar las propuestas visuales indicadas en el documento del caso.
+
+### Lineamientos visuales aprobados
+
+**Color de fondo principal**
+
+* Blanco Suave: `#F7F7F7`
+
+**Colores de acento**
+
+* Verde Esmeralda: `#2E8B57`
+* Amarillo Mostaza: `#FFD700`
+* Marrón Claro: `#8B4513`
+
+**Tipografías**
+
+* Fuente principal: Montserrat
+* Fuente para encabezados: Playfair Display
+
+**Colores de texto**
+
+* Texto principal: `#333333`
+* Texto secundario: `#666666`
+
+**Elementos visuales**
+
+* Textura sutil de papel.
+* Imágenes de productos frescos.
+* Imágenes relacionadas con campos agrícolas y productores locales.
+
+---
+
+## 2. Consideraciones adicionales
+
+El sitio también contempla:
+
+### Blog
+
+Se incorporará una sección de blog destinada a informar sobre:
+
+* Beneficios de frutas y verduras.
+* Alimentación saludable.
+* Agricultura sostenible.
+* Beneficios ambientales de prácticas agrícolas sostenibles.
+
+### Redes sociales
+
+Se incorporará un apartado de redes sociales en el pie de página, desde donde se podrá acceder a las redes sociales correspondientes de la empresa.
+
+### Búsqueda avanzada
+
+La búsqueda de productos contará con filtros y propiedades que faciliten encontrar los productos requeridos por el cliente.
+
+### Mapa
+
+Se incorporará un mapa que permita visualizar las distintas sedes de HuertoHogar.
+
+Las ubicaciones indicadas en el caso son:
+
+* Santiago
+* Puerto Montt
+* Villarica
+* Nacimiento
+* Viña del Mar
+* Valparaíso
+* Concepción
+
+---
+
+## 3. Estructura general del sitio
+
+El diseño considera tres partes principales:
+
+### Cabecera
+
+La cabecera contará con:
+
+* Logo de la empresa.
+* Barra de búsqueda.
+* Carrito de compras.
+* Sección de cuentas.
+* Barra de navegación.
+
+### Cuerpo
+
+El cuerpo contendrá la información correspondiente a cada página del sitio.
+
+### Pie de página
+
+El pie de página contará con:
+
+* Logo pequeño de la empresa.
+* Descripción breve de HuertoHogar.
+* Categorías y/o secciones.
+* Información de derechos reservados.
+* Mensaje orientado a transmitir confianza y cercanía.
+
+---
+
+## 4. Respuesta de aprobación
+
+La propuesta fue presentada y posteriormente aprobada por el docente mediante respuesta al correo.
+
+Respuesta recibida:
+
+> Estimados
+>
+> El diseño queda aprobado, un buena estructura, espero la versión así
+>
+> Por ende solo tenemos que hacer:
+>
+> * agarrar lo del figma, hacerlo codigo real y meterle metodos de validacion de los formularios
+
+---
+
+## 5. Alcance confirmado
+
+A partir de la aprobación recibida, el objetivo de la implementación es:
+
+1. Utilizar como referencia el modelo realizado en Figma.
+2. Transformar dicho modelo en una implementación web real.
+3. Implementar las funcionalidades correspondientes al alcance aprobado.
+4. Incorporar métodos de validación en los formularios.
+
+El diseño visual final deberá seguir los lineamientos establecidos en el documento oficial del caso.
+
+---
+
+## 6. Estado inicial del proyecto
+
+**Estado:** Proyecto aprobado para implementación.
+
+**Primera etapa:** Preparación del repositorio y documentación.
+
+**Próximas etapas:** Estructuración del proyecto Front End, desarrollo HTML5, CSS y JavaScript, implementación de validaciones y construcción progresiva de las funcionalidades aprobadas.
+
+
+/* ============================================================ */
+/* ARCHIVO: ./.idea/vcs.xml */
+/* ============================================================ */
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
+</project>
+
+/* ============================================================ */
+/* ARCHIVO: ./.idea/modules.xml */
+/* ============================================================ */
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Nueva carpeta.iml" filepath="$PROJECT_DIR$/.idea/Nueva carpeta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/css/css.iml" filepath="$PROJECT_DIR$/css/css.iml" />
+      <module fileurl="file://$PROJECT_DIR$/img/img.iml" filepath="$PROJECT_DIR$/img/img.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js/js.iml" filepath="$PROJECT_DIR$/js/js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/paginas/paginas.iml" filepath="$PROJECT_DIR$/paginas/paginas.iml" />
+    </modules>
+  </component>
+</project>
+
+/* ============================================================ */
+/* ARCHIVO: ./.idea/misc.xml */
+/* ============================================================ */
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
+

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huerto Hogar - Carrito de Compras</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base/variables.css" />
+  <link rel="stylesheet" href="css/base/reset.css" />
+  <link rel="stylesheet" href="css/layout/header.css" />
+  <link rel="stylesheet" href="css/layout/footer.css" />
+  <link rel="stylesheet" href="css/components/buttons.css" />
+  <link rel="stylesheet" href="css/components/forms.css" />
+  <link rel="stylesheet" href="css/pages/cart.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <script type="module" src="js/pages/cart.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="page-home.html" class="brand">
+        <span class="brand-icon"><img src="img/logo.png" alt="Logo Huerto Hogar" /></span>
+        <span class="brand-text">
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
+      </a>
+
+      <div class="search-bar">
+        <span class="search-icon"><img src="img/lupa.png" alt="Buscar" /></span>
+        <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+        <button class="search-filter" type="button" aria-label="Filtros">
+          <img src="img/filtro.png" alt="Filtros" />
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <a href="login-register.html" class="account-link">
+          <span class="account-icon">
+            <img src="img/icono-usuario.png" alt="Cuenta" />
+          </span>
+          Mi Cuenta
+        </a>
+
+        <a href="shopping-cart.html" class="cart-link">
+          <span class="cart-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </span>
+          <span class="cart-info">
+            <span class="cart-title">Carrito</span>
+            <span class="cart-total" id="cart-total-badge">$0 CLP</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="page-home.html">Nosotros</a></li>
+        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="cart-section">
+      <h1>Tu Carrito de Compras</h1>
+
+      <div class="cart-main">
+        <div class="cart-items" id="cart-items">
+          <div class="cart-items-header">
+            <span>Producto</span>
+            <span>Cantidad</span>
+            <span>Total</span>
+          </div>
+          <div id="cart-items-list">
+            <!-- Los productos se renderizan dinámicamente con js/pages/cart.js -->
+          </div>
+        </div>
+
+        <p class="cart-empty" id="cart-empty" style="display:none;">
+          Tu carrito está vacío. ¡Explora nuestro catálogo de productos frescos!
+        </p>
+
+        <div class="delivery-card">
+          <h2>Calendario de Despacho</h2>
+          <p class="delivery-card-subtitle">Selecciona tu día preferido para recibir tus productos del campo</p>
+          <div class="delivery-days" id="delivery-days">
+            <!-- Se renderiza dinámicamente con js/pages/cart.js -->
+          </div>
+        </div>
+      </div>
+
+      <aside class="cart-summary">
+        <h2>Resumen del Pedido</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span class="value" id="summary-subtotal">$0 CLP</span>
+        </div>
+        <div class="summary-row">
+          <span>IVA (19%)</span>
+          <span class="value" id="summary-iva">$0 CLP</span>
+        </div>
+        <div class="summary-row">
+          <span>Envío estimado</span>
+          <span class="value" id="summary-shipping">Gratis</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span class="value" id="summary-total">$0 CLP</span>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="checkout-button">
+          Proceder al Pago
+        </button>
+
+        <p class="cart-secure-note">
+          🛡️ Compra 100% segura con Webpay. Despachos climatizados.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="page-home.html" class="brand">
+          <span class="brand-icon"><img src="img/logo.png" alt="Logo Huerto Hogar" /></span>
+          <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+        </a>
+        <p>
+          Conectamos a las familias de Chile con productores agrícolas
+          locales. Comprometidos con la sustentabilidad y el comercio justo.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Categorías</h3>
+        <ul>
+          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>HuertoHogar</h3>
+        <ul>
+          <li><a href="page-home.html">Sobre Nosotros</a></li>
+          <li><a href="#">Nuestros Agricultores</a></li>
+          <li><a href="#">Políticas de Despacho</a></li>
+          <li><a href="#">Sustentabilidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Ayuda</h3>
+        <ul>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="user-profile-tracking.html">Seguimiento de Envío</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HuertoHogar SpA. Todos los derechos reservados.</p>
+      <p>Diseñado con ❤️ en el Maule, Chile.</p>
+    </div>
+  </footer>
+</body>
+</html>

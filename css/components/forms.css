@@ -12,10 +12,12 @@
   letter-spacing: 0.35px;
 }
 
-.auth-col input[type="text"],
-.auth-col input[type="email"],
-.auth-col input[type="password"],
-.auth-col input[type="tel"] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+select {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid var(--border);
@@ -24,14 +26,16 @@
   background: var(--white);
   color: var(--text-main);
   font-size: 0.72rem;
+  font-family: var(--font-body);
   transition: border-color 0.2s ease;
 }
 
-.auth-col input::placeholder {
+input::placeholder {
   color: #999999;
 }
 
-.auth-col input:focus {
+input:focus,
+select:focus {
   border-color: var(--green);
 }
 
@@ -59,5 +63,5 @@
   font-size: 0.68rem;
 }
 .form-message.success {
-  color: var(--green-dark);
+  color: var(--success);
 }
