@@ -110,7 +110,8 @@ function renderSummary(items) {
 function updateHeaderCartTotal(items) {
   const total = items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
   const badge = document.getElementById("cart-total-badge");
-  if (badge) badge.textContent = formatCLP(total);
+  // El badge del header usa el formato corto "$X.XXX" (sin sufijo "CLP"),
+  if (badge) badge.textContent = "$" + Math.round(total).toLocaleString("es-CL");
 }
 
 function changeQuantity(id, delta) {

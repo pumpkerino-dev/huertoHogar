@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huerto Hogar - Carrito de Compras</title>
+  <title>Huerto Hogar - Mi Cuenta</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="css/layout/footer.css" />
   <link rel="stylesheet" href="css/components/buttons.css" />
   <link rel="stylesheet" href="css/components/forms.css" />
-  <link rel="stylesheet" href="css/pages/cart.css" />
+  <link rel="stylesheet" href="css/pages/profile.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 
-  <script type="module" src="js/pages/cart.js"></script>
+  <script type="module" src="js/pages/profile.js"></script>
 </head>
 
 <body>
@@ -43,99 +43,146 @@
         </button>
       </div>
 
-      <div class="header-actions">
-        <a href="login-register.html" class="account-link">
-          <span class="account-icon">
-            <img src="img/icono-usuario.png" alt="Cuenta" />
-          </span>
-          Mi Cuenta
-        </a>
-
-        <a href="shopping-cart.html" class="cart-link">
-          <span class="cart-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-          </span>
-          <span class="cart-info">
-            <span class="cart-title">Carrito</span>
-            <span class="cart-total" id="cart-total-badge">$0 CLP</span>
-          </span>
-        </a>
-      </div>
+      <a href="user-profile-tracking.html" class="account-link">
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
+        Mi Cuenta
+      </a>
+      <a href="shopping-cart.html" class="cart-link">
+        <span class="cart-icon">
+          <img src="img/carrito.png" alt="Carrito" />
+        </span>
+        <span class="cart-info">
+          <span class="cart-title">Carrito</span>
+          <span class="cart-total" id="cart-total-badge">$0</span>
+        </span>
+      </a>
     </div>
 
     <nav class="site-nav">
       <ul>
         <li><a href="page-home.html">Nosotros</a></li>
-        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
-        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
-        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
-        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+        <li><a href="product-catalog.html">Frutas</a></li>
+        <li><a href="product-catalog.html">Verduras</a></li>
+        <li><a href="product-catalog.html">Orgánicos</a></li>
+        <li><a href="product-catalog.html">Lácteos</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="cart-section">
-      <h1>Tu Carrito de Compras</h1>
+    <section class="profile-section">
+      <div class="profile-grid">
+        <!-- Sidebar -->
+        <nav class="account-nav">
+          <h2>Mi Cuenta</h2>
+          <ul>
+            <li><a href="#" >Mi Perfil</a></li>
+            <li><a href="#" class="active">Mis Pedidos</a></li>
+            <li><a href="#">Seguimiento</a></li>
+            <li><a href="#">Direcciones</a></li>
+            <li><a href="#">Métodos de Pago</a></li>
+            <li><a href="#">Configuración</a></li>
+          </ul>
+        </nav>
 
-      <div class="cart-main">
-        <div class="cart-items" id="cart-items">
-          <div class="cart-items-header">
-            <span>Producto</span>
-            <span>Cantidad</span>
-            <span>Total</span>
-          </div>
-          <div id="cart-items-list">
-            <!-- Los productos se renderizan dinámicamente con js/pages/cart.js -->
-          </div>
+        <!-- Información Personal -->
+        <div class="profile-card">
+          <h2>Información Personal</h2>
+          <form id="profile-form" novalidate>
+            <label class="field-label" for="profile-name">Nombre Completo</label>
+            <input type="text" id="profile-name" name="name" value="María González Silva" required />
+
+            <label class="field-label" for="profile-address">Dirección de Despacho</label>
+            <input type="text" id="profile-address" name="address" value="Av. Providencia 1245, Apt 402, Santiago" required />
+
+            <div class="field-grid-2">
+              <div>
+                <label class="field-label" for="profile-phone">Teléfono</label>
+                <input type="tel" id="profile-phone" name="phone" value="+56 9 8765 4321" required />
+              </div>
+              <div>
+                <label class="field-label" for="profile-email">Email</label>
+                <input type="email" id="profile-email" name="email" value="maria.gonzalez@email.cl" required />
+              </div>
+            </div>
+
+            <label class="field-label" for="profile-payment">Método de Pago predeterminado</label>
+            <input type="text" id="profile-payment" name="payment" value="Webpay Crédito ---- 5678" readonly />
+
+            <p class="form-message" id="profile-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary" style="width: auto; padding: 10px 22px;">
+              Guardar Cambios
+            </button>
+          </form>
         </div>
 
-        <p class="cart-empty" id="cart-empty" style="display:none;">
-          Tu carrito está vacío. ¡Explora nuestro catálogo de productos frescos!
-        </p>
+        <!-- Sigue tu Pedido Activo -->
+        <div class="tracking-card">
+          <div class="tracking-card-header">
+            <h2>Sigue tu Pedido Activo</h2>
+            <span class="order-badge" id="order-badge">#HH-9824</span>
+          </div>
 
-        <div class="delivery-card">
-          <h2>Calendario de Despacho</h2>
-          <p class="delivery-card-subtitle">Selecciona tu día preferido para recibir tus productos del campo</p>
-          <div class="delivery-days" id="delivery-days">
-            <!-- Se renderiza dinámicamente con js/pages/cart.js -->
+          <div class="order-progress">
+            <div class="progress-step">
+              <span class="dot"></span>
+              <span class="label">Preparando</span>
+            </div>
+            <div class="progress-step">
+              <span class="dot"></span>
+              <span class="label">En Camino</span>
+            </div>
+            <div class="progress-step">
+              <span class="dot"></span>
+              <span class="label">Entregado</span>
+            </div>
+          </div>
+
+          <div class="delivery-route">
+            <div class="route-track">
+              <span class="dot-start"></span>
+              <span class="line"></span>
+              <span class="dot-end"></span>
+            </div>
+            <div>
+              <h3>Ruta de Entrega</h3>
+              <p id="route-origin">Huerto Maule (Talca)</p>
+              <p id="route-destination">Providencia, Santiago</p>
+              <p class="eta" id="route-eta">Llegada aprox: Hoy, 17:30 hrs</p>
+            </div>
+          </div>
+
+          <div class="courier-row">
+            <span class="courier-avatar">
+              <img id="courier-avatar" src="img/icono-usuario.png" alt="Repartidor" />
+            </span>
+            <div>
+              <p class="courier-name" id="courier-name">Manuel Rojas Espinoza</p>
+              <p class="courier-role" id="courier-role">Despachador Climatizado · Camioneta Verde</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <aside class="cart-summary">
-        <h2>Resumen del Pedido</h2>
+      <!-- Notificaciones recientes -->
+      <div class="notifications-card">
+        <h2>Notificaciones recientes</h2>
+        <div class="notification-list" id="notification-list">
+          <!-- Se renderiza dinámicamente con js/pages/profile.js -->
+        </div>
+      </div>
 
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span class="value" id="summary-subtotal">$0 CLP</span>
+      <!-- Historial de Pedidos -->
+      <div class="history-card">
+        <h2>Historial de Pedidos</h2>
+        <div class="order-list" id="order-history-list">
+          <!-- Se renderiza dinámicamente con js/pages/profile.js -->
         </div>
-        <div class="summary-row">
-          <span>IVA (19%)</span>
-          <span class="value" id="summary-iva">$0 CLP</span>
-        </div>
-        <div class="summary-row">
-          <span>Envío estimado</span>
-          <span class="value" id="summary-shipping">Gratis</span>
-        </div>
-        <div class="summary-row total">
-          <span>Total</span>
-          <span class="value" id="summary-total">$0 CLP</span>
-        </div>
-
-        <button type="button" class="btn btn-primary" id="checkout-button">
-          Proceder al Pago
-        </button>
-
-        <p class="cart-secure-note">
-          🛡️ Compra 100% segura con Webpay. Despachos climatizados.
-        </p>
-      </aside>
+      </div>
     </section>
   </main>
 
@@ -158,10 +205,10 @@
       <div class="footer-col">
         <h3>Categorías</h3>
         <ul>
-          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
-          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
-          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
-          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+          <li><a href="product-catalog.html">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html">Lácteos Artesanales</a></li>
         </ul>
       </div>
 
