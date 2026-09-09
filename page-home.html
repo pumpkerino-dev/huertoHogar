@@ -1,0 +1,581 @@
+    <!doctype html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Huerto Hogar - Home Page</title>
+
+    <!-- Fuentes utilizadas en todo el sitio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet"
+    >
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+
+    <!-- Componentes reutilizables -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/footer.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/forms.css">
+
+    <!-- CSS específico de esta página -->
+    <link rel="stylesheet" href="css/pages/page-home.css">
+
+    <!-- Reglas responsive -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================================
+     HEADER
+     ========================================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <!-- Logo y nombre del sitio -->
+        <a href="page-home.html" class="brand">
+
+            <span class="brand-icon">
+                <img
+                        src="img/logo.png"
+                        alt="Logo Huerto Hogar"
+                >
+            </span>
+
+            <span class="brand-text">
+
+                <span class="brand-title">
+                    HUERTO HOGAR
+                </span>
+
+                <span class="brand-subtitle">
+                    DEL CAMPO AL HOGAR
+                </span>
+
+            </span>
+
+        </a>
+
+
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+
+            <span class="search-icon">
+                <img
+                        src="img/lupa.png"
+                        alt="Buscar"
+                >
+            </span>
+
+            <input
+                    type="text"
+                    placeholder="Buscar frutas, verduras, orgánicos..."
+            >
+
+            <button
+                    class="search-filter"
+                    type="button"
+                    aria-label="Filtros"
+            >
+                <img
+                        src="img/filtro.png"
+                        alt="Filtros"
+                >
+            </button>
+
+        </div>
+
+
+        <!-- Acceso a la cuenta -->
+        <a
+                href="login.html"
+                class="account-link"
+        >
+
+            <span class="account-icon">
+
+                <img
+                        src="img/icono-usuario.png"
+                        alt="Cuenta"
+                >
+
+            </span>
+
+            Mi Cuenta
+
+        </a>
+
+
+        <!-- Carrito -->
+        <a
+                href="#"
+                class="cart-link"
+        >
+
+            <span class="cart-icon">
+
+                <img
+                        src="img/carrito.png"
+                        alt="Carrito"
+                >
+
+            </span>
+
+            <span class="cart-info">
+
+                <span class="cart-title">
+                    Carrito
+                </span>
+
+                <span class="cart-total">
+                    $0
+                </span>
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- Navegación principal -->
+    <nav class="site-nav">
+
+        <ul>
+
+            <li>
+                <a href="page-home.html">
+                    Nosotros
+                </a>
+            </li>
+
+            <li>
+                <a href="product-catalog.html">
+                    Frutas
+                </a>
+            </li>
+
+            <li>
+                <a href="product-catalog.html">
+                    Verduras
+                </a>
+            </li>
+
+            <li>
+                <a href="product-catalog.html">
+                    Orgánicos
+                </a>
+            </li>
+
+            <li>
+                <a href="product-catalog.html">
+                    Lácteos
+                </a>
+            </li>
+
+            <li>
+                <a href="blog.html">
+                    Blog
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================================
+     MAIN
+     ========================================================================= -->
+
+<main>
+    <!-- 1. Hero / Banner Principal -->
+    <section class="hero-section">
+        <img src="img/hero-banner.png" alt="Familia en campo agrícola" class="hero-image" />
+    </section>
+
+    <!-- 2. Categorías Destacadas -->
+    <section class="home-section container">
+        <header class="section-header">
+            <h2 class="section-title">Categorías Destacadas</h2>
+            <p class="section-subtitle">Selección fresca cosechada en su punto óptimo de madurez</p>
+        </header>
+
+        <div class="grid-4-cols">
+            <!-- Tarjeta 1 -->
+            <a href="product-catalog.html" class="category-card">
+                <div class="card-img-wrapper">
+                    <img src="img/categoria-frutas.png" alt="Frutas" />
+                </div>
+                <div class="category-content">
+                    <h3>Frutas</h3>
+                    <p>Manzanas, cítricos y bayas de temporada</p>
+                </div>
+            </a>
+
+            <!-- Tarjeta 2 -->
+            <a href="product-catalog.html" class="category-card">
+                <div class="card-img-wrapper">
+                    <img src="img/categoria-verduras.png" alt="Verduras" />
+                </div>
+                <div class="category-content">
+                    <h3>Verduras</h3>
+                    <p>Zanahorias, espinacas y hortalizas orgánicas</p>
+                </div>
+            </a>
+
+            <!-- Tarjeta 3 -->
+            <a href="product-catalog.html" class="category-card">
+                <div class="card-img-wrapper">
+                    <img src="img/categorias-organicos.png" alt="Orgánicos" />
+                </div>
+                <div class="category-content">
+                    <h3>Orgánicos</h3>
+                    <p>Miel, granos y frutos secos certificados</p>
+                </div>
+            </a>
+
+            <!-- Tarjeta 4 -->
+            <a href="product-catalog.html" class="category-card">
+                <div class="card-img-wrapper">
+                    <img src="img/categoria-lacteos.png" alt="Lácteos" />
+                </div>
+                <div class="category-content">
+                    <h3>Lácteos</h3>
+                    <p>Leche, quesos y mantequillas de campo</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 3. Ofertas Especiales -->
+    <section class="home-section container">
+        <header class="section-header flex-header">
+            <div>
+                <h2 class="section-title">Ofertas Especiales</h2>
+                <p class="section-subtitle">Productos frescos con descuento directo de agricultores</p>
+            </div>
+            <a href="product-catalog.html" class="link-all">Ver Todas las Ofertas &rarr;</a>
+        </header>
+
+        <div class="grid-4-cols">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="img/manzana-fuji.png" alt="Manzanas Fuji" />
+                </div>
+                <div class="product-info">
+                    <span class="product-origin">VALLE DEL MAULE</span>
+                    <h3 class="product-name">Manzanas Fuji</h3>
+                    <div class="product-pricing">
+                        <span class="price-current">$1.200 CLP / KG</span>
+                    </div>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="img/miel-organica.png" alt="Miel Orgánica" />
+                </div>
+                <div class="product-info">
+                    <span class="product-origin">APICULTORES LOCALES</span>
+                    <h3 class="product-name">Miel Orgánica</h3>
+                    <div class="product-pricing">
+                        <span class="price-current">$5.000 CLP / 500g</span>
+                    </div>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="img/zanahorias-organicas.png" alt="Zanahorias de Campo" />
+                </div>
+                <div class="product-info">
+                    <span class="product-origin">TALCA</span>
+                    <h3 class="product-name">Zanahorias de Campo</h3>
+                    <div class="product-pricing">
+                        <span class="price-current">$900 CLP / KG</span>
+                    </div>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="img/leche-entera.png" alt="Leche Entera 1L" />
+                </div>
+                <div class="product-info">
+                    <span class="product-origin">OSORNO</span>
+                    <h3 class="product-name">Leche Entera 1L</h3>
+                    <div class="product-pricing">
+                        <span class="price-current">$1.250 CLP / 1L</span>
+                    </div>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Nuestra Misión y Presencia -->
+    <section class="mission-section">
+        <div class="container mission-layout">
+            <!-- Lado Izquierdo: Texto -->
+            <div class="mission-text">
+                <h2 class="section-title">Nuestra Misión y Presencia</h2>
+                <p>Buscamos democratizar el acceso a productos agrícolas frescos y 100% orgánicos, conectando directamente a las huertas familiares del centro-sur chileno con los hogares que valoran la alimentación sana, el sabor natural y la sustentabilidad.</p>
+
+                <ul class="mission-list">
+                    <li>
+                        <img src="img/check-icon.png" alt="✓" class="list-icon">
+                        <span>Cero intermediarios: Mayor rentabilidad para el agricultor y mejor precio final.</span>
+                    </li>
+                    <li>
+                        <img src="img/check-icon.png" alt="✓" class="list-icon">
+                        <span>Prácticas sustentables y huella de carbono minimizada en cada entrega.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Lado Derecho: Mapa de Sedes -->
+            <div class="mission-map-card">
+                <div class="map-illustration">
+                    <img src="img/mapa-chile.png" alt="Mapa de Chile" />
+                </div>
+                <div class="map-info">
+                    <h3>Nuestras 9 Sedes</h3>
+                    <p>Nuestra red de distribución local abarca la geografía de Chile:</p>
+                    <ul class="locations-list">
+                        <li>Viña del Mar</li>
+                        <li>Valparaíso</li>
+                        <li>Santiago (Matriz)</li>
+                        <li>Talca</li>
+                        <li>Nacimiento</li>
+                        <li>Concepción</li>
+                        <li>Villarrica</li>
+                        <li>Valdivia</li>
+                        <li>Puerto Varas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<!-- =========================================================================
+     FOOTER
+     ========================================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-top">
+
+
+        <!-- Marca -->
+
+        <div class="footer-brand">
+
+            <a
+                    href="page-home.html"
+                    class="brand"
+            >
+
+                <span class="brand-icon">
+
+                    <img
+                            src="img/logo.png"
+                            alt="Logo Huerto Hogar"
+                    >
+
+                </span>
+
+                <span class="brand-text">
+
+                    <span class="brand-title">
+                        HUERTO HOGAR
+                    </span>
+
+                    <span class="brand-subtitle">
+                        DEL CAMPO AL HOGAR
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <p>
+                Conectamos a las familias de Chile con productores agrícolas
+                locales. Comprometidos con la sustentabilidad y el comercio justo.
+            </p>
+
+        </div>
+
+
+        <!-- Categorías -->
+
+        <div class="footer-col">
+
+            <h3>
+                Categorías
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="product-catalog.html">
+                        Frutas Frescas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="product-catalog.html">
+                        Verduras del Valle
+                    </a>
+                </li>
+
+                <li>
+                    <a href="product-catalog.html">
+                        Productos Orgánicos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="product-catalog.html">
+                        Lácteos Artesanales
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- HuertoHogar -->
+
+        <div class="footer-col">
+
+            <h3>
+                HuertoHogar
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="nosotros.html">
+                        Sobre Nosotros
+                    </a>
+                </li>
+
+                <li>
+                    <a href="blog-noticia-cinco.html">
+                        Nuestros Agricultores
+                    </a>
+                </li>
+
+                <li>
+                    <a href="politicaDeDespacho.html">
+                        Políticas de Despacho
+                    </a>
+                </li>
+
+                <li>
+                    <a href="blog.html">
+                        Sustentabilidad
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Ayuda -->
+
+        <div class="footer-col">
+
+            <h3>
+                Ayuda
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="preguntasFrecuentes.html">
+                        Preguntas Frecuentes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="nosotros.html">
+                        Contacto
+                    </a>
+                </li>
+
+                <li>
+                    <a href="terminoCondiciones.html">
+                        Términos y Condiciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Seguimiento de Envío
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- Información inferior del footer -->
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 HuertoHogar SpA. Todos los derechos reservados.
+        </p>
+
+        <p>
+            Diseñado con ❤️ en el Maule, Chile.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- JavaScript principal -->
+<script
+        type="module"
+        src="js/script.js"
+></script>
+
+</body>
+
+</html>
+

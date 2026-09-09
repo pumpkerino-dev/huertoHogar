@@ -164,7 +164,6 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
-
 .cart-info {
   display: flex;
   flex-direction: column;
@@ -181,7 +180,6 @@
   color: var(--text-muted);
   margin-top: 2px;
 }
-
 .cart-icon {
   width: 34px;
   height: 34px;
@@ -189,6 +187,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  min-width: max-content;
 }
 
 .cart-icon img {
