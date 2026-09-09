@@ -1,0 +1,356 @@
+/* ==========================================================================
+                          PAGE: PRODUCT DETAIL
+   ========================================================================== */
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
+.product-page {
+    margin-top: 24px;
+    margin-bottom: 80px;
+}
+
+/* --- Breadcrumbs --- */
+.breadcrumbs {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+    color: var(--green-brand);
+}
+
+.breadcrumbs .separator {
+    margin: 0 8px;
+    color: var(--border-light);
+}
+
+.breadcrumbs .current {
+    color: var(--green-brand);
+    font-weight: 600;
+}
+
+/* --- Layout Principal --- */
+.product-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 64px;
+}
+
+/* --- Galería de Imágenes --- */
+.main-image-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-light);
+    background-color: var(--bg-light);
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 16px;
+}
+
+.thumb-btn {
+    width: 80px;
+    height: 80px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: var(--bg-light);
+    transition: border-color 0.2s ease;
+}
+
+.thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-btn.active {
+    border-color: var(--green-brand);
+}
+
+/* --- Detalles del Producto --- */
+.product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.badge-available {
+    background-color: #E8F5E9; /* Verde claro */
+    color: #2E7D32; /* Verde oscuro */
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.stars {
+    color: #FBC02D; /* Amarillo/Dorado para las estrellas */
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.product-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+
+.product-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.price-amount {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--green-brand);
+}
+
+.price-unit {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.product-description {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 32px 0;
+}
+
+/* --- Caja de Información --- */
+.info-box {
+    background-color: #FAFAFA;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.info-box-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.info-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.text-dark { color: var(--text-main); }
+.text-green { color: var(--green-brand); }
+
+/* --- Alerta Ecológica --- */
+.eco-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background-color: #F1F8E9; /* Fondo verde muy suave */
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 32px;
+}
+
+.eco-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.eco-text strong {
+    display: block;
+    color: #2E7D32;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.eco-text p {
+    margin: 0;
+    color: #4CAF50;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* --- Botones y Cantidad --- */
+.purchase-actions {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.qty-btn {
+    background: transparent;
+    border: none;
+    padding: 0 16px;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    height: 100%;
+    transition: background 0.2s ease;
+}
+
+.qty-btn:hover {
+    background: var(--bg-light);
+}
+
+.qty-current {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    padding: 0 16px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.btn-add-cart-large {
+    flex: 1;
+    background-color: var(--green-brand);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-add-cart-large:hover {
+    background-color: var(--green-brand-dark);
+}
+
+/* --- Opiniones --- */
+.product-reviews-section {
+    border-top: 1px solid var(--border-light);
+    padding-top: 48px;
+}
+
+.reviews-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.8rem;
+    margin: 0 0 32px 0;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.review-card {
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    background: #fff;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.reviewer-name {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin: 0 0 4px 0;
+}
+
+.review-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.review-image-attached {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.review-image-attached img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
