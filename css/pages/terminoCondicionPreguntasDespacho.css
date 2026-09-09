@@ -1,0 +1,86 @@
+/* ==========================================================================
+                          PAGE: TÉRMINOS Y CONDICIONES
+   ========================================================================== */
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
+
+.terms-page {
+    margin-top: 64px;
+    margin-bottom: 80px;
+}
+
+/* Contenedor central limitado en ancho para mejor lectura */
+.terms-wrapper {
+    max-width: 800px; /* Ancho máximo ideal para lectura */
+    margin: 0 auto; /* Centra el bloque horizontalmente */
+    background-color: var(--white, #ffffff);
+    padding: 64px; /* Espacio interior amplio */
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02); /* Sombra muy sutil */
+}
+
+/* Encabezado del documento */
+.terms-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.terms-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 2.6rem;
+    margin: 0 0 12px 0;
+}
+
+.terms-date {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Contenido de texto */
+.terms-content h2 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--green-brand);
+    font-size: 1.5rem;
+    margin: 40px 0 16px 0;
+}
+
+/* Eliminar el margen top del primer h2 para que quede alineado */
+.terms-content h2:first-child {
+    margin-top: 0;
+}
+
+.terms-content p {
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.7; /* Interlineado alto para lectura cómoda */
+    margin-bottom: 24px;
+}
+
+.terms-content ul {
+    margin: 0 0 24px 24px; /* Sangría a la izquierda */
+    padding: 0;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.terms-content li {
+    margin-bottom: 12px;
+}

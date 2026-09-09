@@ -1,1158 +1,334 @@
- /* ==========================================================================
-       HOME PAGE
-       ==========================================================================
-       Este archivo contiene los estilos exclusivos de la página principal.
+/* ==========================================================================
+                                PAGE HOME - MAIN
+   ========================================================================== */
 
-       Estructura:
-       1. Contenedor general
-       2. Hero
-       3. Títulos de sección
-       4. Categorías
-       5. Ofertas
-       6. Misión y presencia
-       7. Responsive
-       ========================================================================== */
+/* Variables locales de apoyo (Si ya están en variables.css, el navegador usará las tuyas) */
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
 
-
-    /* ==========================================================================
-       1. CONTENEDOR GENERAL
-       ========================================================================== */
-
-    /*
-     * Contenedor utilizado por las secciones normales de la página.
-     *
-     * max-width:
-     * Define el ancho máximo del contenido.
-     *
-     * padding:
-     * Espacio interno superior/inferior y lateral.
-     */
-.home-section {
-    width: 100%;
+/* --- Clases de Utilidad y Contenedores --- */
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 48px 24px;
+    padding: 0 24px;
 }
 
-
-/* ==========================================================================
-   2. HERO
-   ========================================================================== */
-
-/*
- * Hero principal de la página.
- *
- * width: 100vw;
- * Hace que la imagen ocupe todo el ancho de la ventana.
- *
- * height:
- * Altura del hero en escritorio.
- *
- * margin-left:
- * Compensa el centrado del contenedor para llevar el hero
- * hasta los extremos izquierdo y derecho de la ventana.
- */
-.home-hero {
-    width: 100vw;
-    height: 492px;
-    margin-left: calc(50% - 50vw);
-
-    overflow: hidden;
+.home-section {
+    margin: 64px auto;
 }
 
-/*
- * Imagen utilizada por el hero.
- */
-.home-hero-image {
-    width: 100%;
-    height: 100%;
-    display: block;
-
-    /*
-     * Ajusta la imagen exactamente al tamaño del hero.
-     */
-    object-fit: fill;
-}
-
-
-/* ==========================================================================
-   3. TÍTULOS DE SECCIÓN
-   ========================================================================== */
-
-/*
- * Contenedor general de:
- * - Categorías Destacadas
- * - Ofertas Especiales
- *
- * IMPORTANTE:
- * El translateX controla el desplazamiento horizontal del título
- * y subtítulo en escritorio.
- */
-.section-heading {
-    margin-bottom: 24px;
-
-    /*
-     * Ajuste horizontal del bloque de título.
-     * Negativo = izquierda.
-     * Positivo = derecha.
-     */
-    transform: translateX(-41px);
-}
-
-/*
- * Título principal de cada sección.
- */
-.section-heading h2 {
-    margin: 0 0 6px;
-
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--brown);
-
-    /*
-     * Evita que el título se divida en varias líneas.
-     */
-    white-space: nowrap;
-}
-
-/*
- * Texto secundario debajo del título.
- */
-.section-heading p {
-    margin: 0;
-
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--text-muted);
-
-    /*
-     * Evita que el subtítulo se divida en varias líneas.
-     */
-    white-space: nowrap;
-}
-
-
-/* ==========================================================================
-   4. CATEGORÍAS DESTACADAS
-   ========================================================================== */
-
-/*
- * Sección completa de categorías.
- *
- * max-width: none;
- * Permite que el fondo ocupe todo el ancho de la pantalla.
- */
-.categories-section {
-    max-width: none;
-    background-color: var(--bg);
-}
-
-/*
- * Contenedor interno de categorías.
- *
- * Su objetivo es mantener el contenido centrado aunque el fondo
- * de .categories-section ocupe todo el ancho.
- */
-.categories-inner {
-    width: 100%;
-    max-width: 1200px;
-
-    /*
-     * Ajuste horizontal del contenido respecto al centro.
-     */
-    transform: translateX(127px);
-}
-
-
-/* ---------- Grid de categorías ---------- */
-
-/*
- * Distribución de las cuatro tarjetas.
- */
-.category-grid {
+.grid-4-cols {
     display: grid;
-
-    grid-template-columns: repeat(4, 302px);
-    justify-content: center;
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
-
-/* ---------- Tarjeta de categoría ---------- */
-
-.category-card {
-    width: 302px;
-    height: 271px;
-
-    display: block;
-
+/* --- Hero Banner --- */
+.hero-section {
+    width: 100%;
+    height: 400px;
     overflow: hidden;
-
-    background-color: var(--white);
-
-    border: 1px solid var(--border);
-    border-radius: 10px;
-
-    text-decoration: none;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-
-    transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
+    background-color: var(--bg-light); /* En caso de que la imagen tarde en cargar */
 }
 
-/*
- * Efecto visual al pasar el mouse.
- */
-.category-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-
-/* ---------- Imagen de categoría ---------- */
-
-.category-image {
-    width: 302px;
-    height: 160px;
-
-    overflow: hidden;
-}
-
-.category-image img {
+.hero-image {
     width: 100%;
     height: 100%;
-
-    display: block;
-
     object-fit: cover;
 }
 
+/* --- Headers de Sección --- */
+.section-header {
+    margin-bottom: 32px;
+}
 
-/* ---------- Texto de categoría ---------- */
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.section-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.link-all {
+    color: var(--green-brand);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.link-all:hover {
+    text-decoration: underline;
+    color: var(--green-brand-dark);
+}
+
+/* --- Tarjetas de Categorías --- */
+.category-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.category-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.card-img-wrapper {
+    height: 160px;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .category-content {
-    width: 302px;
-    height: 111px;
-
-    /*
-     * Primer valor = arriba/abajo.
-     * Segundo valor = izquierda/derecha.
-     */
-    padding: 16px 9px;
+    padding: 16px;
 }
 
-/*
- * Nombre de la categoría.
- */
 .category-content h3 {
-    margin: 0 0 7px;
-
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-
-    color: var(--brown);
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
 }
 
-/*
- * Descripción de la categoría.
- */
 .category-content p {
-    margin: 0;
-
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    line-height: 1.5;
-
     color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin: 0;
 }
 
-
-/* ==========================================================================
-   5. OFERTAS ESPECIALES
-   ========================================================================== */
-
-/*
- * Contenedor de título + enlace "Ver todas las ofertas".
- */
-.offers-heading {
-    display: flex;
-
-    align-items: flex-end;
-    justify-content: space-between;
-
-    gap: 24px;
-
-    margin-bottom: 24px;
-}
-
-/*
- * El título de ofertas no necesita margen inferior adicional,
- * porque .offers-heading ya controla la separación.
- */
-.offers-heading .section-heading {
-    margin-bottom: 0;
-}
-
-
-/* ---------- Enlace de ofertas ---------- */
-
-.offers-link {
-    flex-shrink: 0;
-
-    /*
-     * Ajuste horizontal del enlace.
-     * Positivo = derecha.
-     * Negativo = izquierda.
-     */
-    transform: translateX(40px);
-
-    margin-bottom: 2px;
-
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    font-weight: 600;
-
-    color: var(--green);
-
-    text-decoration: none;
-
-    /*
-     * Evita que el enlace se divida.
-     */
-    white-space: nowrap;
-
-    transition: color 0.2s ease;
-}
-
-.offers-link:hover {
-    color: var(--green-dark);
-}
-
-
-/* ---------- Grid de productos ---------- */
-
-.product-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4, 302px);
-    justify-content: center;
-
-    gap: 24px;
-}
-
-
-/* ---------- Tarjeta de producto ---------- */
-
+/* --- Tarjetas de Productos (Ofertas) --- */
 .product-card {
-    width: 302px;
-    height: 334px;
-
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
     overflow: hidden;
-
-    background-color: var(--white);
-
-    border: 1px solid var(--border);
-    border-radius: 10px;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-
-    transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
 }
 
-.product-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-
-/* ---------- Imagen del producto ---------- */
-
-.product-image {
-    width: 302px;
+.product-img-wrapper {
     height: 180px;
-
-    overflow: hidden;
+    background-color: var(--bg-light);
 }
 
-.product-image img {
+.product-img-wrapper img {
     width: 100%;
     height: 100%;
-
-    display: block;
-
     object-fit: cover;
 }
 
-
-/* ---------- Contenido del producto ---------- */
-
-/*
- * Altura total del contenido inferior de la tarjeta.
- *
- * box-sizing: border-box:
- * Hace que el width/height incluyan el padding.
- */
-.product-content {
-    width: 302px;
-    height: 154px;
-
-    padding: 12px 16px;
-
-    box-sizing: border-box;
-
+.product-info {
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
-/*
- * Origen del producto.
- */
 .product-origin {
-    margin-bottom: 4px;
-
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    line-height: 1.2;
-
+    font-size: 0.65rem;
     color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
 }
 
-/*
- * Nombre del producto.
- */
-.product-content h3 {
-    margin: 0 0 5px;
-
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 600;
-
+.product-name {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    font-size: 1.1rem;
     color: var(--text-main);
+    margin: 0 0 12px 0;
 }
 
-/*
- * Precio del producto.
- */
-.product-price {
-    margin: 0 0 10px;
+.product-pricing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
 
-    font-family: var(--font-body);
-    font-size: 0.95rem;
+.price-current {
     font-weight: 700;
-
-    color: var(--brown);
+    color: var(--brown-brand);
+    font-size: 1rem;
 }
 
+.price-old {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
 
-/* ---------- Botón del producto ---------- */
-
-.product-button {
-    width: 270px;
-    height: 35px;
-
-    margin: 0;
-
-    /*
-     * Separación adicional entre el precio y el botón.
-     */
-    margin-top: 22px;
-
-    /*
-     * Centra horizontalmente el botón dentro del contenido.
-     */
-    align-self: center;
-
-    padding: 0;
-
+.btn-add-cart {
+    margin-top: auto;
+    background: var(--green-brand);
+    color: #fff;
     border: none;
-    border-radius: 8px;
-
-    background-color: var(--green);
-    color: var(--white);
-
-    font-family: var(--font-body);
-    font-size: 0.78rem;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition:
-            background-color 0.2s ease,
-            transform 0.1s ease;
+    transition: background 0.3s ease;
 }
 
-.product-button:hover {
-    background-color: var(--green-dark);
+.btn-add-cart:hover {
+    background: var(--green-brand-dark);
 }
 
-.product-button:active {
-    transform: translateY(1px);
+/* --- Sección: Misión y Presencia --- */
+.mission-section {
+    background-color: var(--bg-light);
+    padding: 64px 0;
+    margin-top: 64px;
+    border-top: 1px solid var(--border-light);
 }
 
+.mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
 
-/* ==========================================================================
-   6. NUESTRA MISIÓN Y PRESENCIA
-   ========================================================================== */
+.mission-text p {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
 
-/*
- * Sección completa.
- *
- * height:
- * Altura exacta de la sección en el diseño de escritorio.
- *
- * background-color:
- * Fondo gris muy claro utilizado en el mockup.
- */
-.mission-presence-section {
-    width: 100%;
-    height: 548px;
-
+.mission-list {
+    list-style: none;
     padding: 0;
-
-    display: flex;
-    align-items: center;
-
-    max-width: none;
-
-    background-color: var(--bg);
-}
-
-
-/* ---------- Contenedor de misión + presencia ---------- */
-
-/*
- * Este contenedor agrupa las dos columnas:
- *
- * Izquierda:
- * Misión
- *
- * Derecha:
- * Mapa + 9 sedes
- *
- * 585px + 40px + 635px = 1260px
- */
-.mission-presence-grid {
-    width: 1260px;
-    max-width: none;
-    height: 388px;
-
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 40px;
-
-    box-sizing: border-box;
-}
-
-
-/* ---------- Bloque de misión ---------- */
-
-.mission-content {
-    width: 585px;
-    height: 252px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    flex-shrink: 0;
-}
-
-
-/* ---------- Título de misión ---------- */
-
-.mission-content h2 {
-    width: 449px;
-    height: 48px;
-
-    margin: 0 0 16px;
-
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 48px;
-
-    color: var(--brown);
-}
-
-
-/* ---------- Texto principal de misión ---------- */
-
-.mission-content > p {
-    width: 585px;
-    height: 104px;
-
-    margin: 0 0 16px;
-
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.5;
-
-    color: var(--text-main);
-}
-
-
-/* ---------- Beneficios ---------- */
-
-.mission-benefits {
-    width: 585px;
-    height: 52px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-between;
-}
-
-.mission-benefit {
-    width: 585px;
-    height: 26px;
-
-    display: flex;
-    align-items: center;
-}
-
-
-/* ---------- Iconos de beneficios ---------- */
-
-.mission-benefit-icon {
-    width: 20px;
-    height: 20px;
-
-    flex-shrink: 0;
-
-    margin-right: 12px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* ---------- Texto de beneficios ---------- */
-
-.mission-benefit p {
-    width: 553px;
     margin: 0;
-
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    line-height: 26px;
-
-    color: var(--text-main);
 }
 
-
-/* ---------- Bloque de presencia ---------- */
-
-.presence-card {
-    width: 635px;
-    height: 388px;
-
-    padding: 24px;
-
-    box-sizing: border-box;
-
+.mission-list li {
     display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.list-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Tarjeta del Mapa */
+.mission-map-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    gap: 24px;
     align-items: center;
-
-    flex-shrink: 0;
 }
 
-
-/* ---------- Mapa ---------- */
-
-.presence-map {
-    width: 120px;
-    height: 340px;
-
-    flex-shrink: 0;
-
-    overflow: hidden;
+.map-illustration {
+    flex: 0 0 120px;
 }
 
-.presence-map img {
-    width: 120px;
-    height: 340px;
-
-    display: block;
-
+.map-illustration img {
+    width: 100%;
+    height: auto;
     object-fit: contain;
 }
 
-
-/* ---------- Contenido de presencia ---------- */
-
-.presence-content {
-    width: 443px;
-    height: 340px;
-
-    /*
-     * Distancia entre el mapa y el contenido.
-     */
-    margin-left: 24px;
-
-    display: flex;
-    flex-direction: column;
-
-    box-sizing: border-box;
+.map-info h3 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
 }
 
-
-/* ---------- Título "Nuestras 9 Sedes" ---------- */
-
-.presence-content h3 {
-    /*
-     * max-content evita que el título se parta.
-     */
-    width: max-content;
-    height: 24px;
-
-    margin: 0 0 16px;
-
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 24px;
-
-    color: var(--brown);
-}
-
-
-/* ---------- Descripción de presencia ---------- */
-
-.presence-content > p {
-    width: 443px;
-    height: 16px;
-
-    margin: 0 0 20px;
-
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    line-height: 16px;
-
+.map-info p {
+    font-size: 0.8rem;
     color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 16px;
 }
 
-
-/* ---------- Lista de sedes ---------- */
-
-.presence-list {
-    width: 443px;
-    height: 192px;
-
-    margin: 0;
+.locations-list {
+    list-style: none;
     padding: 0;
-
-    list-style: none;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 0;
+    columns: 2; /* Divide la lista en 2 columnas */
+    column-gap: 16px;
 }
 
-.presence-item {
-    width: 443px;
-    height: 18px;
-
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    line-height: 18px;
-
+.locations-list li {
+    font-size: 0.75rem;
     color: var(--text-main);
-
-    list-style: none;
+    font-weight: 500;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 12px;
 }
 
-
-/* ---------- Viñeta verde ---------- */
-
-.presence-item::before {
+.locations-list li::before {
     content: "•";
-
-    margin-right: 8px;
-
-    color: var(--green);
-
-    font-size: 1rem;
-    font-weight: 700;
+    color: var(--green-brand);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 0.6;
 }
 
-
 /* ==========================================================================
-   7. RESPONSIVE
+                                RESPONSIVE
    ========================================================================== */
 
-
-/* ==========================================================================
-   TABLETS / LAPTOPS PEQUEÑOS
-   ========================================================================== */
-
-@media (max-width: 1300px) {
-
-    /*
-     * En este tamaño las cuatro tarjetas ya no caben en una sola fila.
-     */
-    .category-grid,
-    .product-grid {
-        grid-template-columns: repeat(2, 302px);
+/* Para pantallas medianas (Tablets - hasta 992px) */
+@media (max-width: 992px) {
+    .grid-4-cols {
+        grid-template-columns: repeat(2, 1fr); /* Pasa de 4 a 2 columnas */
     }
-
 }
 
-
-/* ==========================================================================
-   AJUSTE DE TÍTULOS Y ENLACE
-   ========================================================================== */
-
-@media (max-width: 1280px) {
-
-    /*
-     * Quitamos los desplazamientos manuales cuando la pantalla
-     * comienza a reducirse.
-     */
-    .section-heading {
-        transform: translateX(0);
+/* Para pantallas pequeñas (Teléfonos móviles - hasta 576px) */
+@media (max-width: 576px) {
+    .grid-4-cols {
+        grid-template-columns: 1fr; /* Pasa a 1 sola columna */
     }
-
-    .offers-link {
-        transform: translateX(0);
-    }
-
-    /*
-     * El bloque de misión deja de utilizar un ancho fijo de 1260px.
-     */
-    .mission-presence-grid {
-        width: 100%;
-        padding: 0 24px;
-
-        box-sizing: border-box;
-    }
-
 }
-
-
-/* ==========================================================================
-   PANTALLAS MEDIANAS
-   ========================================================================== */
-
-@media (max-width: 1000px) {
-
-    /*
-     * Misión y presencia pasan a una disposición vertical.
-     */
-    .mission-presence-section {
-        height: auto;
-        padding: 60px 24px;
-    }
-
-    .mission-presence-grid {
-        width: 100%;
-        height: auto;
-
-        flex-direction: column;
-        align-items: center;
-
-        gap: 40px;
-
-        padding: 0;
-    }
-
-
-    /* Misión */
-
-    .mission-content {
-        width: 585px;
-        max-width: 100%;
-    }
-
-    .mission-content > p,
-    .mission-benefits,
-    .mission-benefit {
-        max-width: 100%;
-    }
-
-
-    /* Presencia */
-
-    .presence-card {
-        width: 635px;
-        max-width: 100%;
-    }
-
-}
-
-
-/* ==========================================================================
-   MÓVILES
-   ========================================================================== */
-
-@media (max-width: 700px) {
-
-    /*
-     * Reduce el espacio lateral de las secciones.
-     */
-    .home-section {
-        padding: 36px 16px;
-    }
-
-
-    /* Hero */
-
-    .home-hero {
-        height: 320px;
-    }
-
-
-    /* Categorías y productos */
-
-    .category-grid,
-    .product-grid {
-        grid-template-columns: 302px;
-    }
-
-
-    /* Ofertas */
-
-    .offers-heading {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       Misión
-       ---------------------------------------------------------------------- */
-
-    .mission-presence-section {
-        padding: 48px 16px;
-    }
-
-    .mission-content {
-        width: 100%;
-        height: auto;
-    }
-
-    .mission-content h2 {
-        width: 100%;
-        height: auto;
-
-        line-height: 1.2;
-    }
-
-    .mission-content > p {
-        width: 100%;
-        height: auto;
-    }
-
-    .mission-benefits {
-        width: 100%;
-        height: auto;
-
-        gap: 12px;
-    }
-
-    .mission-benefit {
-        width: 100%;
-        height: auto;
-
-        align-items: flex-start;
-    }
-
-    .mission-benefit p {
-        width: calc(100% - 32px);
-
-        line-height: 1.5;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       Presencia
-       ---------------------------------------------------------------------- */
-
-    .presence-card {
-        width: 100%;
-        height: auto;
-
-        padding: 24px;
-
-        align-items: flex-start;
-    }
-
-
-    /* Mapa reducido */
-
-    .presence-map {
-        width: 90px;
-        height: 260px;
-    }
-
-    .presence-map img {
-        width: 90px;
-        height: 260px;
-    }
-
-
-    /* Contenido */
-
-    .presence-content {
-        width: calc(100% - 114px);
-        height: auto;
-
-        margin-left: 24px;
-    }
-
-    .presence-content > p {
-        width: 100%;
-        height: auto;
-
-        line-height: 1.5;
-    }
-
-
-    /* Lista */
-
-    .presence-list {
-        width: 100%;
-        height: auto;
-
-        gap: 8px;
-    }
-
-    .presence-item {
-        width: 100%;
-        height: auto;
-
-        line-height: 1.5;
-    }
-
-}
-
-
-/* ==========================================================================
-   PANTALLAS MUY PEQUEÑAS
-   ========================================================================== */
-
-@media (max-width: 350px) {
-
-    /*
-     * A partir de aquí el contenido puede volver a ocupar varias líneas.
-     */
-    .section-heading {
-        transform: none;
-    }
-
-    .section-heading h2,
-    .section-heading p {
-        white-space: normal;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       Grid
-       ---------------------------------------------------------------------- */
-
-    .category-grid,
-    .product-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-
-    /* Las tarjetas ocupan el ancho disponible */
-
-    .category-card,
-    .product-card,
-    .category-image,
-    .category-content,
-    .product-image,
-    .product-content {
-        width: 100%;
-    }
-
-
-    /* Categorías */
-
-    .category-card {
-        height: auto;
-    }
-
-    .category-content {
-        min-height: 111px;
-        height: auto;
-    }
-
-
-    /* Productos */
-
-    .product-card {
-        height: auto;
-    }
-
-    .product-content {
-        min-height: 154px;
-        height: auto;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       Misión
-       ---------------------------------------------------------------------- */
-
-    .mission-presence-section {
-        padding: 40px 12px;
-    }
-
-    .mission-content h2 {
-        font-size: 1.6rem;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       Presencia
-       ---------------------------------------------------------------------- */
-
-    .presence-card {
-        flex-direction: column;
-        align-items: center;
-
-        padding: 20px;
-    }
-
-
-    /* Mapa */
-
-    .presence-map {
-        width: 120px;
-        height: 220px;
-
-        margin-bottom: 20px;
-    }
-
-    .presence-map img {
-        width: 120px;
-        height: 220px;
-    }
-
-
-    /* Contenido */
-
-    .presence-content {
-        width: 100%;
-        margin-left: 0;
-    }
-
-}
-

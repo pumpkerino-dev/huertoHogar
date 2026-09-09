@@ -2,9 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0efcf99d-19f8-4897-adc8-35da85482996" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/blog-noticia-cinco.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-cuatro.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-dos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-principal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-six.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-tres.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-noticia-uno.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/pages/blog-noticia-principal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/pages/blog.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/pages/nosotros.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/pages/terminoCondicionPreguntasDespacho.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-agricultores.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-destacado.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-frutas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-huella-carbono.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-lacteos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-miel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/blog-zanahorias.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/check-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/foto-bloque-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/foto-bloque-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1A.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1B.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto1E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2A.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2B.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-foto2E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-fotoA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/noticia-fotoB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nosotros.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/politicaDeDespacho.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/preguntasFrecuentes.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terminoCondiciones.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/pages/page-home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pages/page-home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/img_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/hero-banner.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/page-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +57,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -46,12 +89,15 @@
     &quot;assignee&quot;: &quot;pumpkerino-dev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/pumpkerino-dev/huertoHogar.git",
-    "accountId": "9d561a6f-fb81-43b2-9c74-2493ef523a54"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pumpkerino-dev/huertoHogar.git&quot;,
+    &quot;accountId&quot;: &quot;9d561a6f-fb81-43b2-9c74-2493ef523a54&quot;
   }
-}]]></component>
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -75,16 +121,18 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "feature/home-page",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar/img",
-    "list.type.of.created.stylesheet": "CSS"
+    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar\img" />
       <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />
+      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />
       <recent name="C:\Users\AO-Alumno\Desktop\Nueva carpeta" />
       <recent name="C:\Users\AO-Alumno\Desktop\Nueva carpeta\js" />
       <recent name="C:\Users\AO-Alumno\Desktop\Nueva carpeta\css" />
