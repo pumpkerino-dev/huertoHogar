@@ -161,3 +161,165 @@ if (filterToggle) {
 
     });
 }
+
+// BÚSQUEDA DESDE EL HEADER (?buscar=...)
+const searchParams = new URLSearchParams(window.location.search);
+const searchTerm = searchParams.get("buscar");
+
+if (searchTerm) {
+
+    const headerSearchInput = document.querySelector(".search-bar input");
+
+    if (headerSearchInput) {
+        headerSearchInput.value = searchTerm;
+    }
+
+    const normalizedTerm = searchTerm.trim().toLowerCase();
+
+    document.querySelectorAll(".product-card").forEach((card) => {
+
+        const nameEl = card.querySelector(".card-title");
+        const name = nameEl ? nameEl.textContent.toLowerCase() : "";
+
+        const matches = name.includes(normalizedTerm);
+
+        card.style.display = matches ? "" : "none";
+    });
+}
+// BÚSQUEDA AL PRESIONAR ENTER
+const searchInput = document.querySelector(".search-bar input");
+
+if (searchInput) {
+    searchInput.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+
+            const searchText = this.value.trim();
+
+            if (searchText) {
+                window.location.href =
+                    `product-catalog.html?buscar=${encodeURIComponent(searchText)}`;
+            }
+        }
+    });
+}
+// ==========================================================================
+// AÑADIR AL CARRITO (product-catalog.html y fichas de producto)
+// ==========================================================================
+const CART_STORAGE_KEY = "huertohogar-cart";
+
+function getStoredCart() {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+    try {
+        return JSON.parse(raw);
+    } catch {
+        return [];
+    }
+}
+
+function saveStoredCart(items) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    updateHeaderCartBadge(items);
+}
+
+function updateHeaderCartBadge(items) {
+    const badge = document.querySelector(".cart-total");
+    if (!badge) return;
+    const total = items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+    badge.textContent = "$" + Math.round(total).toLocaleString("es-CL");
+}
+updateHeaderCartBadge(getStoredCart());
+
+function addToCart(item) {
+    const cart = getStoredCart();
+    const existing = cart.find((i) => i.id === item.id);
+    if (existing) {
+        existing.quantity += item.quantity;
+    } else {
+        cart.push(item);
+    }
+    saveStoredCart(cart);
+}
+
+// Feedback visual rápido en el botón (sin dependencias externas)
+function showAddedFeedback(button) {
+    const originalText = button.textContent;
+    button.textContent = "✓ Añadido";
+    button.disabled = true;
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.disabled = false;
+    }, 1000);
+}
+
+// Extrae la unidad del texto de precio, ej: "$1.200 CLP / kg" -> "kg"
+function extractUnit(priceText) {
+    const parts = priceText.split("/");
+    return parts.length > 1 ? parts[1].trim() : "unidad";
+}
+
+// ---- Tarjetas del catálogo (product-catalog.html) ----
+document.querySelectorAll(".product-card .btn-add-cart").forEach((button) => {
+    button.addEventListener("click", () => {
+        const card = button.closest(".product-card");
+        const link = card.querySelector("a[href]");
+        const id = link.getAttribute("href").replace(".html", "").toLowerCase();
+        const name = card.querySelector(".card-title").textContent.trim();
+        const image = card.querySelector(".card-img-wrapper img").getAttribute("src");
+        const priceText = card.querySelector(".card-price").textContent;
+        const unitPrice = Number(card.dataset.price);
+        const unit = extractUnit(priceText);
+
+        addToCart({ id, name, unit, unitPrice, image, quantity: 1 });
+        showAddedFeedback(button);
+    });
+});
+
+// ---- Botón "Añadir al Carrito" de cada página de producto ----
+document.querySelectorAll(".btn-add-cart-large").forEach((button) => {
+    button.addEventListener("click", () => {
+
+        const productPage = document.querySelector(".product-page");
+
+        const name = productPage
+            .querySelector(".product-title")
+            .textContent
+            .trim();
+
+        const image = productPage
+            .querySelector(".main-image")
+            .getAttribute("src");
+
+        const priceText = productPage
+            .querySelector(".price-amount")
+            .textContent;
+
+        const unitPrice = Number(
+            priceText.replace(/\D/g, "")
+        );
+
+        const quantityElement = productPage.querySelector("#quantity");
+        const quantity = Number(
+            quantityElement.textContent.trim().split(" ")[0]
+        );
+
+        const unit = quantityElement.dataset.unit;
+
+        const id = productPage
+            .querySelector(".info-value.text-dark")
+            .textContent
+            .trim();
+
+        addToCart({
+            id,
+            name,
+            unit,
+            unitPrice,
+            image,
+            quantity
+        });
+
+        showAddedFeedback(button);
+    });
+});

@@ -2,26 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0efcf99d-19f8-4897-adc8-35da85482996" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/Planilla_de_Requerimientos_HuertoHogar.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Naranja.html" beforeDir="false" afterPath="$PROJECT_DIR$/Naranja.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-cinco.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-cinco.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-cuatro.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-cuatro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-dos.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-dos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-principal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-noticia-six.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-six.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-noticia-tres.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-tres.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-noticia-uno.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-uno.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/pages/blog-noticia-principal.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pages/blog-noticia-principal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/espinaca.html" beforeDir="false" afterPath="$PROJECT_DIR$/espinaca.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frutas.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/scripts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lacteos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leche.html" beforeDir="false" afterPath="$PROJECT_DIR$/leche.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/login-register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manzana.html" beforeDir="false" afterPath="$PROJECT_DIR$/manzana.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miel.html" beforeDir="false" afterPath="$PROJECT_DIR$/miel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nosotros.html" beforeDir="false" afterPath="$PROJECT_DIR$/nosotros.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/organicos.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/page-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/page-home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pimiento.html" beforeDir="false" afterPath="$PROJECT_DIR$/pimiento.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platano.html" beforeDir="false" afterPath="$PROJECT_DIR$/platano.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verduras.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/politicaDeDespacho.html" beforeDir="false" afterPath="$PROJECT_DIR$/politicaDeDespacho.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preguntasFrecuentes.html" beforeDir="false" afterPath="$PROJECT_DIR$/preguntasFrecuentes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quinua.html" beforeDir="false" afterPath="$PROJECT_DIR$/quinua.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminoCondiciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/terminoCondiciones.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zanahorias.html" beforeDir="false" afterPath="$PROJECT_DIR$/zanahorias.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +103,14 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "developer",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar/img",
+    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar/docs",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar\docs" />
       <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar\img" />
       <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />
     </key>
