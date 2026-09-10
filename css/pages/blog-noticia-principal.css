@@ -2,15 +2,17 @@
                                 PAGE SINGLE POST - MAIN
    ========================================================================== */
 :root {
-    --brown-brand: var(--brown, #8B4513);
-    --green-brand: var(--green, #2E8B57);
-    --green-brand-dark: var(--green-dark, #1f6b39);
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
     --green-badge-bg: #E8F5E9;
     --green-badge-text: #2E7D32;
-    --text-main: var(--text-main, #333333);
-    --text-muted: var(--text-muted, #666666);
-    --border-light: var(--border, #E5E5E5);
-    --bg-light: var(--bg, #F7F7F7);
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
 }
 .single-post-page {
     margin-top: 48px;
