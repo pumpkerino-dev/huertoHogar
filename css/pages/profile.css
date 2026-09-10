@@ -24,6 +24,10 @@
   gap: 22px;
 }
 
+.account-panel[hidden] {
+  display: none;
+}
+
 .panel-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
