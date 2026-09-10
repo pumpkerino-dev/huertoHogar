@@ -56,7 +56,7 @@
           <img src="img/lupa.png" alt="Buscar" />
         </span>
         <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
-        <button class="search-filter" type="button" aria-label="Filtros">
+        <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
           <img src="img/filtro.png" alt="Filtros" />
         </button>
       </div>
@@ -66,17 +66,17 @@
         <span class="account-icon">
           <img src="img/icono-usuario.png" alt="Cuenta" />
         </span>
-        Mi Cuenta
+        <span class="account-label">Mi Cuenta</span>
       </a>
     </div>
 
     <nav class="site-nav">
       <ul>
         <li><a href="page-home.html">Nosotros</a></li>
-        <li><a href="product-catalog.html">Frutas</a></li>
-        <li><a href="product-catalog.html">Verduras</a></li>
-        <li><a href="product-catalog.html">Orgánicos</a></li>
-        <li><a href="product-catalog.html">Lácteos</a></li>
+        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
@@ -111,7 +111,7 @@
               <input type="checkbox" id="remember-me" name="remember" />
               Recordarme
             </label>
-            <a href="#" class="link-muted">Olvidé mi contraseña</a>
+            <a href="recuperar-contrasena.html" class="link-muted">Olvidé mi contraseña</a>
           </div>
 
           <p class="form-message" id="login-message" role="alert"></p>
@@ -121,8 +121,14 @@
           <div class="divider"><span>O continuar con</span></div>
 
           <div class="social-row">
-            <button type="button" class="btn btn-social" data-provider="Google">Google</button>
-            <button type="button" class="btn btn-social" data-provider="Apple">Apple</button>
+            <button type="button" class="btn btn-social" data-provider="Google">
+              <img src="img/google.png" alt="" class="social-icon" width="14" height="14" />
+              Google
+            </button>
+            <button type="button" class="btn btn-social" data-provider="Apple">
+              <img src="img/apple.png" alt="" class="social-icon" width="14" height="14" />
+              Apple
+            </button>
           </div>
         </form>
 
@@ -145,21 +151,24 @@
               <input type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required />
             </div>
             <div>
-              <label class="field-label" for="register-phone">Teléfono</label>
-              <input type="tel" id="register-phone" name="phone" placeholder="ej: +56 9 1234 5678" required />
+              <label class="field-label" for="register-confirm-password">Confirmar Contraseña</label>
+              <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Repite tu contraseña" minlength="8" required />
             </div>
           </div>
 
-          <label class="field-label" for="register-address">Dirección de Despacho (Regional / Santiago)</label>
-          <input type="text" id="register-address" name="address" placeholder="Calle, Número, Comuna, Ciudad" required />
-
           <label class="checkbox-label terms-label">
             <input type="checkbox" id="accept-terms" name="terms" required />
-            Acepto los
-            <a href="#" data-modal-target="modal-terminos">Términos y Condiciones</a>
-            y
-            <a href="#" data-modal-target="modal-politicas">Políticas de Envío</a>.
+            <span>
+              Acepto los <a href="#" data-modal-target="modal-terminos">Términos y Condiciones</a>
+              y las <a href="#" data-modal-target="modal-politicas">Políticas de Envío</a>.
+            </span>
           </label>
+
+          <label class="field-label" for="register-phone">Teléfono</label>
+          <input type="tel" id="register-phone" name="phone" placeholder="ej: +56 9 1234 5678" required />
+
+          <label class="field-label" for="register-address">Dirección de Despacho (Regional / Santiago)</label>
+          <input type="text" id="register-address" name="address" placeholder="Calle, Número, Comuna, Ciudad" required />
 
           <p class="form-message" id="register-message" role="alert"></p>
 
@@ -191,29 +200,29 @@
       <div class="footer-col">
         <h3>Categorías</h3>
         <ul>
-          <li><a href="product-catalog.html">Frutas Frescas</a></li>
-          <li><a href="product-catalog.html">Verduras del Valle</a></li>
-          <li><a href="product-catalog.html">Productos Orgánicos</a></li>
-          <li><a href="product-catalog.html">Lácteos Artesanales</a></li>
+          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>HuertoHogar</h3>
         <ul>
-          <li><a href="page-home.html">Sobre Nosotros</a></li>
-          <li><a href="#">Nuestros Agricultores</a></li>
-          <li><a href="#">Políticas de Despacho</a></li>
-          <li><a href="#">Sustentabilidad</a></li>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+          <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+          <li><a href="blog.html">Sustentabilidad</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>Ayuda</h3>
         <ul>
-          <li><a href="#">Preguntas Frecuentes</a></li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="preguntasFrecuentes.html">Preguntas Frecuentes</a></li>
+          <li><a href="nosotros.html">Contacto</a></li>
+          <li><a href="terminoCondiciones.html">Términos y Condiciones</a></li>
           <li><a href="user-profile-tracking.html">Seguimiento de Envío</a></li>
         </ul>
       </div>
@@ -256,5 +265,7 @@
       </div>
     </div>
   </div>
+  <!-- Script compartido del sitio (filtros, newsletter, etc. — con guards, no afecta esta página) -->
+  <script type="module" src="js/script.js"></script>
 </body>
 </html>

@@ -29,6 +29,11 @@
 .btn-primary:hover {
   background: var(--green-dark);
 }
+.btn-primary:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
 
 /* Botón secundario (contorno) */
 .btn-outline {

@@ -39,6 +39,15 @@ select:focus {
   border-color: var(--green);
 }
 
+/* Feedback de validación en tiempo real */
+input.is-invalid {
+  border-color: var(--error);
+}
+
+input.is-valid {
+  border-color: var(--green);
+}
+
 /* Checkbox */
 .checkbox-label {
   display: flex;
@@ -64,4 +73,10 @@ select:focus {
 }
 .form-message.success {
   color: var(--success);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }

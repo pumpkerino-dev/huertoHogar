@@ -24,6 +24,10 @@ export function isValidAddress(address) {
   return value.length >= 5 && /[a-zA-Z]/.test(value) && /\d/.test(value);
 }
 
+export function passwordsMatch(password, confirmPassword) {
+  return password.length > 0 && password === confirmPassword;
+}
+
 // Devuelve un arreglo con los mensajes de error encontrados.
 // Un arreglo vacío significa que la contraseña es válida.
 export function validatePassword(password) {

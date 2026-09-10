@@ -1,4 +1,5 @@
 // Muestra u oculta mensajes dentro de un elemento <p class="form-message">
+
 export function showMessage(element, text, isSuccess) {
   if (!element) return;
   element.textContent = text;

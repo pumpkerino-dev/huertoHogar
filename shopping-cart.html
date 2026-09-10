@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huerto Hogar - Mi Cuenta</title>
+  <title>Huerto Hogar - Carrito de Compras</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,10 +18,14 @@
   <link rel="stylesheet" href="css/layout/footer.css" />
   <link rel="stylesheet" href="css/components/buttons.css" />
   <link rel="stylesheet" href="css/components/forms.css" />
-  <link rel="stylesheet" href="css/pages/profile.css" />
+  <link rel="stylesheet" href="css/components/modal.css" />
+  <link rel="stylesheet" href="css/pages/cart.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 
-  <script type="module" src="js/pages/profile.js"></script>
+  <!-- SweetAlert2: para el resultado del pago (aprobado / rechazado) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/components/modal.js"></script>
+  <script type="module" src="js/pages/cart.js"></script>
 </head>
 
 <body>
@@ -38,16 +42,16 @@
       <div class="search-bar">
         <span class="search-icon"><img src="img/lupa.png" alt="Buscar" /></span>
         <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
-        <button class="search-filter" type="button" aria-label="Filtros">
+        <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
           <img src="img/filtro.png" alt="Filtros" />
         </button>
       </div>
 
-      <a href="user-profile-tracking.html" class="account-link">
+      <a href="login-register.html" class="account-link">
         <span class="account-icon">
           <img src="img/icono-usuario.png" alt="Cuenta" />
         </span>
-        Mi Cuenta
+        <span class="account-label">Mi Cuenta</span>
       </a>
       <a href="shopping-cart.html" class="cart-link">
         <span class="cart-icon">
@@ -63,126 +67,79 @@
     <nav class="site-nav">
       <ul>
         <li><a href="page-home.html">Nosotros</a></li>
-        <li><a href="product-catalog.html">Frutas</a></li>
-        <li><a href="product-catalog.html">Verduras</a></li>
-        <li><a href="product-catalog.html">Orgánicos</a></li>
-        <li><a href="product-catalog.html">Lácteos</a></li>
+        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="profile-section">
-      <div class="profile-grid">
-        <!-- Sidebar -->
-        <nav class="account-nav">
-          <h2>Mi Cuenta</h2>
-          <ul>
-            <li><a href="#" >Mi Perfil</a></li>
-            <li><a href="#" class="active">Mis Pedidos</a></li>
-            <li><a href="#">Seguimiento</a></li>
-            <li><a href="#">Direcciones</a></li>
-            <li><a href="#">Métodos de Pago</a></li>
-            <li><a href="#">Configuración</a></li>
-          </ul>
-        </nav>
+    <section class="cart-section">
+      <div class="cart-section-header">
+        <h1>Tu Carrito de Compras</h1>
+        <a href="product-catalog.html" class="link-muted keep-shopping-link">&larr; Seguir Comprando</a>
+      </div>
 
-        <!-- Información Personal -->
-        <div class="profile-card">
-          <h2>Información Personal</h2>
-          <form id="profile-form" novalidate>
-            <label class="field-label" for="profile-name">Nombre Completo</label>
-            <input type="text" id="profile-name" name="name" value="María González Silva" required />
-
-            <label class="field-label" for="profile-address">Dirección de Despacho</label>
-            <input type="text" id="profile-address" name="address" value="Av. Providencia 1245, Apt 402, Santiago" required />
-
-            <div class="field-grid-2">
-              <div>
-                <label class="field-label" for="profile-phone">Teléfono</label>
-                <input type="tel" id="profile-phone" name="phone" value="+56 9 8765 4321" required />
-              </div>
-              <div>
-                <label class="field-label" for="profile-email">Email</label>
-                <input type="email" id="profile-email" name="email" value="maria.gonzalez@email.cl" required />
-              </div>
-            </div>
-
-            <label class="field-label" for="profile-payment">Método de Pago predeterminado</label>
-            <input type="text" id="profile-payment" name="payment" value="Webpay Crédito ---- 5678" readonly />
-
-            <p class="form-message" id="profile-message" role="alert"></p>
-
-            <button type="submit" class="btn btn-primary" style="width: auto; padding: 10px 22px;">
-              Guardar Cambios
-            </button>
-          </form>
+      <div class="cart-main">
+        <div class="cart-items" id="cart-items">
+          <div class="cart-items-header">
+            <span>Producto</span>
+            <span>Cantidad</span>
+            <span>Total</span>
+          </div>
+          <div id="cart-items-list">
+            <!-- Los productos se renderizan dinámicamente con js/pages/cart.js -->
+          </div>
         </div>
 
-        <!-- Sigue tu Pedido Activo -->
-        <div class="tracking-card">
-          <div class="tracking-card-header">
-            <h2>Sigue tu Pedido Activo</h2>
-            <span class="order-badge" id="order-badge">#HH-9824</span>
-          </div>
+        <p class="cart-empty" id="cart-empty" style="display:none;">
+          Tu carrito está vacío. ¡Explora nuestro catálogo de productos frescos!
+        </p>
 
-          <div class="order-progress">
-            <div class="progress-step">
-              <span class="dot"></span>
-              <span class="label">Preparando</span>
-            </div>
-            <div class="progress-step">
-              <span class="dot"></span>
-              <span class="label">En Camino</span>
-            </div>
-            <div class="progress-step">
-              <span class="dot"></span>
-              <span class="label">Entregado</span>
-            </div>
-          </div>
-
-          <div class="delivery-route">
-            <div class="route-track">
-              <span class="dot-start"></span>
-              <span class="line"></span>
-              <span class="dot-end"></span>
-            </div>
-            <div>
-              <h3>Ruta de Entrega</h3>
-              <p id="route-origin">Huerto Maule (Talca)</p>
-              <p id="route-destination">Providencia, Santiago</p>
-              <p class="eta" id="route-eta">Llegada aprox: Hoy, 17:30 hrs</p>
-            </div>
-          </div>
-
-          <div class="courier-row">
-            <span class="courier-avatar">
-              <img id="courier-avatar" src="img/icono-usuario.png" alt="Repartidor" />
-            </span>
-            <div>
-              <p class="courier-name" id="courier-name">Manuel Rojas Espinoza</p>
-              <p class="courier-role" id="courier-role">Despachador Climatizado · Camioneta Verde</p>
-            </div>
+        <div class="delivery-card">
+          <h2>Calendario de Despacho</h2>
+          <p class="delivery-card-subtitle">Selecciona tu día preferido para recibir tus productos del campo</p>
+          <div class="delivery-days" id="delivery-days">
+            <!-- Se renderiza dinámicamente con js/pages/cart.js -->
           </div>
         </div>
       </div>
 
-      <!-- Notificaciones recientes -->
-      <div class="notifications-card">
-        <h2>Notificaciones recientes</h2>
-        <div class="notification-list" id="notification-list">
-          <!-- Se renderiza dinámicamente con js/pages/profile.js -->
-        </div>
-      </div>
+      <aside class="cart-summary">
+        <h2>Resumen del Pedido</h2>
 
-      <!-- Historial de Pedidos -->
-      <div class="history-card">
-        <h2>Historial de Pedidos</h2>
-        <div class="order-list" id="order-history-list">
-          <!-- Se renderiza dinámicamente con js/pages/profile.js -->
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span class="value" id="summary-subtotal">$0 CLP</span>
         </div>
-      </div>
+        <div class="summary-row">
+          <span>IVA (19%)</span>
+          <span class="value" id="summary-iva">$0 CLP</span>
+        </div>
+        <div class="summary-row">
+          <span>Envío estimado</span>
+          <span class="value" id="summary-shipping">Gratis</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span class="value" id="summary-total">$0 CLP</span>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="checkout-button">
+          Proceder al Pago
+        </button>
+
+        <a href="product-catalog.html" class="link-muted keep-shopping-link keep-shopping-link-bottom">
+          + Agregar otro producto antes de pagar
+        </a>
+
+        <p class="cart-secure-note">
+          🛡️ Compra 100% segura con Webpay. Despachos climatizados.
+        </p>
+      </aside>
     </section>
   </main>
 
@@ -205,29 +162,29 @@
       <div class="footer-col">
         <h3>Categorías</h3>
         <ul>
-          <li><a href="product-catalog.html">Frutas Frescas</a></li>
-          <li><a href="product-catalog.html">Verduras del Valle</a></li>
-          <li><a href="product-catalog.html">Productos Orgánicos</a></li>
-          <li><a href="product-catalog.html">Lácteos Artesanales</a></li>
+          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>HuertoHogar</h3>
         <ul>
-          <li><a href="page-home.html">Sobre Nosotros</a></li>
-          <li><a href="#">Nuestros Agricultores</a></li>
-          <li><a href="#">Políticas de Despacho</a></li>
-          <li><a href="#">Sustentabilidad</a></li>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+          <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+          <li><a href="blog.html">Sustentabilidad</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h3>Ayuda</h3>
         <ul>
-          <li><a href="#">Preguntas Frecuentes</a></li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="preguntasFrecuentes.html">Preguntas Frecuentes</a></li>
+          <li><a href="nosotros.html">Contacto</a></li>
+          <li><a href="terminoCondiciones.html">Términos y Condiciones</a></li>
           <li><a href="user-profile-tracking.html">Seguimiento de Envío</a></li>
         </ul>
       </div>
@@ -238,5 +195,64 @@
       <p>Diseñado con ❤️ en el Maule, Chile.</p>
     </div>
   </footer>
+
+<div class="modal-overlay" id="modal-pago">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>Pago con Webpay</h2>
+      <button class="modal-close" type="button" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 16px;">
+        Simulación de pasarela de pago — ningún dato se envía a un banco real.
+      </p>
+
+      <p class="field-label" style="margin-top:0;">Elige una tarjeta</p>
+      <div class="payment-methods-select" id="payment-methods-select">
+        <!-- Se renderiza dinámicamente con js/pages/cart.js -->
+      </div>
+
+      <form id="payment-form" novalidate>
+        <div id="payment-cvv-only-block" hidden>
+          <label class="field-label" for="payment-cvv-existing">CVV</label>
+          <input type="text" id="payment-cvv-existing" placeholder="123" maxlength="4" />
+        </div>
+
+        <div id="payment-new-card-block" hidden>
+          <label class="field-label" for="payment-card-name">Nombre en la tarjeta</label>
+          <input type="text" id="payment-card-name" placeholder="Como aparece en tu tarjeta" />
+
+          <label class="field-label" for="payment-card-number">Número de tarjeta</label>
+          <input type="text" id="payment-card-number" placeholder="4051 8856 0044 6623" maxlength="19" />
+
+          <div class="field-grid">
+            <div>
+              <label class="field-label" for="payment-card-expiry">Vencimiento (MM/AA)</label>
+              <input type="text" id="payment-card-expiry" placeholder="08/28" maxlength="5" />
+            </div>
+            <div>
+              <label class="field-label" for="payment-card-cvv">CVV</label>
+              <input type="text" id="payment-card-cvv" placeholder="123" maxlength="4" />
+            </div>
+          </div>
+
+          <label class="checkbox-label" style="margin-top: 6px;">
+            <input type="checkbox" id="payment-save-card" checked />
+            Guardar esta tarjeta para la próxima vez
+          </label>
+        </div>
+
+        <p class="form-message" id="payment-message" role="alert"></p>
+
+        <button type="submit" class="btn btn-primary" id="payment-submit-button">
+          Confirmar Pago
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <!-- Script compartido del sitio (filtros, newsletter, etc. — con guards, no afecta esta página) -->
+  <script type="module" src="js/script.js"></script>
 </body>
 </html>
