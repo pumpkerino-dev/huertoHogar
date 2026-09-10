@@ -1,5 +1,5 @@
 <!--
-  NOSOTROS
+  Home-Page
 -->
 <!doctype html>
 <html lang="es">
@@ -36,8 +36,8 @@
     <link rel="stylesheet" href="css/components/buttons.css" />
     <link rel="stylesheet" href="css/components/forms.css" />
 
-    <!-- CSS especifico de nosotros -->
-    <link rel="stylesheet" href="css/pages/terminoCondicionPreguntasDespacho.css" />
+    <!-- CSS especifico de page-home -->
+    <link rel="stylesheet" href="css/pages/products.css" />
 
     <!-- Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
@@ -100,81 +100,135 @@
     </nav>
 </header>
 
-<main class="container terms-page">
+<main class="container product-page">
 
 
-    <article class="terms-wrapper">
+    <!-- Sección Principal: Imagen + Info -->
+    <section class="product-main-grid">
 
-        <header class="terms-header">
-            <h1 class="terms-title">Políticas de Despacho</h1>
-            <p class="terms-date">
-                Información sobre entregas, cobertura y seguimiento de pedidos.
-            </p>
-        </header>
-
-        <div class="terms-content">
-
-            <h2>1. Información general</h2>
-            <p>
-                HuertoHogar realiza despachos de productos frescos y de calidad
-                a distintas zonas de Chile. Las condiciones de entrega pueden
-                variar según la ubicación del cliente y la disponibilidad del
-                servicio en cada zona.
-            </p>
-
-            <h2>2. Dirección de entrega</h2>
-            <p>
-                El cliente debe ingresar una dirección de entrega correcta y
-                completa al momento de realizar su pedido. HuertoHogar utilizará
-                esta información para coordinar el despacho y entregar los
-                productos en el lugar indicado.
-            </p>
-
-            <h2>3. Fecha de entrega</h2>
-            <p>
-                Durante el proceso de compra, el cliente podrá seleccionar una
-                fecha de entrega preferida entre las opciones disponibles para
-                su zona y pedido.
-            </p>
-
-            <h2>4. Preparación del pedido</h2>
-            <p>
-                Los productos son preparados antes de su despacho procurando
-                mantener sus condiciones de calidad y frescura. La disponibilidad
-                de cada producto se encuentra indicada en el catálogo al momento
-                de realizar la compra.
-            </p>
-
-            <h2>5. Seguimiento del pedido</h2>
-            <p>
-                Una vez confirmado el pedido, el cliente podrá consultar su estado
-                y realizar seguimiento del despacho mediante las herramientas
-                disponibles en su cuenta.
-            </p>
-
-            <h2>6. Recepción del pedido</h2>
-            <p>
-                Se recomienda que el cliente o una persona autorizada se encuentre
-                disponible para recibir el pedido en la fecha seleccionada.
-                En caso de existir dificultades para realizar la entrega,
-                HuertoHogar podrá contactar al cliente utilizando los datos
-                registrados.
-            </p>
-
-            <h2>7. Consultas sobre el despacho</h2>
-            <p>
-                Para consultas relacionadas con entregas, fechas de despacho o
-                seguimiento de pedidos, puedes comunicarte con HuertoHogar a
-                través del correo electrónico:
-                <strong>contacto@huertohogar.cl</strong>.
-            </p>
-
+        <!-- Columna Izquierda: Galería -->
+        <div class="product-gallery">
+            <div class="main-image-wrapper">
+                <img src="img/prod-thumb-1.png" alt="Manzanas Fuji del Maule" class="main-image">
+            </div>
+            <div class="thumbnail-list">
+                <button class="thumb-btn active">
+                    <img src="img/prod-thumb-2.png" alt="Miniatura 1">
+                </button>
+                <button class="thumb-btn">
+                    <img src="img/prod-thumb-3.png" alt="Miniatura 2">
+                </button>
+                <button class="thumb-btn">
+                    <img src="img/prod-thumb-4.png" alt="Miniatura 3">
+                </button>
+            </div>
         </div>
 
-    </article>
+        <!-- Columna Derecha: Información y Compra -->
+        <div class="product-details">
+
+            <div class="product-status">
+                <span class="badge-available">DISPONIBLE</span>
+                <div class="product-rating">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <!-- 4 de 5 estrellas de ejemplo -->
+                </div>
+            </div>
+
+            <h1 class="product-title">Manzanas Fuji del Maule</h1>
+
+            <div class="product-price">
+                <span class="price-amount">$1.200 CLP</span>
+                <span class="price-unit">por kilo</span>
+            </div>
+
+            <p class="product-description">
+                Nuestras manzanas Fuji son cultivadas con extremo cuidado en las tierras del Valle del Maule. Destacan por su característico dulzor natural, una textura crujiente insuperable y una frescura garantizada por la cosecha diaria.
+            </p>
+
+            <!-- Caja de Información de Origen -->
+            <div class="info-box">
+                <h4 class="info-box-title">INFORMACIÓN DE ORIGEN</h4>
+                <div class="info-row">
+                    <span class="info-label">Código:</span>
+                    <span class="info-value text-dark">FR001</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Origen:</span>
+                    <span class="info-value text-dark">Valle del Maule, Maule, Chile</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Prácticas Sostenibles:</span>
+                    <span class="info-value text-green">Sin Pesticidas Químicos</span>
+                </div>
+            </div>
+
+            <!-- Alerta Ecológica -->
+            <div class="eco-alert">
+                <img src="img/check-icon.png" alt="Hoja" class="eco-icon">
+                <div class="eco-text">
+                    <strong>Huella de Carbono Reducida</strong>
+                    <p>Al comprar este producto local reduces 2.5 kg de emisiones de CO2.</p>
+                </div>
+            </div>
+
+            <!-- Acciones de Compra -->
+            <div class="purchase-actions">
+                <div class="quantity-selector">
+                    <button class="qty-btn" type="button" id="decrease">-</button>
+                    <span class="qty-current" id="quantity" data-max="150">1 Kilo</span>
+                    <button class="qty-btn" type="button" id="increase">+</button>
+                </div>
+                <button class="btn-add-cart-large">Añadir al Carrito</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Opiniones -->
+    <section class="product-reviews-section">
+        <h2 class="reviews-title">Opiniones de Clientes</h2>
+
+        <div class="reviews-list">
+
+            <!-- Reseña 1 -->
+            <article class="review-card">
+                <header class="review-header">
+                    <div class="reviewer-info">
+                        <h4 class="reviewer-name">María José P.</h4>
+                        <span class="review-date">Hace 2 días</span>
+                    </div>
+                    <div class="review-stars">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                </header>
+                <p class="review-text">
+                    ¡Excelente frescura! Son súper dulces y crujientes. Ideales para las colaciones de los niños. Se nota el cultivo local.
+                </p>
+                <div class="review-image-attached">
+                    <img src="img/review-manzanas.png" alt="Foto subida por el cliente">
+                </div>
+            </article>
+
+            <!-- Reseña 2 -->
+            <article class="review-card">
+                <header class="review-header">
+                    <div class="reviewer-info">
+                        <h4 class="reviewer-name">Rodrigo T.</h4>
+                        <span class="review-date">Hace 1 semana</span>
+                    </div>
+                    <div class="review-stars">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    </div>
+                </header>
+                <p class="review-text">
+                    Muy ricas, llegaron en perfecto estado y bien empaquetadas en caja reciclada. Recomendadas.
+                </p>
+            </article>
+
+        </div>
+    </section>
 
 </main>
-
 
 <!-- pie de pagina -->
 <footer class="site-footer">

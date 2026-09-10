@@ -2,52 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0efcf99d-19f8-4897-adc8-35da85482996" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blog-noticia-cinco.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-cuatro.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-dos.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-principal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-six.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-tres.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-noticia-uno.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/pages/blog-noticia-principal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/pages/blog.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/pages/nosotros.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/pages/terminoCondicionPreguntasDespacho.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-agricultores.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-destacado.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-frutas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-huella-carbono.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-lacteos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-miel.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog-zanahorias.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/check-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/foto-bloque-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/foto-bloque-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1A.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1B.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1C.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1D.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto1E.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2A.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2B.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2C.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2D.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-foto2E.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-fotoA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/noticia-fotoB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nosotros.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/politicaDeDespacho.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/preguntasFrecuentes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terminoCondiciones.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/espinaca.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1A.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1B.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-1H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2A.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2B.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-2H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3A.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3B.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-3H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4A.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4B.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/prod-thumb-4}H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leche.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/miel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pimiento.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/platano.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quinua.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zanahorias.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Naranja.html" beforeDir="false" afterPath="$PROJECT_DIR$/Naranja.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-cinco.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-cinco.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-cuatro.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-cuatro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-dos.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-dos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-principal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-six.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-six.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-tres.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-tres.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-noticia-uno.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog-noticia-uno.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/pages/page-home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pages/page-home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/img_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/hero-banner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/pages/product-catalog.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pages/product-catalog.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/pages/products.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pages/products.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manzana.html" beforeDir="false" afterPath="$PROJECT_DIR$/manzana.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nosotros.html" beforeDir="false" afterPath="$PROJECT_DIR$/nosotros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/page-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/politicaDeDespacho.html" beforeDir="false" afterPath="$PROJECT_DIR$/politicaDeDespacho.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preguntasFrecuentes.html" beforeDir="false" afterPath="$PROJECT_DIR$/preguntasFrecuentes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminoCondiciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/terminoCondiciones.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +73,7 @@
       <list>
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -78,7 +93,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="developer" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,15 +136,15 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "feature/home-page",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar",
+    "last_opened_file_path": "C:/Users/pumpkerino/Desktop/Fullstack/Projecto/huertoHogar/img",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />
       <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar\img" />
+      <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pumpkerino\Desktop\Fullstack\Projecto\huertoHogar" />

@@ -1,5 +1,5 @@
 <!--
-  NOTICIA PRINCIPAL
+  Home-Page
 -->
 <!doctype html>
 <html lang="es">
@@ -36,36 +36,32 @@
     <link rel="stylesheet" href="css/components/buttons.css" />
     <link rel="stylesheet" href="css/components/forms.css" />
 
-    <!-- CSS especifico de blog correspondiente -->
-    <link rel="stylesheet" href="css/pages/blog-noticia-principal.css" />
+    <!-- CSS especifico de page-home -->
+    <link rel="stylesheet" href="css/pages/products.css" />
 
     <!-- Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>
-
 <!-- encabezado -->
 <header class="site-header">
-
     <div class="header-inner">
-
         <a href="page-home.html" class="brand">
-
-            <span class="brand-icon">
-                <img src="img/logo.png" alt="Logo Huerto Hogar" />
-            </span>
+        <span class="brand-icon">
+          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+        </span>
 
             <span class="brand-text">
-                <span class="brand-title">HUERTO HOGAR</span>
-                <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
-            </span>
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
         </a>
-        <div class="search-bar">
 
-            <span class="search-icon">
-                <img src="img/lupa.png" alt="Buscar" />
-            </span>
+        <div class="search-bar">
+        <span class="search-icon">
+          <img src="img/lupa.png" alt="Buscar" />
+        </span>
 
             <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
 
@@ -73,284 +69,188 @@
                 <img src="img/filtro.png" alt="Filtros" />
             </button>
         </div>
+
         <!-- Mi Cuenta lleva a la página de inicio de sesión -->
         <a href="login.html" class="account-link">
-
-            <span class="account-icon">
-                <img src="img/icono-usuario.png" alt="Cuenta" />
-            </span>
-
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
             Mi Cuenta
-
         </a>
-
-
         <a href="#" class="cart-link">
-
             <span class="cart-icon">
                 <img src="img/carrito.png" alt="Carrito">
-            </span>
-
+                </span>
             <span class="cart-info">
-                <span class="cart-title">Carrito</span>
-                <span class="cart-total">$0</span>
-            </span>
-
+        <span class="cart-title">Carrito</span>
+        <span class="cart-total">$0</span>
+    </span>
         </a>
-
     </div>
 
-
     <nav class="site-nav">
-
         <ul>
-
             <li><a href="page-home.html">Nosotros</a></li>
             <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
             <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
             <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
             <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
             <li><a href="blog.html">Blog</a></li>
-
         </ul>
-
     </nav>
-
 </header>
 
-
-<main class="container single-post-page">
-
-    <article class="post-layout">
+<main class="container product-page">
 
 
-        <!-- Columna Izquierda: Fotos -->
+    <section class="product-main-grid">
 
-        <aside class="post-media">
-
-            <div class="post-img-wrapper">
-
-                <img
-                        src="img/noticia-foto1.jpg"
-                        alt="Imagen noticia 1"
-                        class="post-image"
-                />
-
+        <div class="product-gallery">
+            <div class="main-image-wrapper">
+                <img src="img/prod-thumb-1H.png" alt="Naranjas Valencia" class="main-image">
             </div>
-
-            <div class="post-img-wrapper">
-
-                <img
-                        src="img/noticia-foto2.jpg"
-                        alt="Imagen noticia 2"
-                        class="post-image"
-                />
-
+            <div class="thumbnail-list">
+                <button class="thumb-btn active">
+                    <img src="img/prod-thumb-2H.png" alt="Miniatura 1">
+                </button>
+                <button class="thumb-btn">
+                    <img src="img/prod-thumb-3H.png" alt="Miniatura 2">
+                </button>
+                <button class="thumb-btn">
+                    <img src="img/prod-thumb-4H.png" alt="Miniatura 3">
+                </button>
             </div>
+        </div>
 
-        </aside>
+        <div class="product-details">
 
-
-        <!-- Columna Derecha: Texto -->
-
-        <section class="post-content">
-
-
-            <!-- Encabezado -->
-
-            <header class="post-header">
-
-                <span class="blog-badge">
-                    AGRICULTURA LOCAL
-                </span>
-
-                <h1 class="post-title">
-                    Pequeños agricultores: El motor de nuestra economía
-                </h1>
-
-                <div class="post-meta">
-
-                    <span>
-                        Por Claudoski Bertincoshk
-                    </span>
-
-                    <span class="meta-separator">
-                        •
-                    </span>
-
-                    <span>
-                        Octubre 12, 2026
-                    </span>
-
+            <div class="product-status">
+                <span class="badge-available">DISPONIBLE</span>
+                <div class="product-rating">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
                 </div>
-
-            </header>
-
-
-            <!-- Cuerpo del artículo -->
-
-            <div class="post-body">
-
-                <p>
-                    Todo comenzó con una pregunta aparentemente sencilla:
-                    ¿qué pasa si comes una fruta? Spoiler: no explotas.
-                    De hecho, probablemente hasta te haga bien.
-                </p>
-
-                <p>
-                    Las frutas son básicamente los snacks que la naturaleza
-                    decidió regalarte sin necesidad de instalar Steam,
-                    actualizar drivers ni esperar que tu PC reinicie por
-                    tercera vez.
-                </p>
-
-                <h2>
-                    La importancia del cultivo sustentable
-                </h2>
-
-                <p>
-                    Cultivar de forma sustentable es básicamente tratar a la
-                    tierra como si fuera tu compañero de equipo. No puedes
-                    entrar, romper todo, sacar los recursos y luego decir
-                    "gg". Hay que dejar algo para el siguiente jugador.
-                </p>
-
-                <p>
-                    Los agricultores locales llevan años haciendo ese trabajo:
-                    plantar, cuidar, cosechar y volver a hacerlo. Mientras tanto,
-                    uno en la casa intenta que una planta de interior sobreviva
-                    más de dos semanas.
-                </p>
-
-                <blockquote>
-                    "La tierra te da comida, pero también te da una humilde
-                    cachetada cuando intentas cultivar algo sin saber lo que haces."
-                </blockquote>
-
-                <p>
-                    Así que la próxima vez que veas una manzana Fuji, recuerda
-                    todo el camino que hizo para llegar hasta ti. Y si está rica,
-                    agradece. Si está demasiado buena, también puedes fingir que
-                    entendiste algo de agricultura y decir "se nota la calidad del
-                    suelo".
-                </p>
-
             </div>
 
-        </section>
+            <h1 class="product-title">Naranjas Valencia</h1>
 
-    </article>
+            <div class="product-price">
+                <span class="price-amount">$1.000 CLP</span>
+                <span class="price-unit">por kilo</span>
+            </div>
+
+            <p class="product-description">
+                Naranjas Valencia jugosas y ricas en vitamina C, ideales para zumos frescos y refrescantes. Cultivadas en condiciones climáticas óptimas que aseguran su dulzura y jugosidad.
+            </p>
+
+            <div class="info-box">
+                <h4 class="info-box-title">INFORMACIÓN DEL PRODUCTO</h4>
+                <div class="info-row">
+                    <span class="info-label">Código:</span>
+                    <span class="info-value text-dark">FR002</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Prácticas Sostenibles:</span>
+                    <span class="info-value text-green">Producción responsable</span>
+                </div>
+            </div>
+
+            <div class="eco-alert">
+                <img src="img/check-icon.png" alt="Hoja" class="eco-icon">
+                <div class="eco-text">
+                    <strong>Producto Fresco</strong>
+                    <p>Producto seleccionado para mantener su frescura y calidad.</p>
+                </div>
+            </div>
+
+            <div class="purchase-actions">
+                <div class="quantity-selector">
+                    <button class="qty-btn" type="button" id="decrease">-</button>
+                    <span class="qty-current" id="quantity" data-max="200">1 Kilo</span>
+                    <button class="qty-btn" type="button" id="increase">+</button>
+                </div>
+                <button class="btn-add-cart-large">Añadir al Carrito</button>
+            </div>
+
+        </div>
+    </section>
 
 </main>
 
 
 <!-- pie de pagina -->
 <footer class="site-footer">
-
     <div class="footer-top">
 
         <div class="footer-brand">
-
             <a href="page-home.html" class="brand">
-
-                <span class="brand-icon">
-                    <img src="img/logo.png" alt="Logo Huerto Hogar" />
-                </span>
+          <span class="brand-icon">
+            <img src="img/logo.png" alt="Logo Huerto Hogar" />
+          </span>
 
                 <span class="brand-text">
-                    <span class="brand-title">HUERTO HOGAR</span>
-                    <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
-                </span>
-
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
             </a>
 
             <p>
                 Conectamos a las familias de Chile con productores agrícolas
                 locales. Comprometidos con la sustentabilidad y el comercio justo.
             </p>
-
         </div>
 
-
         <div class="footer-col">
-
             <h3>Categorías</h3>
 
             <ul>
-
                 <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
                 <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
                 <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
                 <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
-
             </ul>
-
         </div>
 
-
         <div class="footer-col">
-
             <h3>HuertoHogar</h3>
 
             <ul>
-
+                <!-- "Sobre Nosotros" también corresponde a index.html -->
                 <li><a href="nosotros.html">Sobre Nosotros</a></li>
                 <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
                 <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
                 <li><a href="blog.html">Sustentabilidad</a></li>
-
             </ul>
-
         </div>
 
-
         <div class="footer-col">
-
             <h3>Ayuda</h3>
 
             <ul>
-
                 <li>
                     <a href="preguntasFrecuentes.html">Preguntas Frecuentes</a>
                 </li>
-
                 <li>
                     <a href="nosotros.html">Contacto</a>
                 </li>
-
                 <li>
                     <a href="terminoCondiciones.html">Términos y Condiciones</a>
                 </li>
-
                 <li>
                     <a href="#">Seguimiento de Envío</a>
                 </li>
-
             </ul>
-
         </div>
-
     </div>
 
-
     <div class="footer-bottom">
-
         <p>
             © 2026 HuertoHogar SpA. Todos los derechos reservados.
         </p>
-
         <p>
             Diseñado con ❤️ en el Maule, Chile.
         </p>
-
     </div>
-
 </footer>
-
-
 <script type="module" src="js/script.js"></script>
-
 </body>
-
 </html>
-

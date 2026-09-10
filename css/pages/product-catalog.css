@@ -1,0 +1,326 @@
+/* ==========================================================================
+                          PAGE: CATALOG (FILTERS + GRID)
+   ========================================================================== */
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
+.catalog-page {
+    margin-top: 32px;
+    margin-bottom: 80px;
+}
+
+/* Layout Principal: Sidebar Izquierda + Contenido Derecha */
+.catalog-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Sidebar de 260px, resto para productos */
+    gap: 40px;
+    align-items: start;
+}
+
+/* =========================================
+   SIDEBAR: FILTROS AVANZADOS
+   ========================================= */
+.catalog-sidebar {
+    background: #fff;
+    border: 1px solid var(--border-light, #E5E5E5);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.sidebar-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand, #8B4513);
+    font-size: 1.4rem;
+    margin: 0 0 24px 0;
+    border-bottom: 1px solid var(--border-light, #E5E5E5);
+    padding-bottom: 16px;
+}
+
+.filter-group {
+    margin-bottom: 24px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-main, #333);
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+}
+
+/* --- Checkboxes Personalizados --- */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-muted, #666);
+    user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid var(--border-light, #ccc);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    border-color: var(--green-brand, #2E8B57);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--green-brand, #2E8B57);
+    border-color: var(--green-brand, #2E8B57);
+}
+
+/* El visto bueno (check icon) usando CSS puro */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+/* =========================================
+   CONTENIDO: TOPBAR Y ORDENAMIENTO
+   ========================================= */
+.catalog-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light, #E5E5E5);
+}
+
+.results-count {
+    color: var(--text-muted, #666);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* --- Menú Dropdown "Ordenar Por" --- */
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    font-size: 0.9rem;
+    color: var(--text-muted, #666);
+}
+
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-btn {
+    background: #fff;
+    border: 1px solid var(--border-light, #E5E5E5);
+    border-radius: 6px;
+    padding: 8px 32px 8px 16px;
+    font-size: 0.9rem;
+    color: var(--text-main, #333);
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    transition: border-color 0.2s ease;
+}
+
+/* El Menú que se abre */
+.sort-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 180px;
+    background: #fff;
+    border: 1px solid var(--border-light, #E5E5E5);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 8px 0;
+    margin: 4px 0 0 0;
+    z-index: 10;
+    /* Efecto para mostrar/ocultar */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+/* Se despliega al hacer hover o foco */
+.sort-dropdown:hover .sort-menu,
+.sort-dropdown:focus-within .sort-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sort-menu li {
+    margin: 0;
+}
+
+.sort-menu a {
+    display: block;
+    padding: 8px 16px;
+    color: var(--text-main, #333);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.sort-menu a:hover,
+.sort-menu a.active {
+    background-color: var(--bg-light, #F9F9F9);
+    color: var(--green-brand, #2E8B57);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   GRILLA DE PRODUCTOS (4 Columnas)
+   ========================================= */
+.catalog-grid {
+    display: grid;
+    /* 4 columnas de igual tamaño */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Tarjeta de Producto */
+.product-card {
+    background: #fff;
+    border: 1px solid var(--border-light, #E5E5E5);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.card-img-wrapper {
+    height: 180px;
+    background-color: var(--bg-light, #FAFAFA);
+    border-bottom: 1px solid var(--border-light, #E5E5E5);
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Hace que el contenido ocupe el alto disponible */
+}
+
+.card-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand, #8B4513);
+    font-size: 1.1rem;
+    margin: 0 0 6px 0;
+}
+
+.card-desc {
+    color: var(--text-muted, #666);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+    flex-grow: 1; /* Empuja el precio y botón hacia abajo para igualar alturas */
+}
+
+.card-price-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.card-price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-brand, #2E8B57);
+}
+
+.card-stars {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.btn-add-cart {
+    width: 100%;
+    background-color: var(--green-brand, #2E8B57);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-add-cart:hover {
+    background-color: var(--green-brand-dark, #1f6b39);
+}
+.catalog-sidebar.hidden {
+    display: none;
+}
+
+.catalog-layout.filters-hidden {
+    grid-template-columns: 1fr;
+}
