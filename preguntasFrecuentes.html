@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huerto Hogar - Preguntas</title>
+
+    <!-- Tipografias: Montserrat (cuerpo) + Playfair Display (titulos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet" />
+
+    <!-- REVISAR AQUI: HREF LIGADO A RUTA DE ESTILOS DE CSS. Line a reemplazar: css/estilos.css -->
+    <!-- Tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="css/base/variables.css" />
+    <link rel="stylesheet" href="css/base/reset.css" />
+
+    <!-- Componentes reutilizables -->
+    <link rel="stylesheet" href="css/layout/header.css" />
+    <link rel="stylesheet" href="css/layout/footer.css" />
+    <link rel="stylesheet" href="css/components/buttons.css" />
+    <link rel="stylesheet" href="css/components/forms.css" />
+
+    <link rel="stylesheet" href="css/pages/terminoCondicionPreguntasDespacho.css" />
+
+    <!-- Responsive -->
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+<!-- encabezado -->
+<header class="site-header">
+    <div class="header-inner">
+        <a href="page-home.html" class="brand">
+        <span class="brand-icon">
+          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+        </span>
+
+            <span class="brand-text">
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
+        </a>
+
+        <div class="search-bar">
+        <span class="search-icon">
+          <img src="img/lupa.png" alt="Buscar" />
+        </span>
+
+            <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+
+            <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
+                <img src="img/filtro.png" alt="Filtros" />
+            </button>
+        </div>
+
+        <!-- Mi Cuenta lleva a la página de inicio de sesión -->
+        <a href="login-register.html" class="account-link">
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
+            Mi Cuenta
+        </a>
+        <a href="shopping-cart.html" class="cart-link">
+            <span class="cart-icon">
+                <img src="img/carrito.png" alt="Carrito">
+                </span>
+            <span class="cart-info">
+        <span class="cart-title">Carrito</span>
+        <span class="cart-total">$0</span>
+    </span>
+        </a>
+    </div>
+
+    <nav class="site-nav">
+        <ul>
+            <li><a href="page-home.html">Nosotros</a></li>
+            <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+            <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+            <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+            <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container terms-page">
+
+    <article class="terms-wrapper">
+
+        <header class="terms-header">
+            <h1 class="terms-title">Preguntas Frecuentes</h1>
+            <p class="terms-date">
+                Información sobre compras, productos, despachos y seguimiento de pedidos.
+            </p>
+        </header>
+
+        <div class="terms-content">
+
+            <h2>1. ¿Qué es HuertoHogar?</h2>
+            <p>
+                HuertoHogar es una tienda en línea dedicada a la venta de productos
+                frescos y de calidad provenientes de productores agrícolas locales.
+                Nuestro objetivo es acercar frutas, verduras, productos orgánicos y
+                lácteos a clientes de distintas regiones de Chile.
+            </p>
+
+            <h2>2. ¿Qué productos puedo encontrar?</h2>
+            <p>
+                En HuertoHogar puedes encontrar frutas frescas, verduras orgánicas,
+                productos orgánicos y productos lácteos. La disponibilidad,
+                presentación y precio de cada producto se indican en su respectiva
+                ficha dentro del catálogo.
+            </p>
+
+            <h2>3. ¿Cómo puedo realizar una compra?</h2>
+            <p>
+                Para realizar una compra puedes revisar el catálogo, seleccionar los
+                productos que deseas y agregarlos al carrito. Luego debes revisar
+                el resumen de tu pedido, ingresar los datos necesarios para la entrega
+                y confirmar la compra.
+            </p>
+
+            <h2>4. ¿Puedo modificar mi carrito antes de comprar?</h2>
+            <p>
+                Sí. Antes de confirmar el pedido puedes agregar, eliminar o modificar
+                las cantidades de los productos seleccionados. El total de la compra
+                se actualizará de acuerdo con los cambios realizados.
+            </p>
+
+            <h2>5. ¿Cómo se realiza el despacho?</h2>
+            <p>
+                HuertoHogar gestiona el despacho de los pedidos a la dirección
+                registrada por el cliente. Durante el proceso de compra se debe
+                proporcionar la información necesaria para realizar la entrega
+                correctamente.
+            </p>
+
+            <h2>6. ¿Puedo elegir una fecha de entrega?</h2>
+            <p>
+                El sistema contempla la selección de una fecha de entrega preferida,
+                de acuerdo con las opciones disponibles para el pedido y la zona
+                correspondiente.
+            </p>
+
+            <h2>7. ¿Cómo puedo revisar el estado de mi pedido?</h2>
+            <p>
+                Una vez realizada la compra, el cliente puede consultar el estado
+                de su pedido y realizar seguimiento del despacho mediante las
+                herramientas disponibles en su cuenta.
+            </p>
+
+            <h2>8. ¿Qué ocurre cuando mi pedido es confirmado?</h2>
+            <p>
+                Al confirmar una compra se genera la información correspondiente
+                al pedido y se entrega una confirmación al cliente. El estado del
+                pedido podrá actualizarse durante las distintas etapas del proceso
+                de preparación y despacho.
+            </p>
+
+            <h2>9. ¿Puedo dejar una opinión sobre un producto?</h2>
+            <p>
+                Sí. HuertoHogar contempla la posibilidad de que los clientes
+                publiquen reseñas y valoraciones sobre los productos adquiridos,
+                permitiendo compartir su experiencia con otros usuarios.
+            </p>
+
+            <h2>10. ¿Cómo puedo contactar a HuertoHogar?</h2>
+            <p>
+                Para realizar consultas o solicitar información adicional puedes
+                comunicarte con HuertoHogar mediante el correo electrónico:
+                <strong>contacto@huertohogar.cl</strong>.
+            </p>
+
+        </div>
+
+    </article>
+
+</main>
+
+
+<!-- pie de pagina -->
+<footer class="site-footer">
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <a href="page-home.html" class="brand">
+          <span class="brand-icon">
+            <img src="img/logo.png" alt="Logo Huerto Hogar" />
+          </span>
+
+                <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+            </a>
+
+            <p>
+                Conectamos a las familias de Chile con productores agrícolas
+                locales. Comprometidos con la sustentabilidad y el comercio justo.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Categorías</h3>
+
+            <ul>
+                <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+                <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+                <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+                <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>HuertoHogar</h3>
+
+            <ul>
+                <!-- "Sobre Nosotros" también corresponde a index.html -->
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+                <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+                <li><a href="blog.html">Sustentabilidad</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Ayuda</h3>
+
+            <ul>
+                <li>
+                    <a href="preguntasFrecuentes.html">Preguntas Frecuentes</a>
+                </li>
+                <li>
+                    <a href="nosotros.html">Contacto</a>
+                </li>
+                <li>
+                    <a href="terminoCondiciones.html">Términos y Condiciones</a>
+                </li>
+                <li>
+                    <a href="user-profile-tracking.html">Seguimiento de Envío</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            © 2026 HuertoHogar SpA. Todos los derechos reservados.
+        </p>
+        <p>
+            Diseñado con ❤️ en el Maule, Chile.
+        </p>
+    </div>
+</footer>
+<script type="module" src="js/script.js"></script>
+</body>
+</html>
