@@ -1,0 +1,451 @@
+<!--
+  NOTICIA 1
+-->
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huerto Hogar - Iniciar Sesión</title>
+
+    <!-- Tipografias: Montserrat (cuerpo) + Playfair Display (titulos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet" />
+
+    <!-- REVISAR AQUI: HREF LIGADO A RUTA DE ESTILOS DE CSS. Line a reemplazar: css/estilos.css -->
+    <!-- Tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="css/base/variables.css" />
+    <link rel="stylesheet" href="css/base/reset.css" />
+
+    <!-- Componentes reutilizables -->
+    <link rel="stylesheet" href="css/layout/header.css" />
+    <link rel="stylesheet" href="css/layout/footer.css" />
+    <link rel="stylesheet" href="css/components/buttons.css" />
+    <link rel="stylesheet" href="css/components/forms.css" />
+
+    <!-- CSS especifico de blog correspondiente -->
+    <link rel="stylesheet" href="css/pages/blog-noticia-principal.css" />
+
+    <!-- Responsive -->
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+<!-- encabezado -->
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="page-home.html" class="brand">
+
+            <span class="brand-icon">
+                <img src="img/logo.png" alt="Logo Huerto Hogar" />
+            </span>
+
+            <span class="brand-text">
+                <span class="brand-title">HUERTO HOGAR</span>
+                <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+            </span>
+        </a>
+        <div class="search-bar">
+
+            <span class="search-icon">
+                <img src="img/lupa.png" alt="Buscar" />
+            </span>
+
+            <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+
+            <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
+                <img src="img/filtro.png" alt="Filtros" />
+            </button>
+
+        </div>
+
+        <!-- Mi Cuenta lleva a la página de inicio de sesión -->
+        <a href="login.html" class="account-link">
+
+            <span class="account-icon">
+                <img src="img/icono-usuario.png" alt="Cuenta" />
+            </span>
+
+            Mi Cuenta
+
+        </a>
+
+
+        <a href="#" class="cart-link">
+
+            <span class="cart-icon">
+                <img src="img/carrito.png" alt="Carrito">
+            </span>
+
+            <span class="cart-info">
+                <span class="cart-title">Carrito</span>
+                <span class="cart-total">$0</span>
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <nav class="site-nav">
+
+        <ul>
+
+            <li><a href="page-home.html">Nosotros</a></li>
+            <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+            <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+            <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+            <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<main class="container single-post-page">
+
+    <article class="post-layout">
+
+
+        <!-- Columna Izquierda: Fotos -->
+
+        <aside class="post-media">
+
+            <div class="post-img-wrapper">
+
+                <img
+                        src="img/noticia-foto1A.jpg"
+                        alt="Imagen noticia 1"
+                        class="post-image"
+                />
+
+            </div>
+
+            <div class="post-img-wrapper">
+
+                <img
+                        src="img/noticia-foto2A.jpg"
+                        alt="Imagen noticia 2"
+                        class="post-image"
+                />
+
+            </div>
+
+        </aside>
+
+
+        <!-- Columna Derecha: Texto -->
+
+        <section class="post-content">
+
+
+            <!-- Encabezado -->
+
+            <header class="post-header">
+
+                <span class="blog-badge">
+                    AGRICULTURA LOCAL
+                </span>
+
+                <h1 class="post-title">
+                    El origen de nuestra miel: Bosques nativos de Valdivia
+                </h1>
+
+                <div class="post-meta">
+
+                    <span>
+                        Por Claudoski Bertincoshk
+                    </span>
+
+                    <span class="meta-separator">
+                        •
+                    </span>
+
+                    <span>
+                        Octubre 12, 2026
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <!-- Cuerpo del artículo -->
+
+                <div class="post-body">
+
+                    <p>
+                        Viajamos al sur para entender el proceso apícola sustentable detrás de cada frasco.
+                    </p>
+
+                    <p>
+                        —Hola. Soy una abeja.
+                    </p>
+
+                    <p>
+                        —Sí, una abeja. No, no soy una avispa. Tampoco quiero hablar de eso.
+                    </p>
+
+                    <p>
+                        —¿Sabes qué es lo más extraño de trabajar todo el día haciendo miel?
+                    </p>
+
+                    <p>
+                        —Que después llega un humano, mira el frasco durante cinco segundos y dice:
+                        "Mmm, qué rica".
+                    </p>
+
+                    <p>
+                        —¿QUÉ SIGNIFICA "QUÉ RICA"? ¡YO LLEVO TODO EL DÍA TRABAJANDO!
+                    </p>
+
+                    <p>
+                        —Bueno... técnicamente no todo el día.
+                    </p>
+
+                    <p>
+                        —Pero casi.
+                    </p>
+
+                    <h2>
+                        Una abeja tiene preguntas
+                    </h2>
+
+                    <p>
+                        —Conseguir néctar no es tan fácil. Hay flores por todas partes,
+                        pero no todas sirven. Uno tiene que buscar, volar, volver a la colmena
+                        y explicar que encontró un lugar excelente.
+                    </p>
+
+                    <p>
+                        —¿Y qué recibes a cambio?
+                    </p>
+
+                    <p>
+                        —Miel.
+                    </p>
+
+                    <p>
+                        —¿Y quién se queda con la miel?
+                    </p>
+
+                    <p>
+                        —Exacto. Los humanos.
+                    </p>
+
+                    <blockquote>
+                        "Espera... ¿me estás diciendo que hacemos la miel y los humanos se la comen?"
+                    </blockquote>
+
+                    <p>
+                        —Sí.
+                    </p>
+
+                    <p>
+                        —...
+                    </p>
+
+                    <p>
+                        —Eso explica muchas cosas.
+                    </p>
+
+                    <h2>
+                        Al menos cuidan nuestro hogar
+                    </h2>
+
+                    <p>
+                        —Pero tampoco todo es malo. Cuando los apicultores trabajan de forma
+                        responsable, cuidan las colmenas, respetan el entorno y protegen
+                        los lugares donde vivimos.
+                    </p>
+
+                    <p>
+                        —Y eso sí importa.
+                    </p>
+
+                    <p>
+                        —Porque sin flores no hay néctar.
+                    </p>
+
+                    <p>
+                        —Sin néctar no hay miel.
+                    </p>
+
+                    <p>
+                        —Sin miel...
+                    </p>
+
+                    <p>
+                        —Bueno, supongo que los humanos tendrían que inventar otra cosa
+                        para ponerle a las tostadas.
+                    </p>
+
+                    <p>
+                        —Y sinceramente, prefiero no imaginarlo.
+                    </p>
+
+                    <p>
+                        —Así que la próxima vez que veas un frasco de miel,
+                        recuerda que detrás hay flores, bosques, abejas y una cantidad
+                        preocupante de horas de trabajo.
+                    </p>
+
+                    <p>
+                        —Ahora, si me disculpas...
+                    </p>
+
+                    <p>
+                        —Tengo una reunión.
+                    </p>
+
+                    <p>
+                        —Una reunión importantísima.
+                    </p>
+
+                    <p>
+                        —Hay flores nuevas.
+                    </p>
+
+                    <p>
+                        —Y esta vez pienso quedarme con la miel.
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+
+    </article>
+
+</main>
+
+
+<!-- pie de pagina -->
+<footer class="site-footer">
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+
+            <a href="page-home.html" class="brand">
+
+                <span class="brand-icon">
+                    <img src="img/logo.png" alt="Logo Huerto Hogar" />
+                </span>
+
+                <span class="brand-text">
+                    <span class="brand-title">HUERTO HOGAR</span>
+                    <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+                </span>
+
+            </a>
+
+            <p>
+                Conectamos a las familias de Chile con productores agrícolas
+                locales. Comprometidos con la sustentabilidad y el comercio justo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>Categorías</h3>
+
+            <ul>
+
+                <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+                <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+                <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+                <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>HuertoHogar</h3>
+
+            <ul>
+
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+                <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+                <li><a href="blog.html">Sustentabilidad</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>Ayuda</h3>
+
+            <ul>
+
+                <li>
+                    <a href="preguntasFrecuentes.html">Preguntas Frecuentes</a>
+                </li>
+
+                <li>
+                    <a href="nosotros.html">Contacto</a>
+                </li>
+
+                <li>
+                    <a href="terminoCondiciones.html">Términos y Condiciones</a>
+                </li>
+
+                <li>
+                    <a href="#">Seguimiento de Envío</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 HuertoHogar SpA. Todos los derechos reservados.
+        </p>
+
+        <p>
+            Diseñado con ❤️ en el Maule, Chile.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>
+

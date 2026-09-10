@@ -1,0 +1,358 @@
+<!--
+  Blog
+-->
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huerto Hogar - Iniciar Sesión</title>
+
+    <!-- Tipografias: Montserrat (cuerpo) + Playfair Display (titulos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet" />
+
+    <!-- REVISAR AQUI: HREF LIGADO A RUTA DE ESTILOS DE CSS. Line a reemplazar: css/estilos.css -->
+    <!-- Tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="css/base/variables.css" />
+    <link rel="stylesheet" href="css/base/reset.css" />
+
+    <!-- Componentes reutilizables -->
+    <link rel="stylesheet" href="css/layout/header.css" />
+    <link rel="stylesheet" href="css/layout/footer.css" />
+    <link rel="stylesheet" href="css/components/buttons.css" />
+    <link rel="stylesheet" href="css/components/forms.css" />
+
+    <!-- CSS especifico de blog -->
+    <link rel="stylesheet" href="css/pages/blog.css" />
+
+    <!-- Responsive -->
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+<!-- encabezado -->
+<header class="site-header">
+    <div class="header-inner">
+        <a href="page-home.html" class="brand">
+        <span class="brand-icon">
+          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+        </span>
+
+            <span class="brand-text">
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
+        </a>
+
+        <div class="search-bar">
+        <span class="search-icon">
+          <img src="img/lupa.png" alt="Buscar" />
+        </span>
+
+            <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+
+            <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
+                <img src="img/filtro.png" alt="Filtros" />
+            </button>
+        </div>
+
+        <!-- Mi Cuenta lleva a la página de inicio de sesión -->
+        <a href="login.html" class="account-link">
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
+            Mi Cuenta
+        </a>
+        <a href="#" class="cart-link">
+            <span class="cart-icon">
+                <img src="img/carrito.png" alt="Carrito">
+                </span>
+            <span class="cart-info">
+        <span class="cart-title">Carrito</span>
+        <span class="cart-total">$0</span>
+    </span>
+        </a>
+    </div>
+
+    <nav class="site-nav">
+        <ul>
+            <li><a href="page-home.html">Nosotros</a></li>
+            <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+            <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+            <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+            <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container blog-page">
+
+    <!-- Header de la Página -->
+    <header class="blog-header">
+        <h1 class="blog-title">Blog HuertoHogar</h1>
+        <p class="blog-subtitle">Consejos de nutrición, sustentabilidad, recetas rústicas y crónicas desde el Maule y el sur de Chile.</p>
+    </header>
+
+    <!-- Articulo Destacado (Hero Post) -->
+    <article class="featured-post">
+        <div class="featured-img-wrapper">
+            <img src="img/blog-destacado.png" alt="Verduras frescas en mesa de madera" />
+        </div>
+        <div class="featured-content">
+            <span class="blog-badge">RECETAS Y NUTRICIÓN</span>
+            <h2 class="featured-title">
+                <a href="blog-noticia-principal.html">La importancia de las frutas en tu dieta diaria.</a>
+            </h2>
+            <p class="featured-excerpt">
+                Descubre cómo aprovechar al máximo las manzanas Fuji del Maule y las hortalizas frescas de primavera en platos deliciosos, saludables y con toda la sazón de nuestra tierra sureña.
+            </p>
+            <div class="featured-meta">
+                <span>Por Catalina Fuentes S.</span>
+                <span class="meta-separator">•</span>
+                <span>Octubre 12, 2025</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Disposición Principal: Grilla de Artículos + Sidebar -->
+    <div class="blog-layout">
+
+        <!-- Columna Izquierda: Grilla de Artículos (3 columnas) -->
+        <section class="articles-grid">
+
+            <!-- Articulo 1 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-miel.jpg" alt="Bosques nativos de Valdivia" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">SOSTENIBILIDAD</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-uno.html">El origen de nuestra miel: Bosques nativos de Valdivia</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        Viajamos al sur para entender el proceso apícola sustentable detrás de cada frasco.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Articulo 2 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-huella-carbono.png" alt="Campos de cultivo sustentable" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">AGRICULTURA LOCAL</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-dos.html">Huella de Carbono: El verdadero impacto de com...</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        Cómo reducir drásticamente las emisiones de CO2 al elegir productos de temporada.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Articulo 3 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-lacteos.png" alt="Leche fresca de pastoreo" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">NUTRICIÓN</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-tres.html">Lácteos de Osorno: ¿Por qué preferir leches de pastoreo?</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        Los beneficios nutricionales de los lácteos tradicionales provenientes de vacas alimentadas a pasto libre.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Articulo 4 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-zanahorias.png" alt="Zanahorias rústicas asadas" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">RECETAS</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-cuatro.html">Zanahorias rústicas asadas con miel y romero</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        Un acompañamiento perfecto con toques dulces y hierbas del jardín sureño.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Articulo 5 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-agricultores.png" alt="Agricultor de pimientos" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">AGRICULTURA LOCAL</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-cinco.html">Pequeños agricultores: El motor de nuestra economía</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        Conoce a Don Segundo, productor de pimientos del Maule que abastece tu mesa.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Articulo 6 -->
+            <article class="article-card">
+                <div class="article-img-wrapper">
+                    <img src="img/blog-frutas.png" alt="Canasta de frutas de estación" />
+                </div>
+                <div class="article-content">
+                    <span class="blog-badge">NUTRICIÓN</span>
+                    <h3 class="article-title">
+                        <a href="blog-noticia-six.html">Frutas de estación: El calendario chileno del huerto</a>
+                    </h3>
+                    <p class="article-excerpt">
+                        La guía definitiva para saber cuándo las bayas y cítricos están en su punto de madurez.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Columna Derecha: Sidebar (Categorías + Newsletter) -->
+        <aside class="blog-sidebar">
+
+            <!-- Widget Categorías -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Categorías</h3>
+                <ul class="categories-list">
+                    <li>
+                        <a href="#" class="active">
+                            <span>Todas</span>
+                            <span class="count">(10)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Sostenibilidad</span>
+                            <span class="count">(5)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Agricultura Local</span>
+                            <span class="count">(3)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Widget Boletín de Campo -->
+            <div class="sidebar-widget newsletter-widget">
+                <h3 class="widget-title">Boletín de Campo</h3>
+                <p class="newsletter-text">
+                    Recibe recetas de temporada y ofertas exclusivas directamente en tu correo electrónico cada semana.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" required class="newsletter-input" />
+                    <button type="submit" class="btn-subscribe">Suscríbete</button>
+                </form>
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+<!-- pie de pagina -->
+<footer class="site-footer">
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <a href="page-home.html" class="brand">
+          <span class="brand-icon">
+            <img src="img/logo.png" alt="Logo Huerto Hogar" />
+          </span>
+
+                <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+            </a>
+
+            <p>
+                Conectamos a las familias de Chile con productores agrícolas
+                locales. Comprometidos con la sustentabilidad y el comercio justo.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Categorías</h3>
+
+            <ul>
+                <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+                <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+                <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+                <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>HuertoHogar</h3>
+
+            <ul>
+                <!-- "Sobre Nosotros" también corresponde a index.html -->
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+                <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+                <li><a href="blog.html">Sustentabilidad</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Ayuda</h3>
+
+            <ul>
+                <li>
+                    <a href="preguntasFrecuentes.html">Preguntas Frecuentes</a>
+                </li>
+                <li>
+                    <a href="nosotros.html">Contacto</a>
+                </li>
+                <li>
+                    <a href="terminoCondiciones.html">Términos y Condiciones</a>
+                </li>
+                <li>
+                    <a href="#">Seguimiento de Envío</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            © 2026 HuertoHogar SpA. Todos los derechos reservados.
+        </p>
+        <p>
+            Diseñado con ❤️ en el Maule, Chile.
+        </p>
+    </div>
+</footer>
+<script type="module" src="js/script.js"></script>
+</body>
+</html>
