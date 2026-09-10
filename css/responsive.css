@@ -1,0 +1,23 @@
+/* ==========================================================================
+                                RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .header-inner {
+    flex-wrap: wrap;
+  }
+  .search-bar {
+    order: 3;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-nav ul {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}

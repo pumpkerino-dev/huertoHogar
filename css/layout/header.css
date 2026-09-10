@@ -155,6 +155,7 @@
   object-fit: contain;
 }
 
+/* Carrito */
 .cart-link {
   display: flex;
   align-items: center;
@@ -220,6 +221,11 @@
   transition: color 0.2s ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a.active {
   color: var(--green-dark);
+}
+
+.site-nav a.active {
+  font-weight: 600;
 }

@@ -6,12 +6,10 @@
 .btn {
   border: none;
   border-radius: var(--radius);
-
   cursor: pointer;
   font-family: var(--font-body);
   font-size: 0.82rem;
   padding: 10px 12px;
-
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
@@ -31,6 +29,34 @@
 .btn-primary:hover {
   background: var(--green-dark);
 }
+.btn-primary:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Botón secundario (contorno) */
+.btn-outline {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-weight: 600;
+}
+.btn-outline:hover {
+  background: var(--bg);
+}
+
+/* Botón de peligro (eliminar) */
+.btn-danger {
+  background: var(--white);
+  border: 1px solid var(--error);
+  color: var(--error);
+  font-weight: 600;
+}
+.btn-danger:hover {
+  background: var(--error);
+  color: var(--white);
+}
 
 /* Botones sociales */
 .btn-social {
@@ -42,4 +68,10 @@
 }
 .btn-social:hover {
   background: var(--bg);
+}
+
+/* Botón pequeño (íconos, +/-) */
+.btn-sm {
+  padding: 4px 9px;
+  font-size: 0.78rem;
 }

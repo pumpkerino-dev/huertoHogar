@@ -97,7 +97,6 @@
 }
 
 /* Recordarme / contraseña */
-
 .field-row {
   display: flex;
   justify-content: space-between;
@@ -118,9 +117,13 @@
 
 /* Terminos */
 .terms-label {
-  margin-top: 10px;
+  margin-top: 12px;
   align-items: flex-start;
-  line-height: 1.35;
+  gap: 8px;
+}
+
+.terms-label span {
+  line-height: 1.5;
 }
 
 .terms-label a {
@@ -153,4 +156,29 @@
 .social-row {
   display: flex;
   gap: 8px;
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.social-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+@media (max-width: 720px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+  .auth-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
 }

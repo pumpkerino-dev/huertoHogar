@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huerto Hogar - Recuperar Contraseña</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base/variables.css" />
+  <link rel="stylesheet" href="css/base/reset.css" />
+  <link rel="stylesheet" href="css/layout/header.css" />
+  <link rel="stylesheet" href="css/layout/footer.css" />
+  <link rel="stylesheet" href="css/components/buttons.css" />
+  <link rel="stylesheet" href="css/components/forms.css" />
+  <link rel="stylesheet" href="css/pages/recuperar-contrasena.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <script type="module" src="js/pages/recuperar-contrasena.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="page-home.html" class="brand">
+        <span class="brand-icon"><img src="img/logo.png" alt="Logo Huerto Hogar" /></span>
+        <span class="brand-text">
+          <span class="brand-title">HUERTO HOGAR</span>
+          <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+        </span>
+      </a>
+
+      <div class="search-bar">
+        <span class="search-icon"><img src="img/lupa.png" alt="Buscar" /></span>
+        <input type="text" placeholder="Buscar frutas, verduras, orgánicos..." />
+        <button class="search-filter" type="button" id="filter-toggle" aria-label="Filtros">
+          <img src="img/filtro.png" alt="Filtros" />
+        </button>
+      </div>
+
+      <a href="login-register.html" class="account-link">
+        <span class="account-icon">
+          <img src="img/icono-usuario.png" alt="Cuenta" />
+        </span>
+        <span class="account-label">Mi Cuenta</span>
+      </a>
+    </div>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="page-home.html">Nosotros</a></li>
+        <li><a href="product-catalog.html?categoria=frutas">Frutas</a></li>
+        <li><a href="product-catalog.html?categoria=verduras">Verduras</a></li>
+        <li><a href="product-catalog.html?categoria=organicos">Orgánicos</a></li>
+        <li><a href="product-catalog.html?categoria=lacteos">Lácteos</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="recovery-section">
+      <div class="recovery-card">
+
+        <!-- Paso 1: correo -->
+        <div class="recovery-step" data-step="email">
+          <h1>Recuperar Contraseña</h1>
+          <p class="recovery-card-subtitle">
+            Ingresa el correo con el que creaste tu cuenta y te enviaremos un código para restablecer tu contraseña.
+          </p>
+          <form id="recovery-email-form" novalidate>
+            <label class="field-label" for="recovery-email">Correo Electrónico</label>
+            <input type="email" id="recovery-email" placeholder="ejemplo@correo.cl" required />
+
+            <p class="form-message" id="recovery-email-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary">Enviar Código</button>
+          </form>
+        </div>
+
+        <!-- Paso 2: código -->
+        <div class="recovery-step" data-step="code" hidden>
+          <h1>Ingresa tu Código</h1>
+          <p class="recovery-card-subtitle">
+            Enviamos un código de 6 dígitos a <strong id="recovery-code-target-email"></strong>.
+          </p>
+
+          <div class="recovery-demo-note">
+            🧪 Como esta es una demo sin servidor de correo real, tu código es:
+            <div class="recovery-demo-code" id="recovery-demo-code">000000</div>
+          </div>
+
+          <form id="recovery-code-form" novalidate>
+            <label class="field-label" for="recovery-code">Código de Verificación</label>
+            <input type="text" id="recovery-code" placeholder="123456" maxlength="6" required />
+
+            <p class="form-message" id="recovery-code-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary">Verificar Código</button>
+          </form>
+          <button type="button" class="recovery-link-button" id="recovery-back-to-email">
+            ¿Correo equivocado? Volver atrás
+          </button>
+        </div>
+
+        <!-- Paso 3: nueva contraseña -->
+        <div class="recovery-step" data-step="new-password" hidden>
+          <h1>Crea tu Nueva Contraseña</h1>
+          <p class="recovery-card-subtitle">
+            Elige una contraseña nueva para tu cuenta.
+          </p>
+          <form id="recovery-password-form" novalidate>
+            <label class="field-label" for="recovery-new-password">Nueva Contraseña</label>
+            <input type="password" id="recovery-new-password" placeholder="Mínimo 8 caracteres" minlength="8" required />
+
+            <label class="field-label" for="recovery-confirm-password">Confirmar Contraseña</label>
+            <input type="password" id="recovery-confirm-password" placeholder="Repite tu contraseña" minlength="8" required />
+
+            <p class="form-message" id="recovery-password-message" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary">Guardar Nueva Contraseña</button>
+          </form>
+        </div>
+
+        <!-- Paso 4: listo -->
+        <div class="recovery-step recovery-success" data-step="done" hidden>
+          <div class="recovery-success-icon">✅</div>
+          <h1>¡Contraseña Actualizada!</h1>
+          <p class="recovery-card-subtitle">
+            Ya puedes iniciar sesión con tu nueva contraseña.
+          </p>
+          <a href="login-register.html" class="btn btn-primary" style="display:block; text-align:center; text-decoration:none;">
+            Ir a Iniciar Sesión
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="page-home.html" class="brand">
+          <span class="brand-icon"><img src="img/logo.png" alt="Logo Huerto Hogar" /></span>
+          <span class="brand-text">
+            <span class="brand-title">HUERTO HOGAR</span>
+            <span class="brand-subtitle">DEL CAMPO AL HOGAR</span>
+          </span>
+        </a>
+        <p>
+          Conectamos a las familias de Chile con productores agrícolas
+          locales. Comprometidos con la sustentabilidad y el comercio justo.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Categorías</h3>
+        <ul>
+          <li><a href="product-catalog.html?categoria=frutas">Frutas Frescas</a></li>
+          <li><a href="product-catalog.html?categoria=verduras">Verduras del Valle</a></li>
+          <li><a href="product-catalog.html?categoria=organicos">Productos Orgánicos</a></li>
+          <li><a href="product-catalog.html?categoria=lacteos">Lácteos Artesanales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>HuertoHogar</h3>
+        <ul>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="blog-noticia-cinco.html">Nuestros Agricultores</a></li>
+          <li><a href="politicaDeDespacho.html">Políticas de Despacho</a></li>
+          <li><a href="blog.html">Sustentabilidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Ayuda</h3>
+        <ul>
+          <li><a href="preguntasFrecuentes.html">Preguntas Frecuentes</a></li>
+          <li><a href="nosotros.html">Contacto</a></li>
+          <li><a href="terminoCondiciones.html">Términos y Condiciones</a></li>
+          <li><a href="user-profile-tracking.html">Seguimiento de Envío</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HuertoHogar SpA. Todos los derechos reservados.</p>
+      <p>Diseñado con ❤️ en el Maule, Chile.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>

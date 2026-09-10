@@ -1,0 +1,450 @@
+/* ==========================================================================
+                    PERFIL DE USUARIO / SEGUIMIENTO DE PEDIDOS
+   ========================================================================== */
+
+.profile-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.account-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.account-panel[hidden] {
+  display: none;
+}
+
+.panel-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* Sidebar "Mi Cuenta" */
+.account-nav {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px 18px;
+}
+
+.account-nav h2 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+}
+
+.account-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account-nav a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  font-size: 0.78rem;
+  color: var(--text-main);
+}
+
+.account-nav a:hover {
+  background: var(--bg);
+}
+
+.account-nav a.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+/* Tarjetas genéricas de esta página */
+.profile-card,
+.tracking-card,
+.notifications-card,
+.history-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 22px 24px;
+}
+
+.profile-card h2,
+.tracking-card h2,
+.notifications-card h2,
+.history-card h2 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+
+.field-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Tarjeta "Sigue tu Pedido Activo" */
+.tracking-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.tracking-card-header h2 {
+  margin: 0;
+}
+
+.order-badge {
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* Barra de progreso del pedido activo */
+.order-progress {
+  display: flex;
+  align-items: center;
+  margin: 18px 0 20px;
+}
+
+.progress-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.progress-step .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  margin-bottom: 6px;
+  z-index: 1;
+}
+
+.progress-step .label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.progress-step.done .dot {
+  background: var(--green);
+}
+
+.progress-step.done .label {
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.progress-step::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -50%;
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+  z-index: 0;
+}
+
+.progress-step:first-child::before {
+  display: none;
+}
+
+.progress-step.line-done::before {
+  background: var(--green);
+}
+
+/* Ruta de entrega */
+.delivery-route {
+  display: flex;
+  gap: 14px;
+  background: var(--green-light);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.route-track {
+  width: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.route-track .dot-start,
+.route-track .dot-end {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.route-track .dot-start {
+  background: var(--green);
+}
+
+.route-track .dot-end {
+  background: var(--brown);
+}
+
+.route-track .line {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.delivery-route h3 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 0.85rem;
+  margin: 0 0 4px;
+}
+
+.delivery-route p {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin: 2px 0;
+}
+
+.delivery-route .eta {
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+/* Repartidor */
+.courier-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.courier-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.courier-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.courier-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.courier-role {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+/* Notificaciones */
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  background: var(--green-light);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  color: var(--text-main);
+}
+
+.notification-item time {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.notification-empty {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 18px 0;
+}
+
+/* Historial de pedidos */
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.order-item-id {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--brown);
+}
+
+.order-item-date {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.order-item-detail {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.order-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.order-item-price {
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.order-status-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--green);
+  color: var(--green-dark);
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  .panel-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .order-item {
+    flex-wrap: wrap;
+  }
+}
+
+/* Direcciones / Métodos de pago */
+.address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.address-label {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  margin: 0 0 4px;
+}
+
+.address-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-light);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+
+.address-detail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.address-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Modal de detalle de pedido */
+.detail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.detail-item-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-total {
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 0.9rem;
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
