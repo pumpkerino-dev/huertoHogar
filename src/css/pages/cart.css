@@ -1,0 +1,358 @@
+/* ==========================================================================
+                            CARRITO DE COMPRAS
+   ========================================================================== */
+
+.cart-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.cart-section-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.cart-section-header h1 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.keep-shopping-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.keep-shopping-link-bottom {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cart-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cart-items {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.cart-items-header {
+  display: grid;
+  grid-template-columns: 1fr 140px 110px;
+  gap: 14px;
+  padding: 12px 18px;
+  background: var(--bg);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.cart-items-header span:last-child,
+.cart-item-price {
+  text-align: right;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 140px 110px;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-item-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.cart-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--brown);
+}
+
+.cart-item-unit {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 6px 12px;
+  width: fit-content;
+}
+
+.qty-control button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+  padding: 0;
+}
+
+.qty-control span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 12px;
+  text-align: center;
+}
+
+.cart-item-price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 0.9rem;
+}
+
+.cart-item-remove {
+  grid-column: 1 / -1;
+  justify-self: end;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-top: -6px;
+}
+
+.cart-item-remove:hover {
+  color: var(--error);
+}
+
+.cart-empty {
+  padding: 48px 18px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Calendario de despacho */
+.delivery-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px 22px;
+}
+
+.delivery-card h2 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1rem;
+  margin: 0 0 2px;
+}
+
+.delivery-card-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+
+.delivery-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.delivery-day {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 4px;
+  text-align: center;
+  background: var(--white);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.delivery-day .dow {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: block;
+}
+
+.delivery-day .dom {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+  margin: 3px 0;
+}
+
+.delivery-day .status {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  display: block;
+}
+
+.delivery-day.is-selected {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.delivery-day.is-blocked {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.delivery-day.is-blocked .status {
+  color: var(--text-muted);
+}
+
+/* Resumen */
+.cart-summary {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 22px 24px;
+  position: sticky;
+  top: 20px;
+}
+
+.cart-summary h2 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  font-size: 1rem;
+  margin: 0 0 14px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.summary-row .value {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.summary-row .value.free {
+  color: var(--green-dark);
+}
+
+.summary-row.total {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.summary-row.total .value {
+  color: var(--green-dark);
+  font-size: 1.05rem;
+}
+
+.cart-secure-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 780px) {
+  .cart-section {
+    grid-template-columns: 1fr;
+  }
+  .cart-items-header {
+    display: none;
+  }
+  .cart-item {
+    grid-template-columns: 1fr auto;
+  }
+  .cart-item-price {
+    grid-column: 2;
+  }
+}
+
+.payment-methods-select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.payment-method-option.is-selected {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.payment-method-option input[type="radio"] {
+  accent-color: var(--green);
+}
+
+.payment-method-option .pm-detail {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  display: block;
+}

@@ -1,0 +1,334 @@
+/* ==========================================================================
+                                PAGE HOME - MAIN
+   ========================================================================== */
+
+/* Variables locales de apoyo (Si ya están en variables.css, el navegador usará las tuyas) */
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
+
+/* --- Clases de Utilidad y Contenedores --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.home-section {
+    margin: 64px auto;
+}
+
+.grid-4-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* --- Hero Banner --- */
+.hero-section {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background-color: var(--bg-light); /* En caso de que la imagen tarde en cargar */
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Headers de Sección --- */
+.section-header {
+    margin-bottom: 32px;
+}
+
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.section-title {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.link-all {
+    color: var(--green-brand);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.link-all:hover {
+    text-decoration: underline;
+    color: var(--green-brand-dark);
+}
+
+/* --- Tarjetas de Categorías --- */
+.category-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.category-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.card-img-wrapper {
+    height: 160px;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-content {
+    padding: 16px;
+}
+
+.category-content h3 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+}
+
+.category-content p {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --- Tarjetas de Productos (Ofertas) --- */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.product-img-wrapper {
+    height: 180px;
+    background-color: var(--bg-light);
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-origin {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.product-name {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin: 0 0 12px 0;
+}
+
+.product-pricing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.price-current {
+    font-weight: 700;
+    color: var(--brown-brand);
+    font-size: 1rem;
+}
+
+.price-old {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.btn-add-cart {
+    margin-top: auto;
+    background: var(--green-brand);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-add-cart:hover {
+    background: var(--green-brand-dark);
+}
+
+/* --- Sección: Misión y Presencia --- */
+.mission-section {
+    background-color: var(--bg-light);
+    padding: 64px 0;
+    margin-top: 64px;
+    border-top: 1px solid var(--border-light);
+}
+
+.mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.mission-text p {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.mission-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mission-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.list-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Tarjeta del Mapa */
+.mission-map-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.map-illustration {
+    flex: 0 0 120px;
+}
+
+.map-illustration img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.map-info h3 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    color: var(--brown-brand);
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+}
+
+.map-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.locations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2; /* Divide la lista en 2 columnas */
+    column-gap: 16px;
+}
+
+.locations-list li {
+    font-size: 0.75rem;
+    color: var(--text-main);
+    font-weight: 500;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.locations-list li::before {
+    content: "•";
+    color: var(--green-brand);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 0.6;
+}
+
+/* ==========================================================================
+                                RESPONSIVE
+   ========================================================================== */
+
+/* Para pantallas medianas (Tablets - hasta 992px) */
+@media (max-width: 992px) {
+    .grid-4-cols {
+        grid-template-columns: repeat(2, 1fr); /* Pasa de 4 a 2 columnas */
+    }
+}
+
+/* Para pantallas pequeñas (Teléfonos móviles - hasta 576px) */
+@media (max-width: 576px) {
+    .grid-4-cols {
+        grid-template-columns: 1fr; /* Pasa a 1 sola columna */
+    }
+}

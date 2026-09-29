@@ -1,0 +1,82 @@
+/* ==========================================================================
+                          PAGE: CUSTOM SPLIT GRID
+   ========================================================================== */
+
+:root {
+    --brown-brand: #8B4513;
+    --green-brand: #2E8B57;
+    --green-brand-dark: #1F6B39;
+    --green-badge-bg: #E8F5E9;
+    --green-badge-text: #2E7D32;
+    --yellow-brand: #FFD700;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #E5E5E5;
+    --bg-light: #F7F7F7;
+    --white: #FFFFFF;
+}
+
+.custom-grid-page {
+    margin-top: 48px;
+    margin-bottom: 80px;
+}
+
+.split-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* --- Contenedor de las Fotos --- */
+.split-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+.split-images .img-wrapper {
+    width: 100%;
+    height: auto;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* --- Contenedor de los Textos --- */
+.split-texts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.text-pill {
+    background-color: var(--white);
+    border: 2px solid var(--green-brand);
+    border-radius: 40px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60px;
+}
+
+.text-pill p {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
