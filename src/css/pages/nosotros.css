@@ -1,21 +1,6 @@
 /* ==========================================================================
                           PAGE: CUSTOM SPLIT GRID
    ========================================================================== */
-
-:root {
-    --brown-brand: #8B4513;
-    --green-brand: #2E8B57;
-    --green-brand-dark: #1F6B39;
-    --green-badge-bg: #E8F5E9;
-    --green-badge-text: #2E7D32;
-    --yellow-brand: #FFD700;
-    --text-main: #333333;
-    --text-muted: #666666;
-    --border-light: #E5E5E5;
-    --bg-light: #F7F7F7;
-    --white: #FFFFFF;
-}
-
 .custom-grid-page {
     margin-top: 48px;
     margin-bottom: 80px;
@@ -63,7 +48,7 @@
 
 .text-pill {
     background-color: var(--white);
-    border: 2px solid var(--green-brand);
+    border: 2px solid var(--green);
     border-radius: 40px;
     padding: 32px 40px;
     display: flex;

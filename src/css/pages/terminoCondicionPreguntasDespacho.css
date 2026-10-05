@@ -1,19 +1,6 @@
 /* ==========================================================================
                           PAGE: TÉRMINOS Y CONDICIONES
    ========================================================================== */
-:root {
-    --brown-brand: #8B4513;
-    --green-brand: #2E8B57;
-    --green-brand-dark: #1F6B39;
-    --green-badge-bg: #E8F5E9;
-    --green-badge-text: #2E7D32;
-    --yellow-brand: #FFD700;
-    --text-main: #333333;
-    --text-muted: #666666;
-    --border-light: #E5E5E5;
-    --bg-light: #F7F7F7;
-    --white: #FFFFFF;
-}
 
 .terms-page {
     margin-top: 64px;
@@ -22,13 +9,13 @@
 
 /* Contenedor central limitado en ancho para mejor lectura */
 .terms-wrapper {
-    max-width: 800px; /* Ancho máximo ideal para lectura */
-    margin: 0 auto; /* Centra el bloque horizontalmente */
+    max-width: 800px;
+    margin: 0 auto;
     background-color: var(--white, #ffffff);
     padding: 64px; /* Espacio interior amplio */
     border: 1px solid var(--border-light);
     border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.02); /* Sombra muy sutil */
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02);
 }
 
 /* Encabezado del documento */
@@ -56,7 +43,7 @@
 /* Contenido de texto */
 .terms-content h2 {
     font-family: var(--font-heading), 'Playfair Display', serif;
-    color: var(--green-brand);
+    color: var(--green);
     font-size: 1.5rem;
     margin: 40px 0 16px 0;
 }

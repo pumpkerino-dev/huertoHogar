@@ -1,19 +1,6 @@
 /* ==========================================================================
                           PAGE: CATALOG (FILTERS + GRID)
    ========================================================================== */
-:root {
-    --brown-brand: #8B4513;
-    --green-brand: #2E8B57;
-    --green-brand-dark: #1F6B39;
-    --green-badge-bg: #E8F5E9;
-    --green-badge-text: #2E7D32;
-    --yellow-brand: #FFD700;
-    --text-main: #333333;
-    --text-muted: #666666;
-    --border-light: #E5E5E5;
-    --bg-light: #F7F7F7;
-    --white: #FFFFFF;
-}
 .catalog-page {
     margin-top: 32px;
     margin-bottom: 80px;
@@ -187,7 +174,6 @@
     padding: 8px 0;
     margin: 4px 0 0 0;
     z-index: 10;
-    /* Efecto para mostrar/ocultar */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -221,7 +207,6 @@
     color: var(--green-brand, #2E8B57);
     font-weight: 600;
 }
-
 
 /* =========================================
    GRILLA DE PRODUCTOS (4 Columnas)
@@ -265,7 +250,7 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Hace que el contenido ocupe el alto disponible */
+    flex-grow: 1;
 }
 
 .card-title {
@@ -280,7 +265,7 @@
     font-size: 0.8rem;
     line-height: 1.4;
     margin: 0 0 12px 0;
-    flex-grow: 1; /* Empuja el precio y botón hacia abajo para igualar alturas */
+    flex-grow: 1;
 }
 
 .card-price-row {

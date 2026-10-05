@@ -33,18 +33,6 @@ import ProductN7 from './pages/ProductN7'
 import ProductN8 from './pages/ProductN8'
 import ProductN9 from './pages/ProductN9'
 
-/* 
-/user-profile-tracking
-/preguntasFrecuentes
-/politicaDeDespacho
-rutas footer
-*/
-
-/*
-rutas header
-/login-register
-/shopping-cart
-*/
 function App() {
   const [count, setCount] = useState(0)
 

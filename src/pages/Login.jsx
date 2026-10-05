@@ -1,14 +1,6 @@
 /*Css Especifico*/
 import '../css/pages/login.css'
-/*Css Reutilizable*/
-import '../css/components/buttons.css'
-import '../css/components/forms.css'
-/*Css General*/
-import '../css/base/variables.css'
-import '../css/base/reset.css'
-/*Reglas Responsive*/
-import '../css/responsive.css'
-
+import '../App.css'
 function Login() {
     return(
         <>
