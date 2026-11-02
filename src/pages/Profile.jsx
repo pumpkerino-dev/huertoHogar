@@ -91,7 +91,7 @@ function Profile() {
 
             <div className="courier-row">
               <span className="courier-avatar">
-                <img id="courier-avatar" src="img/icono-usuario.png" alt="Repartidor" />
+                <img id="courier-avatar" src="/img/icono-usuario.png" alt="Repartidor" />
                 </span>
                 <div>
                   <p className="courier-name" id="courier-name">Manuel Rojas Espinoza</p>

@@ -9,10 +9,10 @@ function Nosotros() {
     <section className="split-section">
         <div className="split-images">
             <div className="img-wrapper">
-                <img src="img/foto-bloque-1.png" alt="Foto 1" className="split-img" />
+                <img src="/img/foto-bloque-1.png" alt="Foto 1" className="split-img" />
             </div>
             <div className="img-wrapper">
-                <img src="img/foto-bloque-2.png" alt="Foto 2" className="split-img" />
+                <img src="/img/foto-bloque-2.png" alt="Foto 2" className="split-img" />
             </div>
         </div>
         <div className="split-texts">

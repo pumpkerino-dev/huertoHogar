@@ -8,7 +8,7 @@ function Login() {
     <section className="auth-section">
       <div className="auth-heading">
         <span className="auth-heading-icon">
-          <img src="img/logo.png" alt="Logo Huerto Hogar" />
+          <img src="/img/logo.png" alt="Logo Huerto Hogar" />
         </span>
         <h1>HUERTO HOGAR</h1>
         <p className="auth-heading-subtitle">DEL CAMPO AL HOGAR</p>
@@ -44,11 +44,11 @@ function Login() {
 
           <div className="social-row">
             <button type="button" className="btn btn-social" data-provider="Google">
-              <img src="img/google.png" alt="" className="social-icon" width="14" height="14" />
+              <img src="/img/google.png" alt="" className="social-icon" width="14" height="14" />
               Google
             </button>
             <button type="button" className="btn btn-social" data-provider="Apple">
-              <img src="img/apple.png" alt="" className="social-icon" width="14" height="14" />
+              <img src="/img/apple.png" alt="" className="social-icon" width="14" height="14" />
               Apple
             </button>
           </div>

@@ -229,3 +229,80 @@
 .site-nav a.active {
   font-weight: 600;
 }
+
+/* Sugerencias automáticas del buscador */
+
+.search-bar {
+  position: relative;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+  padding: 6px;
+  max-height: 350px;
+  overflow-y: auto;
+
+  z-index: 1000;
+}
+
+.search-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px;
+  border-radius: 8px;
+
+  text-decoration: none;
+  color: inherit;
+
+  transition: background 0.2s;
+}
+
+.search-suggestion:hover {
+  background: var(--bg);
+}
+
+.search-suggestion img {
+  width: 48px;
+  height: 48px;
+
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggestion-info strong {
+  color: var(--brown);
+  font-size: 0.85rem;
+}
+
+.suggestion-info span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.search-no-results {
+  padding: 12px;
+  margin: 0;
+
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}

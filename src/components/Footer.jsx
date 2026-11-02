@@ -14,7 +14,7 @@ function Footer() {
             >
                 <span className="brand-icon">
                     <img
-                            src="img/logo.png"
+                            src="/img/logo.png"
                             alt="Logo Huerto Hogar"
                     />
                 </span>

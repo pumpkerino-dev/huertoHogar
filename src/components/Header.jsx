@@ -1,145 +1,292 @@
-/*Css Especifico*/
-import '../css/layout/header.css'
-import '../App.css'
+/* CSS Específico */
+import '../css/layout/header.css';
+import '../App.css';
 
-function Header() {
-    return(
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { productos } from '../pages/Catalogue.jsx';
+import { useCart } from '../contexto/CartContext.jsx';
+
+function Header({ onToggleFilters }) {
+
+    const { subtotal } = useCart();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const [searchText, setSearchText] = useState('');
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+    // Sincronizar el buscador con la URL
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+
+        setSearchText(params.get('buscar') ?? '');
+        setShowSuggestions(false);
+
+    }, [location.search]);
+
+    // Buscar coincidencias mientras se escribe
+    const normalizedSearch = searchText.trim().toLowerCase();
+
+    const searchResults = normalizedSearch
+        ? productos.filter(product =>
+            product.name.toLowerCase().includes(normalizedSearch)
+        ).slice(0, 5)
+        : [];
+
+    // Buscar al presionar Enter
+    function handleSearch(event) {
+
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            const term = searchText.trim();
+
+            setShowSuggestions(false);
+
+            navigate(
+                term
+                    ? `/Catalogue?buscar=${encodeURIComponent(term)}`
+                    : '/Catalogue'
+            );
+        }
+
+        // Cerrar sugerencias con Escape
+        if (event.key === 'Escape') {
+            setShowSuggestions(false);
+        }
+    }
+
+    // Mostrar u ocultar filtros
+    function handleFilterToggle() {
+
+        if (location.pathname.toLowerCase() === '/catalogue') {
+            onToggleFilters?.();
+        } else {
+            navigate('/Catalogue');
+        }
+    }
+
+    return (
         <>
-<header className="site-header">
-    <div className="header-inner">
-        <a href="/Home" className="brand">
+            <header className="site-header">
 
-            <span className="brand-icon">
-                <img
-                        src="img/logo.png"
-                        alt="Logo Huerto Hogar"
-                />
-            </span>
+                <div className="header-inner">
 
-            <span className="brand-text">
+                    {/* LOGO */}
+                    <a href="/Home" className="brand">
 
-                <span className="brand-title">
-                    HUERTO HOGAR
-                </span>
+                        <span className="brand-icon">
+                            <img
+                                src="/img/logo.png"
+                                alt="Logo Huerto Hogar"
+                            />
+                        </span>
 
-                <span className="brand-subtitle">
-                    DEL CAMPO AL HOGAR
-                </span>
+                        <span className="brand-text">
 
-            </span>
+                            <span className="brand-title">
+                                HUERTO HOGAR
+                            </span>
 
-        </a>
-        <div className="search-bar">
+                            <span className="brand-subtitle">
+                                DEL CAMPO AL HOGAR
+                            </span>
 
-            <span className="search-icon">
-                <img
-                        src="img/lupa.png"
-                        alt="Buscar"
-                />
-            </span>
+                        </span>
 
-            <input
-                    type="text"
-                    placeholder="Buscar frutas, verduras, orgánicos..."
-            />
+                    </a>
 
-            <button
-                    className="search-filter"
-                    type="button"
-                    aria-label="Filtros"
-                    id="filter-toggle"
-            >
-                <img
-                        src="img/filtro.png"
-                        alt="Filtros"
-                />
-            </button>
+                    {/* BUSCADOR */}
+                    <div
+                        className="search-bar"
+                        onBlur={(event) => {
+                            if (!event.currentTarget.contains(event.relatedTarget)) {
+                                setShowSuggestions(false);
+                            }
+                        }}
+                    >
 
-        </div>
-        <a
-                href="/Login"
-                className="account-link"
-        >
+                        <span className="search-icon">
+                            <img
+                                src="/img/lupa.png"
+                                alt="Buscar"
+                            />
+                        </span>
 
-            <span className="account-icon">
+                        <input
+                            type="text"
+                            placeholder="Buscar frutas, verduras, orgánicos..."
+                            value={searchText}
+                            onChange={(event) => {
+                                setSearchText(event.target.value);
+                                setShowSuggestions(true);
+                            }}
+                            onKeyDown={handleSearch}
+                            onFocus={() => setShowSuggestions(true)}
+                        />
 
-                <img
-                        src="img/icono-usuario.png"
-                        alt="Cuenta"
-                />
+                        {/* BOTÓN DE FILTROS */}
+                        <button
+                            className="search-filter"
+                            type="button"
+                            aria-label="Filtros"
+                            id="filter-toggle"
+                            onClick={handleFilterToggle}
+                        >
+                            <img
+                                src="/img/filtro.png"
+                                alt="Filtros"
+                            />
+                        </button>
 
-            </span>
+                        {/* SUGERENCIAS AUTOMÁTICAS */}
+                        {showSuggestions && normalizedSearch && (
 
-            Mi Cuenta
+                            <div className="search-suggestions">
 
-        </a>
-        <a
-                href="/ShoppingCart"
-                className="cart-link"
-        >
-            <span className="cart-icon">
+                                {searchResults.length > 0 ? (
 
-                <img
-                        src="img/carrito.png"
-                        alt="Carrito"
-                />
-            </span>
-            <span className="cart-info">
+                                    searchResults.map(product => (
 
-                <span className="cart-title">
-                    Carrito
-                </span>
+                                        <Link
+                                            key={product.code}
+                                            to={`/Product/${product.code}`}
+                                            className="search-suggestion"
+                                            onClick={() => setShowSuggestions(false)}
+                                        >
 
-                <span className="cart-total">
-                    $0
-                </span>
-            </span>
-        </a>
-    </div>
-    <nav className="site-nav">
+                                            <img
+                                                src={product.image}
+                                                alt={product.name}
+                                            />
 
-        <ul>
+                                            <div className="suggestion-info">
 
-            <li>
-                <a href="/Nosotros">
-                    Nosotros
-                </a>
-            </li>
+                                                <strong>
+                                                    {product.name}
+                                                </strong>
 
-            <li>
-                <a href="/Catalogue?categoria=frutas">
-                    Frutas
-                </a>
-            </li>
+                                                <span>
+                                                    {product.priceLabel}
+                                                </span>
 
-            <li>
-                <a href="/Catalogue?categoria=verduras">
-                    Verduras
-                </a>
-            </li>
+                                            </div>
 
-            <li>
-                <a href="/Catalogue?categoria=organicos">
-                    Orgánicos
-                </a>
-            </li>
+                                        </Link>
 
-            <li>
-                <a href="/Catalogue?categoria=lacteos">
-                    Lácteos
-                </a>
-            </li>
+                                    ))
 
-            <li>
-                <a href="/blog">
-                    Blog
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
+                                ) : (
+
+                                    <p className="search-no-results">
+                                        No se encontraron productos.
+                                    </p>
+
+                                )}
+
+                            </div>
+
+                        )}
+
+                    </div>
+
+                    {/* CUENTA */}
+                    <a
+                        href="/Login"
+                        className="account-link"
+                    >
+
+                        <span className="account-icon">
+                            <img
+                                src="/img/icono-usuario.png"
+                                alt="Cuenta"
+                            />
+                        </span>
+
+                        Mi Cuenta
+
+                    </a>
+
+                    {/* CARRITO */}
+                    <a
+                        href="/ShoppingCart"
+                        className="cart-link"
+                    >
+
+                        <span className="cart-icon">
+                            <img
+                                src="/img/carrito.png"
+                                alt="Carrito"
+                            />
+                        </span>
+
+                        <span className="cart-info">
+
+                            <span className="cart-title">
+                                Carrito
+                            </span>
+
+                            <span className="cart-total">
+                                ${Math.round(subtotal).toLocaleString('es-CL')}
+                            </span>
+
+                        </span>
+
+                    </a>
+
+                </div>
+
+                {/* NAVEGACIÓN */}
+                <nav className="site-nav">
+
+                    <ul>
+
+                        <li>
+                            <a href="/Nosotros">
+                                Nosotros
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Catalogue?categoria=frutas">
+                                Frutas
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Catalogue?categoria=verduras">
+                                Verduras
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Catalogue?categoria=organicos">
+                                Orgánicos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Catalogue?categoria=lacteos">
+                                Lácteos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/blog">
+                                Blog
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;

@@ -307,5 +307,5 @@
 }
 
 .catalog-layout.filters-hidden {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 }
