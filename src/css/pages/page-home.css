@@ -73,7 +73,7 @@
 /* --- Tarjetas de Categorías --- */
 .category-card {
     display: block;
-    background: #fff;
+    background: var(--white);
     border: 1px solid var(--border-light);
     border-radius: 8px;
     overflow: hidden;
@@ -119,7 +119,7 @@
 .product-card {
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--white);
     border: 1px solid var(--border-light);
     border-radius: 8px;
     overflow: hidden;
@@ -241,7 +241,7 @@
 
 /* Tarjeta del Mapa */
 .mission-map-card {
-    background: #fff;
+    background: var(--white);
     border-radius: 12px;
     padding: 32px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);

@@ -18,18 +18,18 @@
    SIDEBAR: FILTROS AVANZADOS
    ========================================= */
 .catalog-sidebar {
-    background: #fff;
-    border: 1px solid var(--border-light, #E5E5E5);
+    background: var(--white);
+    border: 1px solid var(--border-light);
     border-radius: 8px;
     padding: 24px;
 }
 
 .sidebar-title {
     font-family: var(--font-heading), 'Playfair Display', serif;
-    color: var(--brown-brand, #8B4513);
+    color: var(--brown-brand);
     font-size: 1.4rem;
     margin: 0 0 24px 0;
-    border-bottom: 1px solid var(--border-light, #E5E5E5);
+    border-bottom: 1px solid var(--border-light);
     padding-bottom: 16px;
 }
 
@@ -43,7 +43,7 @@
 
 .filter-subtitle {
     font-size: 0.8rem;
-    color: var(--text-main, #333);
+    color: var(--text-main);
     font-weight: 700;
     margin: 0 0 16px 0;
     letter-spacing: 0.5px;
@@ -58,7 +58,7 @@
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 0.9rem;
-    color: var(--text-muted, #666);
+    color: var(--text-muted);
     user-select: none;
 }
 
@@ -76,19 +76,19 @@
     left: 0;
     height: 18px;
     width: 18px;
-    background-color: #fff;
-    border: 2px solid var(--border-light, #ccc);
+    background-color: var(--white);
+    border: 2px solid var(--border-light);
     border-radius: 4px;
     transition: all 0.2s ease;
 }
 
 .custom-checkbox:hover input ~ .checkmark {
-    border-color: var(--green-brand, #2E8B57);
+    border-color: var(--green-brand);
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-    background-color: var(--green-brand, #2E8B57);
-    border-color: var(--green-brand, #2E8B57);
+    background-color: var(--green-brand);
+    border-color: var(--green-brand);
 }
 
 /* El visto bueno (check icon) usando CSS puro */
@@ -100,7 +100,7 @@
     top: 2px;
     width: 4px;
     height: 8px;
-    border: solid white;
+    border: solid var(--white);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
@@ -119,11 +119,11 @@
     align-items: center;
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-light, #E5E5E5);
+    border-bottom: 1px solid var(--bg-light);
 }
 
 .results-count {
-    color: var(--text-muted, #666);
+    color: var(--text-muted);
     font-size: 0.95rem;
     margin: 0;
 }
@@ -137,7 +137,7 @@
 
 .sort-label {
     font-size: 0.9rem;
-    color: var(--text-muted, #666);
+    color: var(--text-muted);
 }
 
 .sort-dropdown {
@@ -146,12 +146,12 @@
 }
 
 .sort-btn {
-    background: #fff;
-    border: 1px solid var(--border-light, #E5E5E5);
+    background: var(--white);
+    border: 1px solid var(--bg-light);
     border-radius: 6px;
     padding: 8px 32px 8px 16px;
     font-size: 0.9rem;
-    color: var(--text-main, #333);
+    color: var(--text-main);
     cursor: pointer;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
@@ -166,8 +166,8 @@
     top: 100%;
     right: 0;
     width: 180px;
-    background: #fff;
-    border: 1px solid var(--border-light, #E5E5E5);
+    background: var(--white);
+    border: 1px solid var(--bg-light);
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     list-style: none;
@@ -195,7 +195,7 @@
 .sort-menu a {
     display: block;
     padding: 8px 16px;
-    color: var(--text-main, #333);
+    color: var(--text-main);
     font-size: 0.9rem;
     text-decoration: none;
     transition: background 0.2s ease;
@@ -203,8 +203,8 @@
 
 .sort-menu a:hover,
 .sort-menu a.active {
-    background-color: var(--bg-light, #F9F9F9);
-    color: var(--green-brand, #2E8B57);
+    background-color: var(--bg-light);
+    color: var(--green-brand);
     font-weight: 600;
 }
 
@@ -220,8 +220,8 @@
 
 /* Tarjeta de Producto */
 .product-card {
-    background: #fff;
-    border: 1px solid var(--border-light, #E5E5E5);
+    background: var(--white);
+    border: 1px solid var(--bg-light);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -236,8 +236,8 @@
 
 .card-img-wrapper {
     height: 180px;
-    background-color: var(--bg-light, #FAFAFA);
-    border-bottom: 1px solid var(--border-light, #E5E5E5);
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--bg-light);
 }
 
 .card-img-wrapper img {
@@ -255,13 +255,13 @@
 
 .card-title {
     font-family: var(--font-heading), 'Playfair Display', serif;
-    color: var(--brown-brand, #8B4513);
+    color: var(--brown-brand);
     font-size: 1.1rem;
     margin: 0 0 6px 0;
 }
 
 .card-desc {
-    color: var(--text-muted, #666);
+    color: var(--text-muted);
     font-size: 0.8rem;
     line-height: 1.4;
     margin: 0 0 12px 0;
@@ -278,7 +278,7 @@
 .card-price {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--green-brand, #2E8B57);
+    color: var(--green-brand);
 }
 
 .card-stars {
@@ -288,8 +288,8 @@
 
 .btn-add-cart {
     width: 100%;
-    background-color: var(--green-brand, #2E8B57);
-    color: #fff;
+    background-color: var(--green-brand);
+    color: var(--white);
     border: none;
     border-radius: 6px;
     padding: 10px;
@@ -300,7 +300,7 @@
 }
 
 .btn-add-cart:hover {
-    background-color: var(--green-brand-dark, #1f6b39);
+    background-color: var(--green-brand-dark);
 }
 .catalog-sidebar.hidden {
     display: none;

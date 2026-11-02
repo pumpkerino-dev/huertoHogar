@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexto/CartContext.jsx';
 import ProductoCarrito from '../components/ProductoCarrito.jsx';
 
@@ -11,7 +11,7 @@ function formatPrice(price) {
 
 function ShoppingCart() {
   const { cart, subtotal } = useCart();
-
+  const navigate = useNavigate();
   const isEmpty = cart.length === 0;
 
   return (
@@ -103,8 +103,9 @@ function ShoppingCart() {
                 className="btn btn-primary"
                 id="checkout-button"
                 disabled={isEmpty}
+                onClick={() => navigate('/Checkout')}
             >
-              Proceder al Pago
+                Proceder al Pago
             </button>
 
             <Link
