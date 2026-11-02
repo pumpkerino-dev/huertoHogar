@@ -1,4 +1,4 @@
-# HuertoHogar
+<img src="docs/images/natieicon.png" alt="Logo" width="50" align="center"> HuertoHogar
 
 Plataforma web de comercio electrónico enfocada en la venta de productos frescos del campo, conectando a los consumidores con productos agrícolas y alimentos de calidad.
 
