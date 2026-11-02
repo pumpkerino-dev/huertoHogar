@@ -1,16 +1,104 @@
-# React + Vite
+# HuertoHogar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma web de comercio electrónico enfocada en la venta de productos frescos del campo, conectando a los consumidores con productos agrícolas y alimentos de calidad.
 
-Currently, two official plugins are available:
+El proyecto busca ofrecer una experiencia de compra sencilla e intuitiva, permitiendo explorar productos, consultar sus detalles y gestionar un carrito de compras.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologías utilizadas
 
-## React Compiler
+- **React:** desarrollo de la interfaz mediante componentes.
+- **Vite:** entorno de desarrollo y herramienta de construcción.
+- **JavaScript:** implementación de la lógica de la aplicación.
+- **HTML5 y CSS3:** estructura y estilos.
+- **React Router:** navegación entre páginas.
+- **Bootstrap 5.3.8:** recursos de interfaz y estilos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- Página de inicio con productos destacados y ofertas.
+- Catálogo de productos.
+- Visualización del detalle de cada producto.
+- Carrito de compras con gestión de cantidades.
+- Almacenamiento del carrito mediante `localStorage`.
+- Proceso de checkout y confirmación de compra.
+- Sección de blog y visualización de artículos.
+- Easter egg.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Requisitos
+
+Para ejecutar el proyecto localmente necesitas:
+
+- Node.js.
+- npm.
+- Git (opcional, para clonar el repositorio).
+
+## Instalación
+
+Clona el repositorio:
+
+```bash
+git clone https://github.com/pumpkerino-dev/huertoHogar.git
+```
+
+Ingresa a la carpeta del proyecto:
+
+```bash
+cd huertoHogar
+```
+
+Instala las dependencias:
+
+```bash
+npm ci
+```
+
+## Ejecución en desarrollo
+
+Inicia el servidor local:
+
+```bash
+npm run dev
+```
+
+Vite mostrará en la terminal la dirección local para acceder a la aplicación desde el navegador.
+
+## Compilación para producción
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+```
+
+Los archivos compilados se guardarán en la carpeta `dist/`.
+
+Para visualizar localmente la compilación:
+
+```bash
+npm run preview
+```
+
+## Estructura principal del proyecto
+
+```text
+huertoHogar/
+├── public/
+│   └── img/
+├── src/
+│   ├── components/
+│   ├── contexto/
+│   ├── css/
+│   ├── js/
+│   ├── pages/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md
+```
+
+## Repositorio
+
+[HuertoHogar - GitHub](https://github.com/pumpkerino-dev/huertoHogar)
