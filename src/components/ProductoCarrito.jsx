@@ -26,7 +26,14 @@ function ProductoCarrito({ item }) {
                         {item.name}
                     </div>
 
+                    {item.originalUnitPrice != null && (
+                        <div className="cart-item-unit receipt-original-price">
+                            Precio normal: {formatPrice(item.originalUnitPrice)} / {item.unit}
+                        </div>
+                    )}
+
                     <div className="cart-item-unit">
+                        {item.originalUnitPrice != null && 'Precio oferta: '}
                         {formatPrice(item.unitPrice)} / {item.unit}
                     </div>
                 </div>

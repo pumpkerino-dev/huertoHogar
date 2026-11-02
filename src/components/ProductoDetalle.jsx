@@ -8,6 +8,10 @@ import { useCart } from '../contexto/CartContext.jsx';
 import '../css/pages/products.css';
 import '../App.css';
 
+function formatOfferPrice(price) {
+    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
+}
+
 function ProductoDetalle() {
 
     const { code } = useParams();
@@ -25,6 +29,8 @@ function ProductoDetalle() {
     const product = productos.find(
         (item) => item.code === code
     );
+
+    const hasOffer = product && Number(product.originalPrice) > Number(product.price);
 
     const [quantity, setQuantity] = useState(1);
     const [activeImage, setActiveImage] = useState(null);
@@ -108,13 +114,21 @@ function ProductoDetalle() {
                     </h1>
 
                     <div className="product-price">
+                        {hasOffer && (
+                            <span className="price-old">
+            {formatOfferPrice(product.originalPrice)}
+        </span>
+                        )}
+
                         <span className="price-amount">
-                            {detail.priceDisplay}
-                        </span>
+        {hasOffer
+            ? formatOfferPrice(product.price)
+            : detail.priceDisplay}
+    </span>
 
                         <span className="price-unit">
-                            {detail.priceUnit}
-                        </span>
+        {detail.priceUnit}
+    </span>
                     </div>
 
                     <p className="product-description">

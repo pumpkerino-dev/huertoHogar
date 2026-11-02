@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexto/CartContext.jsx';
 
+function formatOfferPrice(price) {
+    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
+}
+
 function ProductoCatalogo({ product }) {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
+    const hasOffer = Number(product.originalPrice) > Number(product.price);
 
     function handleAddToCart() {
         addToCart(product, 1);
@@ -41,13 +46,21 @@ function ProductoCatalogo({ product }) {
                 </p>
 
                 <div className="card-price-row">
+                    {hasOffer && (
+                        <span className="card-price-original">
+            {formatOfferPrice(product.originalPrice)}
+        </span>
+                    )}
+
                     <span className="card-price">
-                        {product.priceLabel}
-                    </span>
+        {hasOffer
+            ? formatOfferPrice(product.price)
+            : product.priceLabel}
+    </span>
 
                     <span className="card-stars">
-                        {product.stars}
-                    </span>
+        {product.stars}
+    </span>
                 </div>
 
                 <button

@@ -7,7 +7,7 @@ import '../App.css';
 import ProductoCatalogo from '../components/ProductoCatalogo';
 
 /*AQUI IRA LA MIERDA GIGANTE DE DATOS */
-
+/* CAMBIA EL PRECIO CON PRICE COMO PRECIO FINAL Y EL ORIGINALPRICE ES EL PRE-OFERTA*/
 
 export const productos = [
     {
@@ -49,7 +49,8 @@ export const productos = [
         name: "Leche Entera",
         image: "/img/prod-thumb-1A.png",
         description: "Leche fresca de productores locales de Osorno.",
-        price: 1250,
+        price: 950,
+        originalPrice: 1250,
         priceLabel: "$1.250 CLP / 1 L",
         stars: "⭐⭐⭐⭐⭐",
         category: "lacteos",
@@ -85,7 +86,8 @@ export const productos = [
         name: "Manzanas Fuji",
         image: "/img/prod-thumb-1.png",
         description: "Manzanas crujientes y dulces del Valle del Maule.",
-        price: 1200,
+        price: 900,
+        originalPrice: 1200,
         priceLabel: "$1.200 CLP / kg",
         stars: "⭐⭐⭐⭐⭐",
         category: "frutas",

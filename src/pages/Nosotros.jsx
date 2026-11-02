@@ -18,9 +18,19 @@ function Nosotros() {
         <div className="split-texts">
             <div className="text-pill">
                 <p>Esquizofrenico de turno.</p>
+                <img
+                    src="/img/natie.gif"
+                    alt="Nice Nature"
+                    className="natie-gif"
+                />
             </div>
             <div className="text-pill">
                 <p>Esquizofrenica de turno.</p>
+                <img
+                    src="/img/speed.gif"
+                    alt="IShowMeat"
+                    className="speed-gif"
+                />
             </div>
         </div>
     </section>

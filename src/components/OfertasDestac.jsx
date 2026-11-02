@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexto/CartContext.jsx';
 
+function formatOfferPrice(price) {
+    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
+}
+
 function OfertasDestac({ product }) {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
+    const hasOffer = Number(product.originalPrice) > Number(product.price);
 
     function handleAddToCart() {
         addToCart(product, 1);
@@ -42,9 +47,17 @@ function OfertasDestac({ product }) {
                 </h3>
 
                 <div className="product-pricing">
+                    {hasOffer && (
+                        <span className="price-old">
+            {formatOfferPrice(product.originalPrice)}
+        </span>
+                    )}
+
                     <span className="price-current">
-                        {product.priceLabel}
-                    </span>
+        {hasOffer
+            ? formatOfferPrice(product.price)
+            : product.priceLabel}
+    </span>
                 </div>
 
                 {/* Botón independiente del enlace */}

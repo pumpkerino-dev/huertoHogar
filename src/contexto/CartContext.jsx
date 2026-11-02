@@ -34,7 +34,10 @@ function normalizeProduct(product) {
         unit,
         unitPlural: product.detail?.unitPlural ?? product.unitPlural ?? `${unit}s`,
         unitPrice: Number(product.price ?? product.unitPrice),
-        maxQuantity: max == null ? null : Number(max)
+        maxQuantity: max == null ? null : Number(max),
+        originalUnitPrice: Number(product.originalPrice) > Number(product.price ?? product.unitPrice)
+            ? Number(product.originalPrice)
+            : null,
     };
 }
 

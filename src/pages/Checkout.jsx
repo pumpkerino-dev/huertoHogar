@@ -176,8 +176,15 @@ function Checkout() {
                                                 {item.name}
                                             </div>
 
+                                            {item.originalUnitPrice != null && (
+                                                <div className="cart-item-unit receipt-original-price">
+                                                    Precio normal: {formatPrice(item.originalUnitPrice)} por unidad
+                                                </div>
+                                            )}
+
                                             <div className="cart-item-unit">
-                                                Código: {item.id}
+                                                {item.originalUnitPrice != null && 'Precio oferta: '}
+                                                {formatPrice(item.unitPrice)} por unidad
                                             </div>
 
                                             <div className="cart-item-unit">

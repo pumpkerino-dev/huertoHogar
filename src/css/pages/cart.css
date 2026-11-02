@@ -118,6 +118,10 @@
   margin-top: 2px;
 }
 
+.receipt-original-price {
+  text-decoration: line-through;
+}
+
 .qty-control {
   display: flex;
   align-items: center;
