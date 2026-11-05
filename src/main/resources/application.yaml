@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: huertohogar-backend
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+    generate-unique-name: false
+#   MySQL (Ev3): reemplazar las 4 líneas anteriores por estas y usar org.hibernate.dialect.MySQLDialect
+#   url: jdbc:mysql://localhost:3306/huertohogar?createDatabaseIfNotExist=true&serverTimezone=America/Santiago
+#   driverClassName: com.mysql.cj.jdbc.Driver
+#   username: root
+#   password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8089
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+app:
+  cors:
+    allowed-origin: http://localhost:5173
+  jwt:
+    secret: ${JWT_SECRET:xlO4/9NT61s81t+yTldxIrmFJVwuGWqcj1oNy68r88JMbdxbuq8LLgZT197tw3rF}
+    expiration-ms: 86400000
+  admin:
+    email: admin@huertohogar.cl
+    password: Admin123
