@@ -433,3 +433,20 @@
     color: var(--green-dark);
 }
 
+
+
+/* ==========================================================================
+   Bootstrap en Carrito y Checkout (los colores de botones están en css/bootstrap-tema.css)
+   ========================================================================== */
+.cart-page .delivery-days {
+  overflow-x: auto;
+}
+/* Calendario de despacho: en celular 4 días por fila (7 no caben en 390 px) */
+.cart-page .delivery-days {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+@media (max-width: 576px) {
+  .cart-page .delivery-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

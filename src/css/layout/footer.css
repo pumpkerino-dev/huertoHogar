@@ -66,3 +66,19 @@
   color: var(--text-muted);
   font-size: 0.68rem;
 }
+
+/* ==========================================================================
+   RESPONSIVE: en tablet 2 columnas y en celular 1 (antes las 4 columnas
+   se salían de la pantalla y obligaban a deslizar hacia el lado).
+   ========================================================================== */
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

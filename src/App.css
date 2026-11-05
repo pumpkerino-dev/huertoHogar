@@ -275,3 +275,19 @@ input.is-valid {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   COMPATIBILIDAD CON BOOTSTRAP
+   Bootstrap pinta .btn-primary en azul en estados :active/:focus usando
+   variables propias; aquí se las apuntamos a la paleta de HuertoHogar.
+   (El resto del tema de Bootstrap está en css/bootstrap-tema.css)
+   ========================================================================== */
+.btn-primary {
+  --bs-btn-bg: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-bg: var(--green-dark);
+  --bs-btn-hover-border-color: var(--green-dark);
+  --bs-btn-active-bg: var(--green-dark);
+  --bs-btn-active-border-color: var(--green-dark);
+  --bs-btn-focus-shadow-rgb: 46, 139, 87;
+}

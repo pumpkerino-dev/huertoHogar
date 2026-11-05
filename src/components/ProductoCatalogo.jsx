@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../contexto/CartContext.jsx';
+import { useCart } from '../contexto/useCart';
 
 function formatOfferPrice(price) {
     return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;

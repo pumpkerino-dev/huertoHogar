@@ -448,3 +448,10 @@
   border-top: 1px solid var(--border);
   padding-top: 10px;
 }
+
+/* ==========================================================================
+   Bootstrap en "Mi Cuenta" (los colores de pestañas y botones están en css/bootstrap-tema.css)
+   ========================================================================== */
+.account-nav .nav-pills .nav-link {
+  font-size: 0.9rem;
+}

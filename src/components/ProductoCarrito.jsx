@@ -1,4 +1,4 @@
-import { useCart } from '../contexto/CartContext.jsx';
+import { useCart } from '../contexto/useCart';
 
 function formatPrice(price) {
     return `$${Math.round(price).toLocaleString('es-CL')} CLP`;

@@ -1,6 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
 
-import {articuloDestacado, articulosBlog} from '../pages/Blog';
+import { articuloDestacado, articulosBlog } from '../data/blog';
 
 /* CSS específico */
 import '../css/pages/blog-generico.css';
@@ -40,7 +40,7 @@ function BlogDetalle() {
 
                 <aside className="post-media">
 
-                    {detail.images.map((image, index) => (
+                    {detail.images.map((image) => (
 
                         <div className="post-img-wrapper" key={image.src}>
                             <img

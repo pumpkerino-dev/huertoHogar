@@ -1,11 +1,6 @@
-import {
-    createContext,
-    useContext,
-    useEffect,
-    useState
-} from 'react';
+import { useEffect, useState } from 'react';
+import { CartContext } from './cartContext';
 
-const CartContext = createContext(null);
 const CART_STORAGE_KEY = 'huertohogar-cart';
 
 // Recuperar carrito guardado
@@ -150,15 +145,4 @@ export function CartProvider({ children }) {
             {children}
         </CartContext.Provider>
     );
-}
-
-// Permitir usar el carrito desde cualquier componente
-export function useCart() {
-    const context = useContext(CartContext);
-
-    if (!context) {
-        throw new Error('useCart debe utilizarse dentro de CartProvider.');
-    }
-
-    return context;
 }

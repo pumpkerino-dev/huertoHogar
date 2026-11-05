@@ -78,27 +78,97 @@ Para visualizar localmente la compilación:
 npm run preview
 ```
 
-## Estructura principal del proyecto
+### Cómo probarlo
 
-```text
-huertoHogar/
-├── public/
-│   └── img/
-├── src/
-│   ├── components/
-│   ├── contexto/
-│   ├── css/
-│   ├── js/
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-└── README.md
+El frontend toma **todos los datos del backend** (igual que el ejemplo JWT + Spring Boot + React del curso),
+así que primero se levanta el backend y después el frontend:
+
+```bash
+# Terminal 1: backend
+cd backEnd
+mvnw.cmd spring-boot:run      # Windows   (./mvnw spring-boot:run en macOS / Linux)
+
+# Terminal 2: frontend
+npm install
+npm run dev
 ```
 
-## Repositorio
+Si el backend no está corriendo, la tienda muestra *"No se pudo conectar con el servidor"*.
 
-[HuertoHogar - GitHub](https://github.com/pumpkerino-dev/huertoHogar)
+## Panel de administración
+
+| Correo                 | Contraseña | Rol     | Entra a      |
+|------------------------|------------|---------|--------------|
+| admin@huertohogar.cl   | Admin123   | ADMIN   | `/admin`     |
+| cliente@huertohogar.cl | Cliente123 | CLIENTE | `/Profile`   |
+
+El backend usa **H2 en memoria**: al reiniciarlo, los datos vuelven a los iniciales que carga `DataInitializer`.
+
+### De dónde salen los datos
+
+| Capa | Dónde | Qué hace |
+|------|-------|----------|
+| Componentes | `src/pages`, `src/components` | Solo muestran datos; nunca llaman a la API directamente |
+| Hooks de la tienda | `src/hooks/useCatalogo.js` | `useProductos()` y `useCategorias()` piden los datos e informan si están cargando |
+| Servicios | `src/services/*Service.js` | Llamadas con axios a `/api/v1/...` |
+| Cliente HTTP | `src/api.js` | axios con la URL del backend y el token JWT en cada petición (igual que el ejemplo del curso) |
+| Backend | `backEnd/` | Spring Boot + JPA + H2, con los datos iniciales en `DataInitializer` |
+
+Lo que el admin edita (precios, ofertas, stock, categorías) queda guardado en el backend y se ve en la tienda.
+
+### Navegación del administrador (según el diagrama)
+
+| Opción del diagrama | Ruta | Página |
+|---|---|---|
+| Home / Dashboard | `/admin` | `AdminDashboard` |
+| Órdenes / Boletas → Mostrar boleta | `/admin/ordenes` | `OrdenesAdmin` + `BoletaModal` |
+| Producto → Nuevo / Mostrar / Editar | `/admin/productos` | `ProductosAdmin` + `ProductoForm` |
+| Producto → Listado productos críticos | `/admin/productos/criticos` | `ProductosAdmin` (`soloCriticos`) |
+| Producto → Reportes / Reportes | `/admin/reportes` | `ReportesAdmin` |
+| Categoría → Nueva / Editar | `/admin/categorias` | `CategoriasAdmin` + `CategoriaForm` |
+| Usuario → Nuevo / Mostrar / Editar | `/admin/usuarios` | `UsuariosAdmin` + `UsuarioForm` |
+| Usuario → Historial de compras | `/admin/usuarios` (botón Historial) | `OrdenesTabla` + `BoletaModal` |
+| Perfil | `/admin/perfil` | `PerfilAdmin` + `FormularioPerfil` |
+
+> El diagrama muestra "Editar usuario" dentro de **Categoría**. Se interpretó como **Editar categoría**,
+> porque la edición de usuarios ya está en la opción **Usuario**.
+
+### Páginas adaptadas con Bootstrap
+
+**Carrito** (`/ShoppingCart`), **Checkout** (`/Checkout`) y **Mi Cuenta** (`/Profile`): `Container`, `Row` y `Col`,
+tablas `responsive`, `Alert`, `Card`, `Nav` y formularios de Bootstrap. Se ven en una columna en celular y en
+dos en escritorio. Todo el panel `/admin` también usa Bootstrap (navbar, menú lateral `Offcanvas`, tablas y modales).
+
+### Componentes y lógica reutilizable
+
+| Pieza | Dónde se usa |
+|---|---|
+| `components/Campo.jsx` | Formularios de producto, usuario, categoría y perfil (sirve para formularios controlados y para React Hook Form) |
+| `components/FormularioPerfil.jsx` | Perfil del cliente y perfil del admin |
+| `components/BoletaDetalle.jsx` / `BoletaModal.jsx` | Checkout, Órdenes, Historial de compras, Mi Cuenta |
+| `components/OrdenesTabla.jsx` | Órdenes, Historial de compras, Mi Cuenta |
+| `hooks/useListado.js` | Todas las páginas del admin y Mi Cuenta (con función de limpieza, como el `useFetch` del tutorial de hooks) |
+| `utils/validation.js` | Login, registro, usuarios y perfil (formularios controlados con `useState`) |
+| `utils/esquemas.js` | Categorías: esquema **Yup** usado con **React Hook Form** (`useForm` + `yupResolver`) |
+| `utils/busqueda.js` | Buscador del Header y Catálogo (mismos resultados con Enter o escribiendo) |
+| `utils/reportes.js` | Dashboard, Órdenes y Reportes |
+
+---
+
+## Pruebas unitarias y cobertura
+
+Herramienta: **Vitest** + Testing Library, configurado en `vitest.config.js` (como el tutorial del curso) y
+`src/setupTests.js`. Cada prueba está **al lado del archivo que prueba** (`Checkout.jsx` → `Checkout.test.jsx`).
+
+```bash
+npm test                                      # todas las pruebas (modo vigilancia)
+npx vitest run                                # todas las pruebas, una pasada
+npx vitest run src/pages/Checkout.test.jsx    # un solo archivo
+npx vitest run -t "Prueba 4"                  # una sola prueba por nombre
+npm run test:coverage                         # cobertura (equivale a npx vitest run --coverage)
+```
+
+- 41 pruebas en 16 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
+- Datos de prueba en `src/test-utils.jsx` y servicios simulados con `vi.mock()`.
+- El informe de cobertura queda guardado en **`coverage/`**: abrir **`coverage/index.html`** en el navegador.
+- Detalle y resultados: [`docs/cobertura-testing.md`](docs/cobertura-testing.md).
