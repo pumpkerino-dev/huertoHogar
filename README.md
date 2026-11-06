@@ -147,28 +147,31 @@ dos en escritorio. Todo el panel `/admin` también usa Bootstrap (navbar, menú 
 | `components/FormularioPerfil.jsx` | Perfil del cliente y perfil del admin |
 | `components/BoletaDetalle.jsx` / `BoletaModal.jsx` | Checkout, Órdenes, Historial de compras, Mi Cuenta |
 | `components/OrdenesTabla.jsx` | Órdenes, Historial de compras, Mi Cuenta |
+| `hooks/useAgregarAlCarrito.js` | Botón "Añadir al carrito" de `ProductoCatalogo` y `OfertasDestac` |
 | `hooks/useListado.js` | Todas las páginas del admin y Mi Cuenta (con función de limpieza, como el `useFetch` del tutorial de hooks) |
 | `utils/validation.js` | Login, registro, usuarios y perfil (formularios controlados con `useState`) |
 | `utils/esquemas.js` | Categorías: esquema **Yup** usado con **React Hook Form** (`useForm` + `yupResolver`) |
 | `utils/busqueda.js` | Buscador del Header y Catálogo (mismos resultados con Enter o escribiendo) |
+| `utils/producto.js` | Formatos de precio (`formatoCLP`, `formatoPrecio`) para toda la tienda y el admin |
 | `utils/reportes.js` | Dashboard, Órdenes y Reportes |
 
 ---
 
 ## Pruebas unitarias y cobertura
 
-Herramienta: **Vitest** + Testing Library, configurado en `vitest.config.js` (como el tutorial del curso) y
-`src/setupTests.js`. Cada prueba está **al lado del archivo que prueba** (`Checkout.jsx` → `Checkout.test.jsx`).
+Herramienta: **Vitest** + Testing Library, configurado en `vitest.config.js` (como el tutorial del curso).
+Todas las pruebas están en **`src/test/`**, con la misma estructura de `src/`
+(`src/pages/Checkout.jsx` → `src/test/pages/Checkout.test.jsx`).
 
 ```bash
-npm test                                      # todas las pruebas (modo vigilancia)
-npx vitest run                                # todas las pruebas, una pasada
-npx vitest run src/pages/Checkout.test.jsx    # un solo archivo
-npx vitest run -t "Prueba 4"                  # una sola prueba por nombre
-npm run test:coverage                         # cobertura (equivale a npx vitest run --coverage)
+npm test                                           # todas las pruebas (modo vigilancia)
+npx vitest run                                     # todas las pruebas, una pasada
+npx vitest run src/test/pages/Checkout.test.jsx    # un solo archivo
+npx vitest run -t "Prueba 4"                       # una sola prueba por nombre
+npm run test:coverage                              # cobertura (equivale a npx vitest run --coverage)
 ```
 
-- 41 pruebas en 16 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
-- Datos de prueba en `src/test-utils.jsx` y servicios simulados con `vi.mock()`.
+- 43 pruebas en 17 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
+- Datos de prueba en `src/test/test-utils.jsx` y servicios simulados con `vi.mock()`.
 - El informe de cobertura queda guardado en **`coverage/`**: abrir **`coverage/index.html`** en el navegador.
 - Detalle y resultados: [`docs/cobertura-testing.md`](docs/cobertura-testing.md).

@@ -9,6 +9,7 @@ import { useProductos } from '../hooks/useCatalogo';
 import { buscarProductos } from '../utils/busqueda';
 import { useCart } from '../contexto/useCart';
 import { useAuth } from '../contexto/useAuth';
+import { formatoCLP } from '../utils/producto';
 
 function Header({ onToggleFilters }) {
 
@@ -273,7 +274,7 @@ function Header({ onToggleFilters }) {
                             </span>
 
                             <span className="cart-total">
-                                ${Math.round(subtotal).toLocaleString('es-CL')}
+                                {formatoCLP(subtotal)}
                             </span>
 
                         </span>

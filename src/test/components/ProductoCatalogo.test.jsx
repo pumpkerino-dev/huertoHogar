@@ -2,8 +2,8 @@
 import { describe, test, expect } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import ProductoCatalogo from './ProductoCatalogo'
-import { useCart } from '../contexto/useCart'
+import ProductoCatalogo from '../../components/ProductoCatalogo'
+import { useCart } from '../../contexto/useCart'
 import { renderConProveedores, productosMock } from '../test-utils'
 
 // Componente auxiliar que muestra el estado del carrito, para verificar el efecto del click

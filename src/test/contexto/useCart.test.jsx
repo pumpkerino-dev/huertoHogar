@@ -2,8 +2,8 @@
 // renderHook recibe "wrapper" para envolver el hook en el proveedor, igual que en la app.
 import { describe, test, expect, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
-import { useCart } from './useCart'
-import { CartProvider } from './CartContext.jsx'
+import { useCart } from '../../contexto/useCart'
+import { CartProvider } from '../../contexto/CartContext.jsx'
 import { productosMock } from '../test-utils'
 
 const miel = productosMock[3] // $5.000, stock 50

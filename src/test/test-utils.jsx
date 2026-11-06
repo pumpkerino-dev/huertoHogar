@@ -6,8 +6,8 @@
 // ============================================================
 import { render } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { AuthContext } from './contexto/authContext'
-import { CartProvider } from './contexto/CartContext.jsx' // con extensión: en Windows, sin ella se carga cartContext.js
+import { AuthContext } from '../contexto/authContext'
+import { CartProvider } from '../contexto/CartContext.jsx' // con extensión: en Windows, sin ella se carga cartContext.js
 
 export function renderConProveedores(ui, { ruta = '/', usuario = null, carrito = [], rutasExtra = {} } = {}) {
   // El carrito inicial se lee desde localStorage (igual que en el navegador)

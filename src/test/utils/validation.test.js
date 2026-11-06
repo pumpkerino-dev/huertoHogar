@@ -1,7 +1,7 @@
 // Lógica pura: validaciones de los formularios (utils/validation.js) y esquema Yup (utils/esquemas.js)
 import { describe, test, expect } from 'vitest'
-import { sinErrores, validarPerfil, validarRegistro } from './validation'
-import { esquemaCategoria } from './esquemas'
+import { sinErrores, validarPerfil, validarRegistro } from '../../utils/validation'
+import { esquemaCategoria } from '../../utils/esquemas'
 
 const registroValido = {
   nombre: 'Ana Pérez', email: 'ana@correo.cl', password: 'Clave1234', confirmar: 'Clave1234',

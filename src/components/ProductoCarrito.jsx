@@ -1,8 +1,6 @@
 import { useCart } from '../contexto/useCart';
+import { formatoPrecio as formatPrice } from '../utils/producto';
 
-function formatPrice(price) {
-    return `$${Math.round(price).toLocaleString('es-CL')} CLP`;
-}
 
 function ProductoCarrito({ item }) {
 

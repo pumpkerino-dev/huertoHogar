@@ -1,6 +1,6 @@
 // Lógica pura: días de despacho del carrito (utils/despacho.js)
 import { describe, test, expect } from 'vitest'
-import { formatoDiaDespacho, proximosDias } from './despacho'
+import { formatoDiaDespacho, proximosDias } from '../../utils/despacho'
 
 describe('utils/despacho', () => {
   test('ofrece los 7 días siguientes y bloquea el domingo', () => {

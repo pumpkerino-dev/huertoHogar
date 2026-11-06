@@ -3,13 +3,13 @@ import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
-import ProductosAdmin from './ProductosAdmin'
-import * as productoService from '../../services/productoService'
-import * as categoriaService from '../../services/categoriaService'
+import ProductosAdmin from '../../../pages/admin/ProductosAdmin'
+import * as productoService from '../../../services/productoService'
+import * as categoriaService from '../../../services/categoriaService'
 import { categoriasMock } from '../../test-utils'
 
-vi.mock('../../services/productoService')
-vi.mock('../../services/categoriaService')
+vi.mock('../../../services/productoService')
+vi.mock('../../../services/categoriaService')
 
 const PRODUCTOS = [
   { id: 'FR001', codigo: 'FR001', nombre: 'Manzanas Fuji', categoria: 'frutas', precio: 900, precioOriginal: 1200, unidad: 'kg', stock: 150 },

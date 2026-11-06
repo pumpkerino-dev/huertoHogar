@@ -4,10 +4,10 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import CategoriasAdmin from './CategoriasAdmin'
-import * as categoriaService from '../../services/categoriaService'
+import CategoriasAdmin from '../../../pages/admin/CategoriasAdmin'
+import * as categoriaService from '../../../services/categoriaService'
 
-vi.mock('../../services/categoriaService')
+vi.mock('../../../services/categoriaService')
 
 describe('CategoriasAdmin', () => {
   beforeEach(() => {

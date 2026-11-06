@@ -1,6 +1,6 @@
 // Lógica pura: reportes del admin (utils/reportes.js), usados por Dashboard y Reportes
 import { describe, test, expect } from 'vitest'
-import { productosCriticos, productosMasVendidos, resumenVentas, ventasPorCategoria } from './reportes'
+import { productosCriticos, productosMasVendidos, resumenVentas, ventasPorCategoria } from '../../utils/reportes'
 import { ordenesMock as ordenesIniciales } from '../test-utils'
 
 describe('utils/reportes', () => {

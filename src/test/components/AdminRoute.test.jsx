@@ -2,8 +2,8 @@
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import AdminRoute from './AdminRoute'
-import { AuthContext } from '../contexto/authContext'
+import AdminRoute from '../../components/AdminRoute'
+import { AuthContext } from '../../contexto/authContext'
 
 function renderConUsuario(usuario) {
   const valor = { usuario, esAdmin: usuario?.rol === 'ADMIN', cargando: false }

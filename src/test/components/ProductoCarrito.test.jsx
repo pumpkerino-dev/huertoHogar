@@ -2,8 +2,8 @@
 import { describe, test, expect } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import ProductoCarrito from './ProductoCarrito'
-import { useCart } from '../contexto/useCart'
+import ProductoCarrito from '../../components/ProductoCarrito'
+import { useCart } from '../../contexto/useCart'
 import { renderConProveedores, itemCarritoMock } from '../test-utils'
 
 // Dibuja el carrito real (CartContext) para ver cómo cambia al hacer click

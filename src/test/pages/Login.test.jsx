@@ -3,12 +3,12 @@ import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import Login from './Login'
-import { AuthProvider } from '../contexto/AuthProvider'
-import * as authService from '../services/authService'
+import Login from '../../pages/Login'
+import { AuthProvider } from '../../contexto/AuthProvider'
+import * as authService from '../../services/authService'
 
 // MOCK del servicio: las pruebas no usan la BD emulada ni el backend
-vi.mock('../services/authService')
+vi.mock('../../services/authService')
 
 function renderLogin() {
   return render(

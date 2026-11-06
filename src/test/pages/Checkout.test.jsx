@@ -2,13 +2,13 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Checkout from './Checkout'
-import * as ordenService from '../services/ordenService'
+import Checkout from '../../pages/Checkout'
+import * as ordenService from '../../services/ordenService'
 import { renderConProveedores, itemCarritoMock, ordenMock } from '../test-utils'
 
 // MOCK del servicio de órdenes: respuestas controladas (éxito o rechazo) sin llamar al backend
-vi.mock('../services/ordenService')
-vi.mock('../hooks/useCatalogo', () => ({
+vi.mock('../../services/ordenService')
+vi.mock('../../hooks/useCatalogo', () => ({
   useProductos: () => ({ productos: [], cargando: false, error: '' }),
 }))
 

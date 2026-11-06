@@ -7,10 +7,8 @@ import CalendarioDespacho from '../components/CalendarioDespacho.jsx';
 import '../css/pages/cart.css';
 import '../App.css';
 import { CLAVE_DESPACHO } from '../utils/despacho';
+import { formatoPrecio as formatPrice } from '../utils/producto';
 
-function formatPrice(price) {
-  return `$${Math.round(price).toLocaleString('es-CL')} CLP`;
-}
 
 /**
  * CARRITO (página adaptada con Bootstrap): Container + Row + Col.

@@ -1,6 +1,6 @@
 // Lógica pura: búsqueda y orden de productos (utils/busqueda.js)
 import { describe, test, expect } from 'vitest'
-import { buscarProductos, normalizarTexto, ordenarPorPrecio } from './busqueda'
+import { buscarProductos, normalizarTexto, ordenarPorPrecio } from '../../utils/busqueda'
 import { productosMock } from '../test-utils'
 
 describe('utils/busqueda', () => {

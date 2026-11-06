@@ -20,7 +20,7 @@ export default defineConfig([
   },
   {
     // Archivos de prueba: describe / test / expect vienen de Vitest (globals: true)
-    files: ['src/**/*.test.{js,jsx}', 'src/setupTests.js', 'src/test-utils.jsx'],
+    files: ['src/test/**/*.{js,jsx}'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.vitest },
     },

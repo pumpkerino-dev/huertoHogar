@@ -1,11 +1,11 @@
 // Servicio de órdenes: validación del carrito y llamada al backend (src/services/ordenService.js)
 import { describe, test, expect, vi } from 'vitest'
-import api from '../api'
-import { crearOrden, validarCarrito } from './ordenService'
+import api from '../../api'
+import { crearOrden, validarCarrito } from '../../services/ordenService'
 import { itemCarritoMock, productosMock } from '../test-utils'
 
 // MOCK de api.js: las pruebas no llaman al backend real
-vi.mock('../api', () => ({ default: { post: vi.fn() } }))
+vi.mock('../../api', () => ({ default: { post: vi.fn() } }))
 
 describe('ordenService', () => {
   test('validarCarrito detecta carrito vacío, cantidades inválidas y stock insuficiente antes de pagar', () => {

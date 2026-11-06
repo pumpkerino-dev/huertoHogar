@@ -1,6 +1,6 @@
 // Adaptador: producto del backend -> formato de la tienda (src/utils/productoAdapter.js)
 import { describe, test, expect } from 'vitest'
-import { aFormatoTienda } from './productoAdapter'
+import { aFormatoTienda } from '../../utils/productoAdapter'
 import { productoBackendMock } from '../test-utils'
 
 describe('aFormatoTienda', () => {

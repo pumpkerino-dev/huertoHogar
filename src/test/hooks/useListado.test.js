@@ -4,7 +4,7 @@
 // actualizar antes de revisar el resultado. Siempre se lee result.current (el valor más nuevo).
 import { describe, test, expect, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { useListado } from './useListado'
+import { useListado } from '../../hooks/useListado'
 
 describe('useListado', () => {
   test('parte cargando y luego entrega los datos del servicio', async () => {

@@ -4,7 +4,10 @@
 export const STOCK_BAJO = 10;
 
 // 1200 -> "$1.200"
-export const formatoCLP = (valor) => "$" + Number(valor ?? 0).toLocaleString("es-CL");
+export const formatoCLP = (valor) => "$" + Math.round(Number(valor) || 0).toLocaleString("es-CL");
+
+// 1200 -> "$1.200 CLP" (carrito y checkout)
+export const formatoPrecio = (valor) => `${formatoCLP(valor)} CLP`;
 
 // "2026-10-28T10:15:00" -> "28-10-2026, 10:15"
 export const formatoFecha = (fecha) =>

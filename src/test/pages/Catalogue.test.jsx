@@ -2,11 +2,11 @@
 import { describe, test, expect, vi } from 'vitest'
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Catalogue from './Catalogue'
+import Catalogue from '../../pages/Catalogue'
 import { renderConProveedores, categoriasMock, productosMock } from '../test-utils'
 
 // MOCK: en vez de pedir los productos al backend, el catálogo recibe el arreglo de prueba
-vi.mock('../hooks/useCatalogo', () => ({
+vi.mock('../../hooks/useCatalogo', () => ({
   useProductos: () => ({ productos: productosMock, cargando: false, error: '' }),
   useCategorias: () => ({ categorias: categoriasMock, cargando: false, error: '' }),
 }))

@@ -1,7 +1,7 @@
 // Convierte un producto del backend ({ codigo, nombre, precio, stock, detalle... })
 // al formato que usan los componentes de la tienda ({ code, name, price, detail... }).
 
-const clp = (valor) => '$' + Math.round(Number(valor) || 0).toLocaleString('es-CL');
+import { formatoCLP as clp } from './producto';
 
 const textoUnidad = (unidad) => (unidad === 'kg' ? 'kilo' : unidad || 'unidad');
 

@@ -7,10 +7,8 @@ import { useCart } from '../contexto/useCart';
 /* CSS específico */
 import '../css/pages/products.css';
 import '../App.css';
+import { formatoCLP as formatOfferPrice } from '../utils/producto';
 
-function formatOfferPrice(price) {
-    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
-}
 
 function ProductoDetalle() {
 

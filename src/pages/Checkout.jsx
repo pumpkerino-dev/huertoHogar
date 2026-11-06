@@ -9,10 +9,8 @@ import { mensajeDeError } from '../api';
 import { CLAVE_DESPACHO, formatoDiaDespacho } from '../utils/despacho';
 import '../css/pages/cart.css';
 import '../App.css';
+import { formatoPrecio as formatPrice } from '../utils/producto';
 
-function formatPrice(price) {
-    return `$${Math.round(price).toLocaleString('es-CL')} CLP`;
-}
 
 /**
  * CHECKOUT (página adaptada con Bootstrap).
