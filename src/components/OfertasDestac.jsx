@@ -1,24 +1,10 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../contexto/CartContext.jsx';
-
-function formatOfferPrice(price) {
-    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
-}
+import { useAgregarAlCarrito } from '../hooks/useAgregarAlCarrito';
+import { formatoCLP as formatOfferPrice } from '../utils/producto';
 
 function OfertasDestac({ product }) {
-    const { addToCart } = useCart();
-    const [added, setAdded] = useState(false);
+    const { added, handleAddToCart } = useAgregarAlCarrito(product);
     const hasOffer = Number(product.originalPrice) > Number(product.price);
-
-    function handleAddToCart() {
-        addToCart(product, 1);
-        setAdded(true);
-
-        setTimeout(() => {
-            setAdded(false);
-        }, 1000);
-    }
 
     return (
         <div className="product-card">

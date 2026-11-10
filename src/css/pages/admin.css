@@ -1,0 +1,156 @@
+/* ==========================================================================
+   PANEL DE ADMINISTRACIÓN
+   Usa SOLO las variables de App.css (--green, --brown, --bg, --border...),
+   igual que las páginas de la tienda. Los colores de Bootstrap se ajustan
+   en css/bootstrap-tema.css.
+   ========================================================================== */
+
+.admin-shell {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-body);
+}
+
+/* Títulos de página: Playfair Display en marrón, como en la tienda */
+.admin-shell h1,
+.admin-shell .h3 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+}
+
+/* Los subtítulos y encabezados de tarjeta usan la fuente del cuerpo */
+.admin-shell .card-header,
+.admin-shell .card-header h2,
+.admin-shell .modal-title {
+  font-family: var(--font-body);
+}
+
+/* ---------- Barra superior ---------- */
+.admin-navbar {
+  background: var(--green);
+  min-height: 56px;
+}
+
+.admin-navbar .navbar-brand {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.admin-navbar .navbar-brand img {
+  height: 32px;
+  width: auto;
+  background: var(--white);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+/* ---------- Menú lateral ---------- */
+@media (min-width: 992px) {
+  .admin-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    min-height: calc(100vh - 56px);
+    border-right: 1px solid var(--border);
+    background: var(--white);
+  }
+}
+
+.admin-sidebar .nav-link {
+  color: var(--text-main);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+
+/* Todos los íconos del mismo ancho: los textos quedan alineados en una columna */
+.admin-sidebar .nav-link i {
+  width: 1.25rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+/* Opción que cuelga de "Productos" (Productos críticos) */
+.admin-sidebar .nav-link.sub {
+  padding-left: 1.6rem;
+  font-size: 0.88rem;
+}
+
+.admin-sidebar .nav-link:hover {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+.admin-sidebar .nav-link.active {
+  background: var(--green);
+  color: var(--white);
+}
+
+/* ---------- Tarjetas ---------- */
+.admin-shell .card {
+  border-radius: var(--radius-card);
+}
+
+.admin-shell .card-header {
+  background: var(--white);
+  border-bottom-color: var(--border);
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+}
+
+/* Tarjeta de resumen: ícono a la izquierda y datos a la derecha, centrados verticalmente */
+.stat-card .card-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+}
+
+.stat-card .stat-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+}
+
+.stat-card .stat-titulo {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stat-card .stat-valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+.stat-card .stat-detalle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Tablas ---------- */
+.thumb-producto {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.admin-shell .table {
+  font-size: 0.92rem;
+}
+
+.admin-shell .table thead th {
+  font-weight: 600;
+  white-space: nowrap;
+}

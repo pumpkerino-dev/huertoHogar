@@ -2,39 +2,66 @@
 import '../css/layout/header.css';
 import '../App.css';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { productos } from '../pages/Catalogue.jsx';
-import { useCart } from '../contexto/CartContext.jsx';
+import { useProductos } from '../hooks/useCatalogo';
+import { buscarProductos } from '../utils/busqueda';
+import { useCart } from '../contexto/useCart';
+import { useAuth } from '../contexto/useAuth';
+import { formatoCLP } from '../utils/producto';
 
 function Header({ onToggleFilters }) {
 
     const { subtotal } = useCart();
+    const { usuario, esAdmin, cerrarSesion } = useAuth();
+
+    // Con sesión: muestra el primer nombre y lleva al panel (admin) o al perfil (cliente)
+    const rutaCuenta = !usuario ? '/Login' : esAdmin ? '/admin' : '/Profile';
+    const textoCuenta = usuario ? usuario.nombre.split(' ')[0] : 'Mi Cuenta';
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [searchText, setSearchText] = useState('');
+    const { productos } = useProductos();
+    const enCatalogo = location.pathname.toLowerCase() === '/catalogue';
+
+    // El texto del buscador se sincroniza con la URL (?buscar=...).
+    // Se hace durante el render (patrón recomendado por React) en vez de en un useEffect.
+    const busquedaEnUrl = new URLSearchParams(location.search).get('buscar') ?? '';
+    const [searchText, setSearchText] = useState(busquedaEnUrl);
+    const [ultimaBusquedaUrl, setUltimaBusquedaUrl] = useState(busquedaEnUrl);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-    // Sincronizar el buscador con la URL
-    useEffect(() => {
-        const params = new URLSearchParams(location.search);
+    if (busquedaEnUrl !== ultimaBusquedaUrl) {
+        setUltimaBusquedaUrl(busquedaEnUrl);
+        setSearchText(busquedaEnUrl);
+    }
 
-        setSearchText(params.get('buscar') ?? '');
-        setShowSuggestions(false);
+    // Resultados con la MISMA función que usa el catálogo (utils/busqueda.js)
+    const normalizedSearch = searchText.trim();
+    const allResults = normalizedSearch ? buscarProductos(productos, normalizedSearch) : [];
+    const searchResults = allResults.slice(0, 5); // en el menú se muestran máximo 5
 
-    }, [location.search]);
+    // URL del catálogo con la búsqueda (conserva otros filtros, como ?categoria=)
+    function urlCatalogo(term) {
+        const params = new URLSearchParams(enCatalogo ? location.search : '');
+        if (term) params.set('buscar', term);
+        else params.delete('buscar');
+        const query = params.toString();
+        return query ? `/Catalogue?${query}` : '/Catalogue';
+    }
 
-    // Buscar coincidencias mientras se escribe
-    const normalizedSearch = searchText.trim().toLowerCase();
-
-    const searchResults = normalizedSearch
-        ? productos.filter(product =>
-            product.name.toLowerCase().includes(normalizedSearch)
-        ).slice(0, 5)
-        : [];
+    // Mientras se escribe estando en el catálogo, los resultados se actualizan solos
+    function handleSearchChange(event) {
+        const value = event.target.value;
+        setSearchText(value);
+        setShowSuggestions(true);
+        if (enCatalogo) {
+            setUltimaBusquedaUrl(value.trim());
+            navigate(urlCatalogo(value.trim()), { replace: true });
+        }
+    }
 
     // Buscar al presionar Enter
     function handleSearch(event) {
@@ -46,11 +73,7 @@ function Header({ onToggleFilters }) {
 
             setShowSuggestions(false);
 
-            navigate(
-                term
-                    ? `/Catalogue?buscar=${encodeURIComponent(term)}`
-                    : '/Catalogue'
-            );
+            navigate(urlCatalogo(term));
         }
 
         // Cerrar sugerencias con Escape
@@ -120,10 +143,8 @@ function Header({ onToggleFilters }) {
                             type="text"
                             placeholder="Buscar frutas, verduras, orgánicos..."
                             value={searchText}
-                            onChange={(event) => {
-                                setSearchText(event.target.value);
-                                setShowSuggestions(true);
-                            }}
+                            onChange={handleSearchChange}
+                            aria-label="Buscar productos"
                             onKeyDown={handleSearch}
                             onFocus={() => setShowSuggestions(true)}
                         />
@@ -186,6 +207,15 @@ function Header({ onToggleFilters }) {
                                     </p>
 
                                 )}
+                                {allResults.length > searchResults.length && (
+                                    <Link
+                                        to={urlCatalogo(normalizedSearch)}
+                                        className="search-suggestion search-see-all"
+                                        onClick={() => setShowSuggestions(false)}
+                                    >
+                                        Ver los {allResults.length} resultados
+                                    </Link>
+                                )}
 
                             </div>
 
@@ -194,9 +224,10 @@ function Header({ onToggleFilters }) {
                     </div>
 
                     {/* CUENTA */}
-                    <a
-                        href="/Login"
+                    <Link
+                        to={rutaCuenta}
                         className="account-link"
+                        title={esAdmin ? 'Ir al panel de administración' : undefined}
                     >
 
                         <span className="account-icon">
@@ -206,9 +237,22 @@ function Header({ onToggleFilters }) {
                             />
                         </span>
 
-                        Mi Cuenta
+                        {textoCuenta}
 
-                    </a>
+                    </Link>
+
+                    {usuario && (
+                        <button
+                            type="button"
+                            className="logout-link"
+                            onClick={() => {
+                                cerrarSesion();
+                                navigate('/');
+                            }}
+                        >
+                            Salir
+                        </button>
+                    )}
 
                     {/* CARRITO */}
                     <a
@@ -230,7 +274,7 @@ function Header({ onToggleFilters }) {
                             </span>
 
                             <span className="cart-total">
-                                ${Math.round(subtotal).toLocaleString('es-CL')}
+                                {formatoCLP(subtotal)}
                             </span>
 
                         </span>
@@ -279,6 +323,14 @@ function Header({ onToggleFilters }) {
                                 Blog
                             </a>
                         </li>
+
+                        {esAdmin && (
+                            <li>
+                                <Link to="/admin" className="nav-admin">
+                                    Panel Admin
+                                </Link>
+                            </li>
+                        )}
 
                     </ul>
 

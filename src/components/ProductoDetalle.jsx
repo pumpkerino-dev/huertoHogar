@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import { productos } from '../pages/Catalogue.jsx';
-import { useCart } from '../contexto/CartContext.jsx';
+import { useProductos } from '../hooks/useCatalogo';
+import { useCart } from '../contexto/useCart';
 
 /* CSS específico */
 import '../css/pages/products.css';
 import '../App.css';
+import { formatoCLP as formatOfferPrice } from '../utils/producto';
 
-function formatOfferPrice(price) {
-    return `$${Math.round(Number(price)).toLocaleString('es-CL')}`;
-}
 
 function ProductoDetalle() {
 
     const { code } = useParams();
+    const { productos, cargando } = useProductos();
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
 
@@ -36,11 +35,23 @@ function ProductoDetalle() {
     const [activeImage, setActiveImage] = useState(null);
     const [activeThumbnail, setActiveThumbnail] = useState(-1);
 
-    useEffect(() => {
+    // Al cambiar de producto (otra URL), se reinician cantidad e imagen.
+    // Se hace durante el render (patrón recomendado por React) en vez de en un useEffect.
+    const [codigoMostrado, setCodigoMostrado] = useState(code);
+    if (code !== codigoMostrado) {
+        setCodigoMostrado(code);
         setQuantity(1);
         setActiveImage(null);
         setActiveThumbnail(-1);
-    }, [code]);
+    }
+
+    if (!product && cargando) {
+        return (
+            <main className="container product-page">
+                <p>Cargando producto...</p>
+            </main>
+        );
+    }
 
     if (!product) {
         return (

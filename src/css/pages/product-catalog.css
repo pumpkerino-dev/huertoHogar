@@ -246,7 +246,9 @@
     object-fit: cover;
 }
 
-.card-body {
+/* Alcance limitado a las tarjetas de producto: antes era global y deformaba las tarjetas
+   (".card-body") de Bootstrap en el panel admin, el Checkout y Mi Cuenta. */
+.product-card .card-body {
     padding: 16px;
     display: flex;
     flex-direction: column;

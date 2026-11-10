@@ -3,7 +3,7 @@ import '../css/pages/page-home.css'
 import '../App.css'
 import CategDestacada from '../components/CategDestacada.jsx';
 import OfertasDestac from '../components/OfertasDestac.jsx';
-import { productos } from './Catalogue.jsx';
+import { useProductos } from '../hooks/useCatalogo';
 
 const categoriasDestacadas = [
     {
@@ -36,11 +36,14 @@ const categoriasDestacadas = [
     }
 ];
 
-const ofertasDestacadas = ['FR001', 'PO001', 'VR001', 'PL001']
-    .map(code => productos.find(product => product.code === code))
-    .filter(Boolean);
+const CODIGOS_DESTACADOS = ['FR001', 'PO001', 'VR001', 'PL001'];
 
 function Home() {
+    const { productos } = useProductos();
+    const ofertasDestacadas = CODIGOS_DESTACADOS
+        .map(code => productos.find(product => product.code === code))
+        .filter(Boolean);
+
     return(
         <>
 <main>

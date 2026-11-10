@@ -1,5 +1,5 @@
 /*Css Especifico*/
-import '../css/pages/Nosotros.css'
+import '../css/pages/nosotros.css'
 import '../App.css'
 
 function Nosotros() {

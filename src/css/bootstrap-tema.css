@@ -1,0 +1,176 @@
+/* ==========================================================================
+   TEMA DE BOOTSTRAP CON LA PALETA DE HUERTOHOGAR
+   Bootstrap trae sus propios colores (verde #198754, azul #0d6efd...).
+   Aquí se reemplazan por las MISMAS variables que definió el equipo en App.css
+   (--green, --green-dark, --green-light, --brown, --mustard, --error, --border...),
+   para que el panel admin y las páginas con Bootstrap se vean igual que el resto.
+   Se importa en main.jsx, justo después de bootstrap.min.css.
+   ========================================================================== */
+
+:root {
+  /* Éxito = verde esmeralda de la marca */
+  --bs-success: var(--green);
+  --bs-success-rgb: 46, 139, 87;
+  --bs-success-text-emphasis: var(--green-dark);
+  --bs-success-bg-subtle: var(--green-light);
+  --bs-success-border-subtle: #b9dbc7;
+
+  /* Primario = marrón claro de la marca (títulos y acentos) */
+  --bs-primary: var(--brown);
+  --bs-primary-rgb: 139, 69, 19;
+  --bs-primary-text-emphasis: #6b3510;
+  --bs-primary-bg-subtle: #f4ebe3;
+  --bs-primary-border-subtle: #dcc3ae;
+
+  /* Advertencia = amarillo mostaza de la marca (ofertas, stock bajo) */
+  --bs-warning: var(--mustard);
+  --bs-warning-rgb: 255, 215, 0;
+  --bs-warning-text-emphasis: #6b5800;
+  --bs-warning-bg-subtle: #fff7cc;
+  --bs-warning-border-subtle: #ffe866;
+
+  /* Error = rojo de error del equipo */
+  --bs-danger: var(--error);
+  --bs-danger-rgb: 179, 38, 30;
+  --bs-danger-text-emphasis: #7a1a14;
+  --bs-danger-bg-subtle: #f9e3e1;
+  --bs-danger-border-subtle: #ecb4af;
+
+  /* Textos, enlaces, bordes y radios */
+  --bs-body-font-family: var(--font-body);
+  --bs-body-color: var(--text-main);
+  --bs-secondary-color: var(--text-muted);
+  --bs-link-color: var(--green-dark);
+  --bs-link-color-rgb: 37, 110, 70;
+  --bs-link-hover-color: var(--green);
+  --bs-link-hover-color-rgb: 46, 139, 87;
+  --bs-border-color: var(--border);
+  --bs-border-radius: var(--radius);
+  --bs-border-radius-lg: var(--radius-card);
+  --bs-focus-ring-color: rgba(46, 139, 87, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Botones de Bootstrap
+   App.css define ".btn" para los botones propios (sin borde, letra 0.82rem).
+   Esa regla también afectaba a los botones de Bootstrap: los "outline" quedaban
+   sin borde y parecían links. Con doble clase (.btn.btn-...) se les devuelve su
+   borde, tamaño y relleno, sin tocar los botones propios (.btn-primary, .btn-outline).
+   -------------------------------------------------------------------------- */
+.btn.btn-success,
+.btn.btn-danger,
+.btn.btn-secondary,
+.btn.btn-light,
+.btn.btn-warning,
+.btn[class*="btn-outline-"] {
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+  font-size: var(--bs-btn-font-size);
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+  width: auto;
+  margin-top: 0;
+}
+
+.btn.btn-success {
+  --bs-btn-bg: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-bg: var(--green-dark);
+  --bs-btn-hover-border-color: var(--green-dark);
+  --bs-btn-active-bg: var(--green-dark);
+  --bs-btn-active-border-color: var(--green-dark);
+  --bs-btn-disabled-bg: var(--green);
+  --bs-btn-disabled-border-color: var(--green);
+  --bs-btn-focus-shadow-rgb: 46, 139, 87;
+}
+
+.btn.btn-outline-success {
+  --bs-btn-color: var(--green-dark);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-bg: var(--green);
+  --bs-btn-hover-border-color: var(--green);
+  --bs-btn-hover-color: var(--white);
+  --bs-btn-active-bg: var(--green-dark);
+  --bs-btn-active-color: var(--white);
+}
+
+/* "Editar" (antes azul de Bootstrap) pasa al marrón de la marca */
+.btn.btn-outline-primary {
+  --bs-btn-color: var(--brown);
+  --bs-btn-border-color: var(--brown);
+  --bs-btn-hover-bg: var(--brown);
+  --bs-btn-hover-border-color: var(--brown);
+  --bs-btn-hover-color: var(--white);
+  --bs-btn-active-bg: #6b3510;
+  --bs-btn-active-color: var(--white);
+}
+
+.btn.btn-outline-warning {
+  /* El mostaza sobre blanco se lee mal: borde mostaza y texto oscuro */
+  --bs-btn-color: var(--bs-warning-text-emphasis);
+  --bs-btn-border-color: var(--mustard);
+  --bs-btn-hover-bg: var(--mustard);
+  --bs-btn-hover-border-color: var(--mustard);
+  --bs-btn-hover-color: var(--text-main);
+  --bs-btn-active-bg: var(--mustard);
+  --bs-btn-active-color: var(--text-main);
+}
+
+.btn.btn-outline-danger {
+  --bs-btn-color: var(--error);
+  --bs-btn-border-color: var(--error);
+  --bs-btn-hover-bg: var(--error);
+  --bs-btn-hover-border-color: var(--error);
+  --bs-btn-hover-color: var(--white);
+}
+
+.btn.btn-danger {
+  --bs-btn-bg: var(--error);
+  --bs-btn-border-color: var(--error);
+  --bs-btn-hover-bg: #8f1e18;
+  --bs-btn-hover-border-color: #8f1e18;
+}
+
+/* --------------------------------------------------------------------------
+   Formularios, tablas, barras y pestañas con la paleta
+   -------------------------------------------------------------------------- */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 139, 87, 0.2);
+}
+
+.form-check-input:checked {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+.form-check-input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 139, 87, 0.2);
+}
+
+.table-success {
+  --bs-table-bg: var(--green-light);
+  --bs-table-color: var(--text-main);
+  --bs-table-border-color: var(--border);
+}
+
+.progress {
+  --bs-progress-bar-bg: var(--green);
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--green);
+  --bs-nav-link-color: var(--text-main);
+  --bs-nav-link-hover-color: var(--green-dark);
+}
+
+/* Tablas dentro de tarjetas: misma sangría que el encabezado de la tarjeta */
+.card > .table-responsive > .table > :not(caption) > * > *:first-child,
+.card > .table > :not(caption) > * > *:first-child {
+  padding-left: 1rem;
+}
+.card > .table-responsive > .table > :not(caption) > * > *:last-child,
+.card > .table > :not(caption) > * > *:last-child {
+  padding-right: 1rem;
+}
