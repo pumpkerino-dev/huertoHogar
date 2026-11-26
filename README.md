@@ -25,6 +25,7 @@ El proyecto busca ofrecer una experiencia de compra sencilla e intuitiva, permit
 - Páginas de Ofertas, Categorías y Contacto (el mensaje se guarda en el backend).
 - Nosotros con video embebido y mapa de las 7 tiendas.
 - Registro con RUN (módulo 11), región y comuna dependientes, y correos solo @duoc.cl, @profesor.duoc.cl o @gmail.com.
+- Recuperación de contraseña con código de verificación de 6 dígitos (`/auth/recuperar` y `/auth/restablecer`).
 - Panel de administración para ADMIN y vista de solo lectura para VENDEDOR.
 - Sección de blog y visualización de artículos.
 - Easter egg.
@@ -197,7 +198,7 @@ npx vitest run -t "Prueba 4"                       # una sola prueba por nombre
 npm run test:coverage                              # cobertura (equivale a npx vitest run --coverage)
 ```
 
-- 59 pruebas en 20 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
+- 62 pruebas en 21 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
 - Datos de prueba en `src/test/test-utils.jsx` y servicios simulados con `vi.mock()`.
 - El informe de cobertura queda guardado en **`coverage/`**: abrir **`coverage/index.html`** en el navegador.
 - Detalle y resultados: [`docs/cobertura-testing.md`](docs/cobertura-testing.md).

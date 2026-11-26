@@ -40,7 +40,7 @@ src/test/
 ├── components/             ProductoCatalogo, ProductoCarrito, AdminRoute (ADMIN, VENDEDOR y CLIENTE)
 ├── contexto/               useCart (renderHook + act)
 ├── hooks/                  useListado y useAgregarAlCarrito (renderHook + act)
-├── pages/                  Catalogue, Checkout (+ Compra exitosa / con error), Login, Contacto
+├── pages/                  Catalogue, Checkout (+ Compra exitosa / con error), Login, Contacto, RecuperarContrasena
 │   └── admin/              ProductosAdmin, CategoriasAdmin (React Hook Form + Yup), OrdenesAdmin
 ├── services/               ordenService (validación del carrito, /boletas y cambio de estado)
 └── utils/                  búsqueda, reportes, validaciones (RUN, correo, contraseña), despacho y adaptador
@@ -61,7 +61,7 @@ src/test/
 | 9 | Validación de formulario | `Login.test.jsx` | Un RUN con dígito verificador incorrecto y un correo de dominio no permitido muestran el error, marcan el campo y no se envía |
 | 10 | Compra exitosa y fallida | `Checkout.test.jsx` | **10a:** página de compra exitosa con la boleta y carrito vacío. **10b:** página de compra con error y carrito conservado |
 
-**Resultado:** `Test Files 20 passed (20)` · `Tests 59 passed (59)`. Además de las 10 pedidas, hay pruebas
+**Resultado:** `Test Files 21 passed (21)` · `Tests 62 passed (62)`. Además de las 10 pedidas, hay pruebas
 del admin, de los custom hooks y de la lógica compartida.
 
 ### Pruebas agregadas en la Evaluación 3
@@ -75,6 +75,7 @@ del admin, de los custom hooks y de la lógica compartida.
 | `Checkout.test.jsx` | Con sesión, los datos de envío se completan solos; sin datos de envío no se llama al backend |
 | `Login.test.jsx` | La comuna depende de la región; al iniciar sesión se guardan el token de acceso y el de renovación |
 | `Contacto.test.jsx` | El formulario de contacto valida dominio del correo y comentario, y envía los datos al backend |
+| `RecuperarContrasena.test.jsx` | Recorre los tres pasos (correo, código y nueva contraseña) con el backend simulado; no pide código para dominios no permitidos y muestra el error si el código es incorrecto |
 | `validation.test.js` | RUN con módulo 11, dominios de correo permitidos y largo de la contraseña del login |
 | `reportes.test.js` | Las órdenes canceladas no cuentan como venta; los críticos usan el stock crítico de cada producto |
 | `ordenService.test.js` | La compra se envía a `/boletas` con los datos de envío; el cambio de estado usa `PATCH` |
@@ -92,24 +93,24 @@ Las pruebas **no usan el backend**:
 
 | Sentencias | Ramas | Funciones | Líneas |
 |---|---|---|---|
-| **54,93 %** | **51,39 %** | **48,13 %** | **57,23 %** |
+| **56,33 %** | **52,29 %** | **49,26 %** | **58,84 %** |
 
 | Carpeta | Sentencias | Líneas |
 |---|---|---|
-| `src/utils` | 84,93 % | 91,15 % |
-| `src/hooks` | 88,24 % | 86,67 % |
-| `src/services` | 48,15 % | 84,91 % |
-| `src` (`api.js`, `App.jsx`) | 77,78 % | 82,50 % |
-| `src/contexto` | 78,79 % | 77,78 % |
-| `src/pages` | 57,26 % | 59,19 % |
-| `src/data` | 53,85 % | 45,45 % |
+| `src/utils` | 84,92 % | 91,14 % |
+| `src/hooks` | 88,23 % | 86,66 % |
+| `src/services` | 47,82 % | 84,21 % |
+| `src` (`api.js`, `App.jsx`) | 77,77 % | 82,50 % |
+| `src/contexto` | 78,78 % | 77,77 % |
+| `src/pages` | 63,36 % | 65,41 % |
+| `src/data` | 53,84 % | 45,45 % |
 | `src/components/admin` | 36,89 % | 37,23 % |
-| `src/pages/admin` | 30,11 % | 32,14 % |
-| `src/components` | 22,87 % | 23,73 % |
+| `src/pages/admin` | 30,10 % | 32,14 % |
+| `src/components` | 22,87 % | 23,72 % |
 
-Archivos principales: `Contacto.jsx` 96,15 % · `Checkout.jsx` 91,17 % · `api.js` 85,36 % · `CompraError.jsx` 83,33 % ·
-`Login.jsx` 81,81 % · `OrdenesAdmin.jsx` 73,91 % · `ProductoCarrito.jsx`, `ProductoCatalogo.jsx`, `useCart.js`,
-`useListado.js` y `useAgregarAlCarrito.js` 100 %.
+Archivos principales: `Contacto.jsx` 96,15 % · `Checkout.jsx` 91,17 % · `RecuperarContrasena.jsx` 89,28 % · `api.js` 85,36 % ·
+`CompraError.jsx` 83,33 % · `Login.jsx` 81,81 % · `OrdenesAdmin.jsx` 73,91 % · `ProductoCarrito.jsx`, `ProductoCatalogo.jsx`,
+`useCart.js`, `useListado.js` y `useAgregarAlCarrito.js` 100 %.
 
 ![Informe de cobertura: resumen por carpeta](img/cobertura-index.png)
 
@@ -129,7 +130,7 @@ líneas en rojo son las que ninguna prueba ejecutó:
 
 - **Cubierto:** el núcleo de la tienda (catálogo, búsqueda, filtros, carrito, compra y validaciones) y las
   reglas del admin, con cobertura entre 75 % y 100 %.
-- **Total más bajo (54,9 %)** porque se miden todos los archivos de `src`, incluidas páginas informativas y
+- **Total más bajo (56,3 %)** porque se miden todos los archivos de `src`, incluidas páginas informativas y
   componentes de presentación (Header, Footer, AdminLayout).
 - **Pendiente:** Header, ShoppingCart, Profile, Ofertas, Categorías y las páginas de Reportes, Usuarios y Mensajes del admin.
 - No se fijaron mínimos (`thresholds`, opcionales en el tutorial) porque con la cobertura actual las pruebas fallarían.
