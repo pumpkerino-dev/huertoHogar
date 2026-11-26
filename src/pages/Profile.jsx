@@ -12,7 +12,7 @@ import { useAuth } from '../contexto/useAuth'
 import { useListado } from '../hooks/useListado'
 import * as ordenService from '../services/ordenService'
 import { formatoCLP } from '../utils/producto'
-import { formatoDiaDespacho } from '../utils/despacho'
+import { direccionEnvio, formatoDiaDespacho } from '../utils/despacho'
 
 const PESTANAS = [
     { id: 'pedidos', texto: 'Mis Pedidos', icono: 'bi-bag-check' },
@@ -22,14 +22,13 @@ const PESTANAS = [
     { id: 'configuracion', texto: 'Configuración', icono: 'bi-gear' },
 ]
 
-// Etapa del pedido según el día de despacho elegido en el carrito
-function etapaPedido(orden) {
-    if (!orden?.fechaEntrega) return 0
-    const hoy = new Date().toISOString().slice(0, 10)
-    if (orden.fechaEntrega > hoy) return 0      // Preparando
-    if (orden.fechaEntrega === hoy) return 1    // En camino
-    return 2                                     // Entregado
-}
+// Etapas del seguimiento: el estado lo cambia el administrador en el panel (Órdenes / Boletas)
+const ETAPAS = [
+    { estado: 'EN_PREPARACION', texto: 'En preparación', icono: 'bi-box-seam' },
+    { estado: 'EN_CAMINO', texto: 'En camino', icono: 'bi-truck' },
+    { estado: 'ENTREGADO', texto: 'Entregado', icono: 'bi-house-check' },
+]
+const etapaPedido = (orden) => ETAPAS.findIndex((e) => e.estado === orden?.estado)
 
 /**
  * MI CUENTA (página adaptada con Bootstrap): menú de pestañas + panel.
@@ -52,8 +51,10 @@ function Profile() {
     // El perfil es solo para usuarios con sesión iniciada
     if (!cargando && !usuario) return <Navigate to="/Login" replace />
 
-    const ultimo = pedidos[0]
+    // Se sigue el pedido más reciente que no esté entregado ni cancelado (o el último, si todos terminaron)
+    const ultimo = pedidos.find((p) => p.estado === 'EN_PREPARACION' || p.estado === 'EN_CAMINO') ?? pedidos[0]
     const etapa = etapaPedido(ultimo)
+    const cancelado = ultimo?.estado === 'CANCELADA'
 
     return (
         <main>
@@ -63,7 +64,7 @@ function Profile() {
                         <Card className="border-0 shadow-sm account-nav">
                             <Card.Body>
                                 <h2 className="h5">Mi Cuenta</h2>
-                                <p className="small text-muted mb-3">{usuario?.nombre}</p>
+                                <p className="small text-muted mb-3">{usuario?.nombre} {usuario?.apellidos}</p>
                                 <Nav variant="pills" className="flex-row flex-lg-column flex-nowrap overflow-auto gap-1"
                                     activeKey={panel} onSelect={(clave) => setPanel(clave)}>
                                     {PESTANAS.map((p) => (
@@ -86,20 +87,25 @@ function Profile() {
                                     <Card.Body>
                                         <div className="d-flex justify-content-between align-items-center mb-3">
                                             <h2 className="h5 mb-0">Sigue tu Pedido Activo</h2>
-                                            {ultimo && <Badge bg="success">#{ultimo.id}</Badge>}
+                                            {ultimo && <Badge bg="success">N° {ultimo.numero}</Badge>}
                                         </div>
                                         {ultimo ? (
                                             <>
-                                                <Row className="text-center g-2 mb-3">
-                                                    {['Preparando', 'En Camino', 'Entregado'].map((nombre, i) => (
-                                                        <Col key={nombre}>
-                                                            <div className={`rounded-pill py-2 small ${i <= etapa ? 'bg-success text-white' : 'bg-light text-muted'}`}>
-                                                                {nombre}
-                                                            </div>
-                                                        </Col>
-                                                    ))}
-                                                </Row>
-                                                <p className="mb-1 small"><strong>Destino:</strong> {usuario?.direccion || 'Dirección por confirmar'}</p>
+                                                {cancelado ? (
+                                                    <Alert variant="secondary" className="py-2 small">Este pedido fue cancelado y no se despachará.</Alert>
+                                                ) : (
+                                                    <Row className="text-center g-2 mb-3" aria-label="Estado del pedido">
+                                                        {ETAPAS.map((e, i) => (
+                                                            <Col key={e.estado}>
+                                                                <div className={`rounded-pill py-2 small ${i <= etapa ? 'bg-success text-white' : 'bg-light text-muted'}`}
+                                                                    aria-current={i === etapa ? 'step' : undefined}>
+                                                                    <i className={`bi ${e.icono} me-1`} aria-hidden="true" />{e.texto}
+                                                                </div>
+                                                            </Col>
+                                                        ))}
+                                                    </Row>
+                                                )}
+                                                <p className="mb-1 small"><strong>Destino:</strong> {direccionEnvio(ultimo.envio) || 'Dirección por confirmar'}</p>
                                                 <p className="mb-1 small"><strong>Despacho:</strong> {ultimo.fechaEntrega ? formatoDiaDespacho(ultimo.fechaEntrega) : 'Por coordinar'}</p>
                                                 <p className="mb-0 small"><strong>Total:</strong> {formatoCLP(ultimo.total)}</p>
                                             </>
@@ -136,6 +142,7 @@ function Profile() {
                                             <div>
                                                 <Badge bg="success" className="mb-1">Principal</Badge>
                                                 <div>{usuario.direccion}</div>
+                                                <div className="small text-muted">{[usuario.comuna, usuario.region].filter(Boolean).join(', ')}</div>
                                             </div>
                                             <Button size="sm" variant="outline-success" onClick={() => setPanel('perfil')}>Editar</Button>
                                         </div>

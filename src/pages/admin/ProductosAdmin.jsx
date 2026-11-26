@@ -11,15 +11,20 @@ import { useListado } from "../../hooks/useListado";
 import * as productoService from "../../services/productoService";
 import * as categoriaService from "../../services/categoriaService";
 import { mensajeDeError } from "../../api";
-import { STOCK_BAJO } from "../../utils/producto";
+import { useAuth } from "../../contexto/useAuth";
 
 /**
  * PRODUCTOS: Mostrar productos, Nuevo producto, Editar producto y Eliminar.
- * Con soloCriticos=true es la página "Listado de productos críticos" (stock bajo):
- * se reutiliza el mismo componente en vez de crear otro casi igual.
+ * Con soloCriticos=true es la página "Listado de productos críticos" (stock igual o menor a su stock crítico,
+ * GET /productos/criticos): se reutiliza el mismo componente en vez de crear otro casi igual.
+ * El VENDEDOR ve la lista y el detalle de cada producto, pero no puede crear, editar ni eliminar.
  */
 function ProductosAdmin({ soloCriticos = false }) {
-  const productosListado = useListado(productoService.getProductos, "No se pudieron cargar los productos");
+  const { esAdmin } = useAuth();
+  const productosListado = useListado(
+    soloCriticos ? productoService.getProductosCriticos : productoService.getProductos,
+    "No se pudieron cargar los productos"
+  );
   const { datos: categorias } = useListado(categoriaService.getCategorias);
   const { datos: productos, cargando, error, setError, recargar } = productosListado;
 
@@ -29,7 +34,7 @@ function ProductosAdmin({ soloCriticos = false }) {
   const [searchParams] = useSearchParams();
   const [codigoYaAbierto, setCodigoYaAbierto] = useState(null);
 
-  // formulario: null = cerrado | { producto: null } = nuevo | { producto } = editar
+  // formulario: null = cerrado | { producto: null } = nuevo | { producto } = editar (o ver, si es vendedor)
   const [formulario, setFormulario] = useState(null);
   const [aEliminar, setAEliminar] = useState(null);
 
@@ -69,7 +74,6 @@ function ProductosAdmin({ soloCriticos = false }) {
 
   const texto = busqueda.trim().toLowerCase();
   const visibles = productos.filter((p) =>
-    (!soloCriticos || p.stock <= STOCK_BAJO) &&
     (!filtro || p.categoria === filtro) &&
     (!texto || p.nombre.toLowerCase().includes(texto) || p.codigo.toLowerCase().includes(texto))
   );
@@ -79,8 +83,10 @@ function ProductosAdmin({ soloCriticos = false }) {
       <EncabezadoPagina
         titulo={soloCriticos ? "Productos críticos" : "Productos"}
         descripcion={soloCriticos
-          ? `Productos con ${STOCK_BAJO} unidades o menos de stock. Edítalos para reponer.`
-          : "Crea, edita y elimina los productos del catálogo, y define sus ofertas."}
+          ? "Productos con stock igual o menor a su stock crítico." + (esAdmin ? " Edítalos para reponer." : "")
+          : esAdmin
+            ? "Crea, edita y elimina los productos del catálogo, y define sus ofertas."
+            : "Consulta los productos del catálogo, su precio y su stock."}
       >
         {soloCriticos ? (
           <Button as={Link} to="/admin/productos" variant="outline-success">Ver todos</Button>
@@ -89,9 +95,11 @@ function ProductosAdmin({ soloCriticos = false }) {
             <i className="bi bi-exclamation-triangle" /> Críticos
           </Button>
         )}
-        <Button variant="success" className="text-nowrap" onClick={() => setFormulario({ producto: null })}>
-          <i className="bi bi-plus-lg" /> Nuevo producto
-        </Button>
+        {esAdmin && (
+          <Button variant="success" className="text-nowrap" onClick={() => setFormulario({ producto: null })}>
+            <i className="bi bi-plus-lg" /> Nuevo producto
+          </Button>
+        )}
       </EncabezadoPagina>
 
       <div className="d-flex flex-column flex-sm-row gap-2 mb-3">
@@ -112,13 +120,15 @@ function ProductosAdmin({ soloCriticos = false }) {
           <Cargando />
         ) : (
           <ProductoTable productos={visibles} categorias={categorias}
-            onEditar={(p) => setFormulario({ producto: p })} onEliminar={setAEliminar} />
+            onVer={esAdmin ? undefined : (p) => setFormulario({ producto: p })}
+            onEditar={esAdmin ? (p) => setFormulario({ producto: p }) : undefined}
+            onEliminar={esAdmin ? setAEliminar : undefined} />
         )}
       </Card>
 
       {formulario && (
         <ProductoForm key={formulario.producto?.id ?? "nuevo"} show producto={formulario.producto}
-          categorias={categorias} onGuardar={guardar} onCancelar={() => setFormulario(null)} />
+          categorias={categorias} onGuardar={guardar} onCancelar={() => setFormulario(null)} soloLectura={!esAdmin} />
       )}
 
       <ConfirmModal

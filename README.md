@@ -20,7 +20,12 @@ El proyecto busca ofrecer una experiencia de compra sencilla e intuitiva, permit
 - Visualización del detalle de cada producto.
 - Carrito de compras con gestión de cantidades.
 - Almacenamiento del carrito mediante `localStorage`.
-- Proceso de checkout y confirmación de compra.
+- Proceso de checkout con datos de envío (se autocompletan con la cuenta) y páginas de compra exitosa y con error.
+- Seguimiento del pedido en Mi Cuenta (En preparación → En camino → Entregado).
+- Páginas de Ofertas, Categorías y Contacto (el mensaje se guarda en el backend).
+- Nosotros con video embebido y mapa de las 7 tiendas.
+- Registro con RUN (módulo 11), región y comuna dependientes, y correos solo @duoc.cl, @profesor.duoc.cl o @gmail.com.
+- Panel de administración para ADMIN y vista de solo lectura para VENDEDOR.
 - Sección de blog y visualización de artículos.
 - Easter egg.
 
@@ -90,7 +95,8 @@ El backend está en la rama **`react-backend`** de este mismo repositorio:
 # Terminal 1: backend (rama react-backend, en otra carpeta)
 git clone -b react-backend https://github.com/pumpkerino-dev/huertoHogar.git huertoHogar-backend
 cd huertoHogar-backend
-mvnw.cmd spring-boot:run      # Windows   (./mvnw spring-boot:run en macOS / Linux)
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2"   # sin MySQL (datos en memoria)
+.\mvnw.cmd spring-boot:run                                    # con MySQL en localhost:3306
 
 # Terminal 2: frontend
 npm install
@@ -101,12 +107,20 @@ Si el backend no está corriendo, la tienda muestra *"No se pudo conectar con el
 
 ## Panel de administración
 
-| Correo                 | Contraseña | Rol     | Entra a      |
-|------------------------|------------|---------|--------------|
-| admin@huertohogar.cl   | Admin123   | ADMIN   | `/admin`     |
-| cliente@huertohogar.cl | Cliente123 | CLIENTE | `/Profile`   |
+| Correo            | Contraseña | Rol      | Entra a           | Qué ve |
+|-------------------|------------|----------|-------------------|--------|
+| admin@duoc.cl     | Admin123   | ADMIN    | `/admin`          | Todo el panel |
+| vendedor@duoc.cl  | Vendedor1  | VENDEDOR | `/admin/productos`| Productos y órdenes, sin modificar |
+| cliente@gmail.com | Cliente123 | CLIENTE  | `/Profile`        | Tienda y Mi Cuenta |
 
-El backend usa **H2 en memoria**: al reiniciarlo, los datos vuelven a los iniciales que carga `DataInitializer`.
+Con el perfil `h2` los datos viven en memoria y vuelven a los iniciales al reiniciar el backend; con MySQL quedan guardados.
+
+### Sesión con JWT y renovación del token
+
+Al iniciar sesión el backend entrega dos tokens que se guardan en `localStorage`: el de **acceso** (15 minutos) y el de
+**renovación** (7 días). `api.js` envía el de acceso en cada petición; si el backend responde 401 porque venció,
+pide uno nuevo a `POST /auth/refresh` y repite la petición sin que el usuario lo note. Si la renovación también
+falla, se cierra la sesión.
 
 ### De dónde salen los datos
 
@@ -114,25 +128,30 @@ El backend usa **H2 en memoria**: al reiniciarlo, los datos vuelven a los inicia
 |------|-------|----------|
 | Componentes | `src/pages`, `src/components` | Solo muestran datos; nunca llaman a la API directamente |
 | Hooks de la tienda | `src/hooks/useCatalogo.js` | `useProductos()` y `useCategorias()` piden los datos e informan si están cargando |
-| Servicios | `src/services/*Service.js` | Llamadas con axios a `/api/v1/...` |
-| Cliente HTTP | `src/api.js` | axios con la URL del backend y el token JWT en cada petición (igual que el ejemplo del curso) |
-| Backend | rama `react-backend` | Spring Boot + JPA + H2, con los datos iniciales en `DataInitializer` |
+| Servicios | `src/services/*Service.js` | Llamadas con axios a `/api/v1/...` (`/productos`, `/categorias`, `/boletas`, `/usuarios`, `/contacto`, `/auth`) |
+| Cliente HTTP | `src/api.js` | axios con la URL del backend, el token JWT en cada petición y la renovación automática |
+| Datos fijos | `src/data` | Regiones y comunas (de la plantilla del curso), tiendas y artículos del blog |
+| Backend | rama `react-backend` | Spring Boot + JPA + MySQL (o H2), con los datos iniciales en `DataInitializer` |
 
 Lo que el admin edita (precios, ofertas, stock, categorías) queda guardado en el backend y se ve en la tienda.
 
 ### Navegación del administrador (según el diagrama)
 
-| Opción del diagrama | Ruta | Página |
-|---|---|---|
-| Home / Dashboard | `/admin` | `AdminDashboard` |
-| Órdenes / Boletas → Mostrar boleta | `/admin/ordenes` | `OrdenesAdmin` + `BoletaModal` |
-| Producto → Nuevo / Mostrar / Editar | `/admin/productos` | `ProductosAdmin` + `ProductoForm` |
-| Producto → Listado productos críticos | `/admin/productos/criticos` | `ProductosAdmin` (`soloCriticos`) |
-| Producto → Reportes / Reportes | `/admin/reportes` | `ReportesAdmin` |
-| Categoría → Nueva / Editar | `/admin/categorias` | `CategoriasAdmin` + `CategoriaForm` |
-| Usuario → Nuevo / Mostrar / Editar | `/admin/usuarios` | `UsuariosAdmin` + `UsuarioForm` |
-| Usuario → Historial de compras | `/admin/usuarios` (botón Historial) | `OrdenesTabla` + `BoletaModal` |
-| Perfil | `/admin/perfil` | `PerfilAdmin` + `FormularioPerfil` |
+| Opción del diagrama | Ruta | Página | VENDEDOR |
+|---|---|---|---|
+| Home / Dashboard | `/admin` | `AdminDashboard` | No |
+| Órdenes / Boletas → Mostrar boleta, cambiar estado | `/admin/ordenes` | `OrdenesAdmin` + `BoletaModal` | Solo ver |
+| Producto → Nuevo / Mostrar / Editar / Eliminar | `/admin/productos` | `ProductosAdmin` + `ProductoForm` | Solo ver |
+| Producto → Listado productos críticos | `/admin/productos/criticos` | `ProductosAdmin` (`soloCriticos`) | Solo ver |
+| Producto → Reportes / Reportes | `/admin/reportes` | `ReportesAdmin` | No |
+| Categoría → Nueva / Editar / Eliminar | `/admin/categorias` | `CategoriasAdmin` + `CategoriaForm` | No |
+| Usuario → Nuevo / Mostrar / Editar | `/admin/usuarios` | `UsuariosAdmin` + `UsuarioForm` | No |
+| Usuario → Historial de compras | `/admin/usuarios` (botón Historial) | `OrdenesTabla` + `BoletaModal` | No |
+| Mensajes de contacto | `/admin/mensajes` | `MensajesAdmin` | No |
+| Perfil | `/admin/perfil` | `PerfilAdmin` + `FormularioPerfil` | No |
+
+`AdminRoute` deja entrar al panel a ADMIN y VENDEDOR; con `soloAdmin`, un VENDEDOR es enviado a productos.
+El menú lateral muestra a cada rol solo sus opciones, y el backend rechaza con 403 lo que el rol no puede hacer.
 
 > El diagrama muestra "Editar usuario" dentro de **Categoría**. Se interpretó como **Editar categoría**,
 > porque la edición de usuarios ya está en la opción **Usuario**.
@@ -149,11 +168,14 @@ dos en escritorio. Todo el panel `/admin` también usa Bootstrap (navbar, menú 
 |---|---|
 | `components/Campo.jsx` | Formularios de producto, usuario, categoría y perfil (sirve para formularios controlados y para React Hook Form) |
 | `components/FormularioPerfil.jsx` | Perfil del cliente y perfil del admin |
-| `components/BoletaDetalle.jsx` / `BoletaModal.jsx` | Checkout, Órdenes, Historial de compras, Mi Cuenta |
-| `components/OrdenesTabla.jsx` | Órdenes, Historial de compras, Mi Cuenta |
+| `components/CamposRegionComuna.jsx` | Región y comuna dependientes en perfil, usuarios del admin y checkout |
+| `components/FormularioEnvio.jsx` | Datos de envío del checkout (con sugerencias `datalist` de indicaciones) |
+| `components/MapaTiendas.jsx` | Mapa de Google Maps de las tiendas en Nosotros |
+| `components/BoletaDetalle.jsx` / `BoletaModal.jsx` | Compra exitosa, Órdenes, Historial de compras, Mi Cuenta |
+| `components/OrdenesTabla.jsx` | Órdenes (con cambio de estado para ADMIN), Historial de compras, Mi Cuenta |
 | `hooks/useAgregarAlCarrito.js` | Botón "Añadir al carrito" de `ProductoCatalogo` y `OfertasDestac` |
 | `hooks/useListado.js` | Todas las páginas del admin y Mi Cuenta (con función de limpieza, como el `useFetch` del tutorial de hooks) |
-| `utils/validation.js` | Login, registro, usuarios y perfil (formularios controlados con `useState`) |
+| `utils/validation.js` | Login, registro, usuarios, perfil, checkout y contacto: RUN (módulo 11), dominios de correo, contraseña y sugerencias de correo para `datalist` |
 | `utils/esquemas.js` | Categorías: esquema **Yup** usado con **React Hook Form** (`useForm` + `yupResolver`) |
 | `utils/busqueda.js` | Buscador del Header y Catálogo (mismos resultados con Enter o escribiendo) |
 | `utils/producto.js` | Formatos de precio (`formatoCLP`, `formatoPrecio`) para toda la tienda y el admin |
@@ -175,7 +197,7 @@ npx vitest run -t "Prueba 4"                       # una sola prueba por nombre
 npm run test:coverage                              # cobertura (equivale a npx vitest run --coverage)
 ```
 
-- 43 pruebas en 17 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
+- 59 pruebas en 20 archivos, incluidas las 10 solicitadas (`Prueba 1` a `Prueba 10`).
 - Datos de prueba en `src/test/test-utils.jsx` y servicios simulados con `vi.mock()`.
 - El informe de cobertura queda guardado en **`coverage/`**: abrir **`coverage/index.html`** en el navegador.
 - Detalle y resultados: [`docs/cobertura-testing.md`](docs/cobertura-testing.md).

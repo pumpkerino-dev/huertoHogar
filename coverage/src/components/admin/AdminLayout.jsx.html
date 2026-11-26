@@ -36,28 +36,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
@@ -168,7 +168,11 @@
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,6 +198,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -270,13 +276,15 @@ import { useAuth } from '../../contexto/useAuth'
 &nbsp;
 // Menú según el diagrama de navegación del administrador.
 // "sub" son las opciones que cuelgan de Producto (se muestran con sangría).
+// "vendedor": también la ve el rol VENDEDOR (solo productos y órdenes, sin modificar).
 const MENU = <span class="cstat-no" title="statement not covered" >[</span>
   { ruta: '/admin', texto: 'Dashboard', icono: 'bi-speedometer2', exacta: true },
-  { ruta: '/admin/ordenes', texto: 'Órdenes / Boletas', icono: 'bi-receipt' },
-  { ruta: '/admin/productos', texto: 'Productos', icono: 'bi-basket', exacta: true },
-  { ruta: '/admin/productos/criticos', texto: 'Productos críticos', icono: 'bi-exclamation-triangle', sub: true },
+  { ruta: '/admin/ordenes', texto: 'Órdenes / Boletas', icono: 'bi-receipt', vendedor: true },
+  { ruta: '/admin/productos', texto: 'Productos', icono: 'bi-basket', exacta: true, vendedor: true },
+  { ruta: '/admin/productos/criticos', texto: 'Productos críticos', icono: 'bi-exclamation-triangle', sub: true, vendedor: true },
   { ruta: '/admin/categorias', texto: 'Categorías', icono: 'bi-tags' },
   { ruta: '/admin/usuarios', texto: 'Usuarios', icono: 'bi-people' },
+  { ruta: '/admin/mensajes', texto: 'Mensajes', icono: 'bi-envelope' },
   { ruta: '/admin/reportes', texto: 'Reportes', icono: 'bi-bar-chart' },
   { ruta: '/admin/perfil', texto: 'Perfil', icono: 'bi-person-gear' },
 ]
@@ -288,7 +296,8 @@ const MENU = <span class="cstat-no" title="statement not covered" >[</span>
  * Las páginas del admin se dibujan en &lt;Outlet /&gt;.
  */
 function <span class="fstat-no" title="function not covered" >AdminLayout() {</span>
-  const { usuario, cerrarSesion } = <span class="cstat-no" title="statement not covered" >useAuth()</span>
+  const { usuario, esAdmin, cerrarSesion } = <span class="cstat-no" title="statement not covered" >useAuth()</span>
+  const menu = <span class="cstat-no" title="statement not covered" >esAdmin ? MENU : MENU.<span class="fstat-no" title="function not covered" >filter((i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.vendedor)</span></span>
   const navigate = <span class="cstat-no" title="statement not covered" >useNavigate()</span>
   const [menuAbierto, setMenuAbierto] = <span class="cstat-no" title="statement not covered" >useState(false)</span>
 &nbsp;
@@ -306,9 +315,9 @@ function <span class="fstat-no" title="function not covered" >AdminLayout() {</s
             &lt;i className="bi bi-list" /&gt;
           &lt;/Button&gt;
 &nbsp;
-          &lt;Navbar.Brand as={Link} to="/admin" className="d-flex align-items-center gap-2"&gt;
+          &lt;Navbar.Brand as={Link} to={esAdmin ? '/admin' : '/admin/productos'} className="d-flex align-items-center gap-2"&gt;
             &lt;img src="/img/logo.png" alt="" /&gt;
-            &lt;span className="d-none d-sm-inline"&gt;HuertoHogar · Admin&lt;/span&gt;
+            &lt;span className="d-none d-sm-inline"&gt;HuertoHogar · {esAdmin ? 'Admin' : 'Vendedor'}&lt;/span&gt;
           &lt;/Navbar.Brand&gt;
 &nbsp;
           &lt;div className="ms-auto d-flex align-items-center gap-2"&gt;
@@ -335,7 +344,7 @@ function <span class="fstat-no" title="function not covered" >AdminLayout() {</s
           &lt;/Offcanvas.Header&gt;
           &lt;Offcanvas.Body className="flex-column p-3 w-100"&gt;
             &lt;Nav className="flex-column gap-1 w-100"&gt;
-              {MENU.<span class="fstat-no" title="function not covered" >map((i</span>tem) =&gt; (
+              {menu.<span class="fstat-no" title="function not covered" >map((i</span>tem) =&gt; (
 <span class="cstat-no" title="statement not covered" >                &lt;Nav.Link key={item.ruta} as={NavLink} to={item.ruta} end={item.exacta}</span>
                   className={item.sub ? 'sub' : undefined}
 <span class="fstat-no" title="function not covered" >                  onClick={() =&gt; <span class="cstat-no" title="statement not covered" >s</span>etMenuAbierto(false)}&gt;</span>
@@ -363,7 +372,7 @@ export default AdminLayout
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-11-06T18:26:05.889Z
+                at 2026-11-26T01:56:50.613Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

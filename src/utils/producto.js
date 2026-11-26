@@ -1,8 +1,5 @@
 // Constantes y funciones de productos compartidas entre componentes.
 
-// Productos con este stock o menos se marcan como "stock bajo"
-export const STOCK_BAJO = 10;
-
 // 1200 -> "$1.200"
 export const formatoCLP = (valor) => "$" + Math.round(Number(valor) || 0).toLocaleString("es-CL");
 
@@ -27,6 +24,8 @@ export function validarProducto(p) {
   if (!p.nombre.trim()) errores.nombre = "El nombre es obligatorio";
   if (!esEnteroNoNegativo(p.precio)) errores.precio = "Ingresa un precio entero mayor o igual a 0";
   if (!esEnteroNoNegativo(p.stock)) errores.stock = "Ingresa un stock entero mayor o igual a 0";
+  if (p.stockCritico !== "" && p.stockCritico != null && !esEnteroNoNegativo(p.stockCritico))
+    errores.stockCritico = "Ingresa un stock crítico entero mayor o igual a 0";
   // Oferta: el precio original (antes de la oferta) es opcional, pero si existe debe ser mayor
   if (p.precioOriginal !== "" && p.precioOriginal != null) {
     if (!esEnteroNoNegativo(p.precioOriginal)) errores.precioOriginal = "Ingresa un precio entero";

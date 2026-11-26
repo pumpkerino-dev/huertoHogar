@@ -35,14 +35,15 @@ Todas las pruebas están en **`src/test/`**, que replica la estructura de `src/`
 ```
 src/test/
 ├── setupTests.js           configuración común
-├── test-utils.jsx          datos de prueba y renderConProveedores
-├── components/             ProductoCatalogo, ProductoCarrito, AdminRoute
+├── test-utils.jsx          datos de prueba, sesionDe y renderConProveedores
+├── api.test.js             renovación del token JWT (refreshToken) en api.js
+├── components/             ProductoCatalogo, ProductoCarrito, AdminRoute (ADMIN, VENDEDOR y CLIENTE)
 ├── contexto/               useCart (renderHook + act)
 ├── hooks/                  useListado y useAgregarAlCarrito (renderHook + act)
-├── pages/                  Catalogue, Checkout, Login
-│   └── admin/              ProductosAdmin, CategoriasAdmin (React Hook Form + Yup)
-├── services/               ordenService (validación del carrito y llamada al backend)
-└── utils/                  búsqueda, reportes, validaciones, despacho y adaptador de productos
+├── pages/                  Catalogue, Checkout (+ Compra exitosa / con error), Login, Contacto
+│   └── admin/              ProductosAdmin, CategoriasAdmin (React Hook Form + Yup), OrdenesAdmin
+├── services/               ordenService (validación del carrito, /boletas y cambio de estado)
+└── utils/                  búsqueda, reportes, validaciones (RUN, correo, contraseña), despacho y adaptador
 ```
 
 ## 4. Las 10 pruebas solicitadas
@@ -57,11 +58,26 @@ src/test/
 | 6 | Agregar al carrito | `ProductoCatalogo.test.jsx` | Click en "Añadir al carrito" agrega el producto y actualiza el subtotal |
 | 7 | Modificar cantidades | `ProductoCarrito.test.jsx` | Los botones + y − cambian la cantidad y el subtotal; no permite bajar de 1 |
 | 8 | Eliminar del carrito | `ProductoCarrito.test.jsx` | Click en "Eliminar" quita el producto |
-| 9 | Validación de formulario | `Login.test.jsx` | Un correo inválido muestra el error, marca el campo y no se envía |
-| 10 | Compra exitosa y fallida | `Checkout.test.jsx` | **10a:** confirmación, boleta y carrito vacío. **10b:** mensaje de error y carrito conservado |
+| 9 | Validación de formulario | `Login.test.jsx` | Un RUN con dígito verificador incorrecto y un correo de dominio no permitido muestran el error, marcan el campo y no se envía |
+| 10 | Compra exitosa y fallida | `Checkout.test.jsx` | **10a:** página de compra exitosa con la boleta y carrito vacío. **10b:** página de compra con error y carrito conservado |
 
-**Resultado:** `Test Files 17 passed (17)` · `Tests 43 passed (43)`. Además de las 10 pedidas, hay pruebas
+**Resultado:** `Test Files 20 passed (20)` · `Tests 59 passed (59)`. Además de las 10 pedidas, hay pruebas
 del admin, de los custom hooks y de la lógica compartida.
+
+### Pruebas agregadas en la Evaluación 3
+
+| Archivo | Qué verifica |
+|---|---|
+| `api.test.js` | Si el token de acceso venció (401), `api.js` lo renueva con el `refreshToken` y repite la petición; si la renovación falla, avisa que la sesión expiró; un 401 del login no intenta renovar |
+| `AdminRoute.test.jsx` | El VENDEDOR entra al panel, pero las páginas solo para ADMIN lo llevan a productos |
+| `ProductosAdmin.test.jsx` | El VENDEDOR solo ve el detalle del producto (sin crear, editar ni eliminar); la vista de críticos usa `GET /productos/criticos` |
+| `OrdenesAdmin.test.jsx` | El ADMIN cambia el estado del pedido (`PATCH /boletas/{id}/estado`); el VENDEDOR solo lo ve |
+| `Checkout.test.jsx` | Con sesión, los datos de envío se completan solos; sin datos de envío no se llama al backend |
+| `Login.test.jsx` | La comuna depende de la región; al iniciar sesión se guardan el token de acceso y el de renovación |
+| `Contacto.test.jsx` | El formulario de contacto valida dominio del correo y comentario, y envía los datos al backend |
+| `validation.test.js` | RUN con módulo 11, dominios de correo permitidos y largo de la contraseña del login |
+| `reportes.test.js` | Las órdenes canceladas no cuentan como venta; los críticos usan el stock crítico de cada producto |
+| `ordenService.test.js` | La compra se envía a `/boletas` con los datos de envío; el cambio de estado usa `PATCH` |
 
 ## 5. Mocks y datos de prueba
 
@@ -76,20 +92,24 @@ Las pruebas **no usan el backend**:
 
 | Sentencias | Ramas | Funciones | Líneas |
 |---|---|---|---|
-| **48,33 %** | **45,66 %** | **43,71 %** | **49,70 %** |
+| **54,93 %** | **51,39 %** | **48,13 %** | **57,23 %** |
 
 | Carpeta | Sentencias | Líneas |
 |---|---|---|
-| `src/hooks` | 88,23 % | 86,66 % |
-| `src/utils` | 86,90 % | 90,98 % |
-| `src/contexto` | 79,16 % | 78,40 % |
-| `src/pages` | 52,54 % | 53,98 % |
-| `src/services` | 45,34 % | 79,54 % |
-| `src/pages/admin` | 22,29 % | 23,94 % |
-| `src/components` | 12,65 % | 13,33 % |
+| `src/utils` | 84,93 % | 91,15 % |
+| `src/hooks` | 88,24 % | 86,67 % |
+| `src/services` | 48,15 % | 84,91 % |
+| `src` (`api.js`, `App.jsx`) | 77,78 % | 82,50 % |
+| `src/contexto` | 78,79 % | 77,78 % |
+| `src/pages` | 57,26 % | 59,19 % |
+| `src/data` | 53,85 % | 45,45 % |
+| `src/components/admin` | 36,89 % | 37,23 % |
+| `src/pages/admin` | 30,11 % | 32,14 % |
+| `src/components` | 22,87 % | 23,73 % |
 
-Archivos principales: `Checkout.jsx` 95,65 % · `ProductoCarrito.jsx`, `ProductoCatalogo.jsx`, `useCart.js`,
-`useListado.js` y `useAgregarAlCarrito.js` 100 % · `Catalogue.jsx` 80,48 % · `Login.jsx` 79,16 %.
+Archivos principales: `Contacto.jsx` 96,15 % · `Checkout.jsx` 91,17 % · `api.js` 85,36 % · `CompraError.jsx` 83,33 % ·
+`Login.jsx` 81,81 % · `OrdenesAdmin.jsx` 73,91 % · `ProductoCarrito.jsx`, `ProductoCatalogo.jsx`, `useCart.js`,
+`useListado.js` y `useAgregarAlCarrito.js` 100 %.
 
 ![Informe de cobertura: resumen por carpeta](img/cobertura-index.png)
 
@@ -109,8 +129,8 @@ líneas en rojo son las que ninguna prueba ejecutó:
 
 - **Cubierto:** el núcleo de la tienda (catálogo, búsqueda, filtros, carrito, compra y validaciones) y las
   reglas del admin, con cobertura entre 75 % y 100 %.
-- **Total más bajo (48,3 %)** porque se miden todos los archivos de `src`, incluidas páginas informativas y
+- **Total más bajo (54,9 %)** porque se miden todos los archivos de `src`, incluidas páginas informativas y
   componentes de presentación (Header, Footer, AdminLayout).
-- **Pendiente:** Header, ShoppingCart, Profile y las páginas de Órdenes, Reportes y Usuarios del admin.
+- **Pendiente:** Header, ShoppingCart, Profile, Ofertas, Categorías y las páginas de Reportes, Usuarios y Mensajes del admin.
 - No se fijaron mínimos (`thresholds`, opcionales en el tutorial) porque con la cobertura actual las pruebas fallarían.
-- Las cifras corresponden a la ejecución real del 5 de noviembre de 2026.
+- Las cifras corresponden a la ejecución real del 25 de noviembre de 2026.

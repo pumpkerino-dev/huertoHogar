@@ -1,18 +1,32 @@
 import api from "../api";
 
-const RUTA = "/ordenes";
+const RUTA = "/boletas";
+
+export const ESTADOS_PEDIDO = [
+  { valor: "EN_PREPARACION", texto: "En preparación", color: "warning" },
+  { valor: "EN_CAMINO", texto: "En camino", color: "primary" },
+  { valor: "ENTREGADO", texto: "Entregado", color: "success" },
+  { valor: "CANCELADA", texto: "Cancelado", color: "secondary" },
+];
+
+export const infoEstado = (valor) =>
+  ESTADOS_PEDIDO.find((e) => e.valor === valor) ?? { valor, texto: valor ?? "—", color: "secondary" };
 
 export const getOrdenes = () => api.get(RUTA).then((res) => res.data);
 
 export const getMisOrdenes = () => api.get(`${RUTA}/mias`).then((res) => res.data);
 
-export const getOrdenesDeUsuario = (email) =>
-  api.get(`${RUTA}/usuario/${encodeURIComponent(email)}`).then((res) => res.data);
+export const getOrden = (id) => api.get(`${RUTA}/${id}`).then((res) => res.data);
 
-export const crearOrden = (items, { simularFallo = false, fechaEntrega = "" } = {}) =>
+export const getOrdenesDeUsuario = (usuarioId) => api.get(`${RUTA}/usuario/${usuarioId}`).then((res) => res.data);
+
+export const cambiarEstado = (id, estado) => api.patch(`${RUTA}/${id}/estado`, { estado }).then((res) => res.data);
+
+export const crearOrden = (items, { envio, simularFallo = false, fechaEntrega = "" } = {}) =>
   api
     .post(RUTA, {
       items: items.map((item) => ({ codigo: item.id, cantidad: item.quantity })),
+      envio,
       fechaEntrega,
       simularFallo,
     })

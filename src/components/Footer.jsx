@@ -97,7 +97,7 @@ function Footer() {
                     </a>
                 </li>
                 <li>
-                    <a href="/Nosotros">
+                    <a href="/Contacto">
                         Contacto
                     </a>
                 </li>

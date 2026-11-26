@@ -10,13 +10,18 @@ describe('utils/reportes', () => {
     expect(resumenVentas([]).ticketPromedio).toBe(0) // sin órdenes no divide por cero
   })
 
+  test('las órdenes canceladas no cuentan como venta', () => {
+    const conCancelada = [...ordenesIniciales, { ...ordenesIniciales[0], id: 3, estado: 'CANCELADA' }]
+    expect(resumenVentas(conCancelada).total).toBe(11050)
+  })
+
   test('ventas por categoría y productos más vendidos quedan ordenados de mayor a menor', () => {
     expect(ventasPorCategoria(ordenesIniciales)[0]).toEqual({ categoria: 'organicos', total: 5000 })
     expect(productosMasVendidos(ordenesIniciales, 1)).toEqual([{ codigo: 'PL001', nombre: 'Leche Entera', unidades: 3, total: 2850 }])
   })
 
-  test('productosCriticos devuelve solo los de stock bajo, del más urgente al menos urgente', () => {
-    const productos = [{ id: 'A', stock: 50 }, { id: 'B', stock: 8 }, { id: 'C', stock: 2 }]
+  test('productosCriticos devuelve los que llegaron a su stock crítico, del más urgente al menos urgente', () => {
+    const productos = [{ id: 'A', stock: 50, critico: false }, { id: 'B', stock: 8, critico: true }, { id: 'C', stock: 2, critico: true }]
     expect(productosCriticos(productos).map((p) => p.id)).toEqual(['C', 'B'])
   })
 })

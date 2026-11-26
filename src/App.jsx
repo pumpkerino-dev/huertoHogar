@@ -27,6 +27,12 @@ import OrdenesAdmin from './pages/admin/OrdenesAdmin'
 import CategoriasAdmin from './pages/admin/CategoriasAdmin'
 import ReportesAdmin from './pages/admin/ReportesAdmin'
 import PerfilAdmin from './pages/admin/PerfilAdmin'
+import MensajesAdmin from './pages/admin/MensajesAdmin'
+import Contacto from './pages/Contacto'
+import Ofertas from './pages/Ofertas'
+import Categorias from './pages/Categorias'
+import CompraExitosa from './pages/CompraExitosa'
+import CompraError from './pages/CompraError'
 
 import { CartProvider } from './contexto/CartContext.jsx';
 
@@ -45,6 +51,12 @@ function App() {
               <Route path='/RecuperarContrasena' element={<RecuperarContrasena />} />
               <Route path='/ShoppingCart' element={<ShoppingCart />} />
               <Route path="/Checkout" element={<Checkout />} />
+              <Route path='/CompraExitosa' element={<CompraExitosa />} />
+              <Route path='/CompraError' element={<CompraError />} />
+              <Route path='/Contacto' element={<Contacto />} />
+              <Route path='/Ofertas' element={<Ofertas />} />
+              <Route path='/Categorias' element={<Categorias />} />
+              <Route path='/Categorias/:id' element={<Categorias />} />
               <Route path='/Profile' element={<Profile />} />
               <Route path='/Nosotros' element={<Nosotros />} />
               <Route path='/TerminoCondiciones' element={<TerminoCondiciones />} />
@@ -56,16 +68,17 @@ function App() {
               <Route path="/EasterEgg" element={<EasterEgg />} />
             </Route>
 
-            {/* Panel de administración (solo rol ADMIN): su propio layout con Bootstrap */}
+            {/* Panel de administración: ADMIN ve todo; VENDEDOR solo productos y órdenes (soloAdmin bloquea el resto) */}
             <Route path='/admin' element={<AdminRoute><AdminLayout /></AdminRoute>}>
-              <Route index element={<AdminDashboard />} />
+              <Route index element={<AdminRoute soloAdmin><AdminDashboard /></AdminRoute>} />
               <Route path='ordenes' element={<OrdenesAdmin />} />
               <Route path='productos' element={<ProductosAdmin />} />
               <Route path='productos/criticos' element={<ProductosAdmin soloCriticos />} />
-              <Route path='categorias' element={<CategoriasAdmin />} />
-              <Route path='usuarios' element={<UsuariosAdmin />} />
-              <Route path='reportes' element={<ReportesAdmin />} />
-              <Route path='perfil' element={<PerfilAdmin />} />
+              <Route path='categorias' element={<AdminRoute soloAdmin><CategoriasAdmin /></AdminRoute>} />
+              <Route path='usuarios' element={<AdminRoute soloAdmin><UsuariosAdmin /></AdminRoute>} />
+              <Route path='mensajes' element={<AdminRoute soloAdmin><MensajesAdmin /></AdminRoute>} />
+              <Route path='reportes' element={<AdminRoute soloAdmin><ReportesAdmin /></AdminRoute>} />
+              <Route path='perfil' element={<AdminRoute soloAdmin><PerfilAdmin /></AdminRoute>} />
             </Route>
           </Routes>
       </CartProvider>

@@ -14,10 +14,10 @@ import { formatoCLP } from '../utils/producto';
 function Header({ onToggleFilters }) {
 
     const { subtotal } = useCart();
-    const { usuario, esAdmin, cerrarSesion } = useAuth();
+    const { usuario, esPersonal, cerrarSesion } = useAuth();
 
-    // Con sesión: muestra el primer nombre y lleva al panel (admin) o al perfil (cliente)
-    const rutaCuenta = !usuario ? '/Login' : esAdmin ? '/admin' : '/Profile';
+    // Con sesión: muestra el primer nombre y lleva al panel (admin o vendedor) o al perfil (cliente)
+    const rutaCuenta = !usuario ? '/Login' : esPersonal ? '/admin' : '/Profile';
     const textoCuenta = usuario ? usuario.nombre.split(' ')[0] : 'Mi Cuenta';
 
     const navigate = useNavigate();
@@ -227,7 +227,7 @@ function Header({ onToggleFilters }) {
                     <Link
                         to={rutaCuenta}
                         className="account-link"
-                        title={esAdmin ? 'Ir al panel de administración' : undefined}
+                        title={esPersonal ? 'Ir al panel de administración' : undefined}
                     >
 
                         <span className="account-icon">
@@ -319,12 +319,30 @@ function Header({ onToggleFilters }) {
                         </li>
 
                         <li>
+                            <Link to="/Categorias">
+                                Categorías
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/Ofertas">
+                                Ofertas
+                            </Link>
+                        </li>
+
+                        <li>
                             <a href="/blog">
                                 Blog
                             </a>
                         </li>
 
-                        {esAdmin && (
+                        <li>
+                            <Link to="/Contacto">
+                                Contacto
+                            </Link>
+                        </li>
+
+                        {esPersonal && (
                             <li>
                                 <Link to="/admin" className="nav-admin">
                                     Panel Admin

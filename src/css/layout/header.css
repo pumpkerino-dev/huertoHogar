@@ -212,8 +212,9 @@ rip html/
   margin: 0 auto;
   padding: 8px 24px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 26px;
+  gap: 6px 26px;
 }
 
 .site-nav a {

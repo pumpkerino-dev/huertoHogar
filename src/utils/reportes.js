@@ -1,14 +1,17 @@
 // Cálculos de reportes a partir de las órdenes y productos.
 // Los reutilizan el Dashboard y la página de Reportes del admin.
-import { STOCK_BAJO } from './producto';
+// Las órdenes canceladas no cuentan como venta.
+
+const vendidas = (ordenes) => ordenes.filter((o) => o.estado !== 'CANCELADA');
 
 export function resumenVentas(ordenes) {
-  const total = ordenes.reduce((suma, o) => suma + o.total, 0);
-  const unidades = ordenes.reduce((suma, o) => suma + o.items.reduce((s, i) => s + i.cantidad, 0), 0);
+  const validas = vendidas(ordenes);
+  const total = validas.reduce((suma, o) => suma + o.total, 0);
+  const unidades = validas.reduce((suma, o) => suma + o.items.reduce((s, i) => s + i.cantidad, 0), 0);
   return {
     total,
-    cantidadOrdenes: ordenes.length,
-    ticketPromedio: ordenes.length ? Math.round(total / ordenes.length) : 0,
+    cantidadOrdenes: validas.length,
+    ticketPromedio: validas.length ? Math.round(total / validas.length) : 0,
     unidades,
   };
 }
@@ -16,7 +19,7 @@ export function resumenVentas(ordenes) {
 // [{ categoria, total }] de mayor a menor venta
 export function ventasPorCategoria(ordenes) {
   const totales = {};
-  ordenes.forEach((o) => o.items.forEach((i) => {
+  vendidas(ordenes).forEach((o) => o.items.forEach((i) => {
     totales[i.categoria] = (totales[i.categoria] ?? 0) + i.precioUnitario * i.cantidad;
   }));
   return Object.entries(totales)
@@ -27,7 +30,7 @@ export function ventasPorCategoria(ordenes) {
 // Los productos más vendidos (por unidades)
 export function productosMasVendidos(ordenes, limite = 5) {
   const porProducto = {};
-  ordenes.forEach((o) => o.items.forEach((i) => {
+  vendidas(ordenes).forEach((o) => o.items.forEach((i) => {
     const actual = porProducto[i.codigo] ?? { codigo: i.codigo, nombre: i.nombre, unidades: 0, total: 0 };
     actual.unidades += i.cantidad;
     actual.total += i.precioUnitario * i.cantidad;
@@ -36,5 +39,6 @@ export function productosMasVendidos(ordenes, limite = 5) {
   return Object.values(porProducto).sort((a, b) => b.unidades - a.unidades).slice(0, limite);
 }
 
+// Productos con stock igual o menor a su stock crítico (el backend lo marca en "critico")
 export const productosCriticos = (productos) =>
-  productos.filter((p) => p.stock <= STOCK_BAJO).sort((a, b) => a.stock - b.stock);
+  productos.filter((p) => p.critico).sort((a, b) => a.stock - b.stock);

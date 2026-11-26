@@ -34,16 +34,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>8/14</span>
             </div>
         
             
@@ -57,7 +57,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -72,7 +72,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -136,7 +136,18 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,6 +157,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,6 +186,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,31 +220,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Table } from "react-bootstrap";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Badge, Table } from "react-bootstrap";
 import { formatoCLP, formatoFecha } from "../utils/producto";
-import { formatoDiaDespacho } from "../utils/despacho";
+import { direccionEnvio, formatoDiaDespacho } from "../utils/despacho";
+import { infoEstado } from "../services/ordenService";
 &nbsp;
 /**
  * Boleta (comprobante) de una orden de compra.
- * Se reutiliza en: Checkout (compra exitosa), Órdenes/Boletas del admin,
+ * Se reutiliza en: Compra exitosa, Órdenes/Boletas del admin,
  * Historial de compras de un usuario y el perfil del cliente.
  */
 function BoletaDetalle({ orden }) {
   <span class="missing-if-branch" title="if path not taken" >I</span>if (!orden) <span class="cstat-no" title="statement not covered" >return null;</span>
+  const estado = infoEstado(orden.estado);
   return (
     &lt;div className="boleta"&gt;
       &lt;div className="d-flex flex-column flex-sm-row justify-content-between gap-1 mb-3"&gt;
         &lt;div&gt;
           &lt;div className="fw-bold"&gt;HUERTO HOGAR&lt;/div&gt;
           &lt;div className="small text-muted"&gt;Comprobante de compra · Simulación&lt;/div&gt;
+          &lt;Badge bg={estado.color} text={estado.color === "warning" ? "dark" : <span class="branch-1 cbranch-no" title="branch not covered" >undefined} c</span>lassName="mt-1"&gt;{estado.texto}&lt;/Badge&gt;
         &lt;/div&gt;
         &lt;div className="text-sm-end small"&gt;
-          &lt;div&gt;&lt;strong&gt;N°&lt;/strong&gt; {orden.id}&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;N°&lt;/strong&gt; {orden.numero ?? <span class="branch-1 cbranch-no" title="branch not covered" >orden.id}&lt;/div&gt;</span>
           &lt;div&gt;{formatoFecha(orden.fecha)}&lt;/div&gt;
           &lt;div&gt;{orden.cliente?.nombre}{orden.cliente?.email ? ` · ${orden.cliente.email}` : <span class="branch-1 cbranch-no" title="branch not covered" >""}&lt;/div&gt;</span>
           {orden.fechaEntrega &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;div&gt;&lt;strong&gt;Despacho:&lt;/strong&gt; {formatoDiaDespacho(orden.fechaEntrega)}&lt;/div&gt;}</span>
         &lt;/div&gt;
       &lt;/div&gt;
+&nbsp;
+      {orden.envio &amp;&amp; (
+        &lt;div className="small border rounded p-2 mb-3"&gt;
+          &lt;div&gt;&lt;strong&gt;Enviar a:&lt;/strong&gt; {orden.envio.nombre} {orden.envio.apellidos}&lt;/div&gt;
+          &lt;div&gt;{direccionEnvio(orden.envio)}&lt;/div&gt;
+          {orden.envio.indicaciones &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;div className="text-muted"&gt;Indicaciones: {orden.envio.indicaciones}&lt;/div&gt;}</span>
+        &lt;/div&gt;
+      )}
 &nbsp;
       &lt;Table size="sm" responsive className="align-middle mb-2"&gt;
         &lt;thead className="table-light"&gt;
@@ -267,7 +300,7 @@ export default BoletaDetalle;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-11-06T18:26:05.889Z
+                at 2026-11-26T01:56:50.613Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

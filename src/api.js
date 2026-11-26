@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+export const API_URL = 'http://localhost:8089/api/v1';
 export const TOKEN_KEY = 'token';
+export const REFRESH_KEY = 'refreshToken';
 export const EVENTO_SESION_EXPIRADA = 'huertohogar:sesion-expirada';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8089/api/v1',
+  baseURL: API_URL,
 });
 
 // interceptor permite interceptar las llamadas antes que se envien al servidor
@@ -18,12 +20,43 @@ api.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-// interceptor de respuestas: si el backend responde 401 a una petición con token, la sesión expiró
-api.interceptors.response.use((response) => response, (error) => {
-  if (error?.response?.status === 401 && error?.config?.headers?.Authorization) {
-    window.dispatchEvent(new Event(EVENTO_SESION_EXPIRADA));
+let renovacionEnCurso = null;
+
+function renovarToken() {
+  if (!renovacionEnCurso) {
+    const refreshToken = localStorage.getItem(REFRESH_KEY);
+    renovacionEnCurso = (refreshToken
+      ? axios.post(`${API_URL}/auth/refresh`, { refreshToken })
+      : Promise.reject(new Error('Sin token de renovación')))
+      .then(({ data }) => {
+        localStorage.setItem(TOKEN_KEY, data.token);
+        localStorage.setItem(REFRESH_KEY, data.refreshToken);
+        return data.token;
+      })
+      .finally(() => {
+        renovacionEnCurso = null;
+      });
   }
-  return Promise.reject(error);
+  return renovacionEnCurso;
+}
+
+// interceptor de respuestas: si el token de acceso venció (401), se renueva una vez con el refreshToken
+// y se repite la petición. Si la renovación también falla, la sesión expiró.
+api.interceptors.response.use((response) => response, async (error) => {
+  const original = error?.config;
+  const conToken = Boolean(original?.headers?.Authorization);
+  if (error?.response?.status !== 401 || !conToken || original._reintento) {
+    return Promise.reject(error);
+  }
+  original._reintento = true;
+  try {
+    const nuevoToken = await renovarToken();
+    original.headers.Authorization = `Bearer ${nuevoToken}`;
+    return api(original);
+  } catch {
+    window.dispatchEvent(new Event(EVENTO_SESION_EXPIRADA));
+    return Promise.reject(error);
+  }
 });
 
 export function mensajeDeError(error, porDefecto = 'Ocurrió un error inesperado') {

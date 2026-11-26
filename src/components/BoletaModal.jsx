@@ -6,7 +6,7 @@ function BoletaModal({ orden, onCerrar }) {
   return (
     <Modal show={Boolean(orden)} onHide={onCerrar} size="lg" centered scrollable>
       <Modal.Header closeButton className="py-2">
-        <Modal.Title as="h5">Boleta {orden?.id}</Modal.Title>
+        <Modal.Title as="h5">Boleta {orden?.numero}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <BoletaDetalle orden={orden} />

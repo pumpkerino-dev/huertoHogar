@@ -1,11 +1,11 @@
-// Servicio de órdenes: validación del carrito y llamada al backend (src/services/ordenService.js)
+// Servicio de órdenes: validación del carrito y llamadas al backend (src/services/ordenService.js)
 import { describe, test, expect, vi } from 'vitest'
 import api from '../../api'
-import { crearOrden, validarCarrito } from '../../services/ordenService'
-import { itemCarritoMock, productosMock } from '../test-utils'
+import { cambiarEstado, crearOrden, infoEstado, validarCarrito } from '../../services/ordenService'
+import { envioMock, itemCarritoMock, productosMock } from '../test-utils'
 
 // MOCK de api.js: las pruebas no llaman al backend real
-vi.mock('../../api', () => ({ default: { post: vi.fn() } }))
+vi.mock('../../api', () => ({ default: { post: vi.fn(), patch: vi.fn() } }))
 
 describe('ordenService', () => {
   test('validarCarrito detecta carrito vacío, cantidades inválidas y stock insuficiente antes de pagar', () => {
@@ -15,16 +15,27 @@ describe('ordenService', () => {
     expect(validarCarrito([itemCarritoMock], productosMock)).toEqual([])
   })
 
-  test('crearOrden envía al backend solo el código y la cantidad de cada producto', async () => {
-    api.post.mockResolvedValue({ data: { id: 'HH-1', total: 10000 } })
+  test('crearOrden envía a /boletas el código y la cantidad de cada producto junto con los datos de envío', async () => {
+    api.post.mockResolvedValue({ data: { id: 1, numero: 'HH-1', total: 10000 } })
 
-    const orden = await crearOrden([itemCarritoMock], { fechaEntrega: '2026-11-10' })
+    const orden = await crearOrden([itemCarritoMock], { envio: envioMock, fechaEntrega: '2026-11-10' })
 
-    expect(api.post).toHaveBeenCalledWith('/ordenes', {
+    expect(api.post).toHaveBeenCalledWith('/boletas', {
       items: [{ codigo: 'PO001', cantidad: 2 }],
+      envio: envioMock,
       fechaEntrega: '2026-11-10',
       simularFallo: false,
     })
     expect(orden.total).toBe(10000)
+  })
+
+  test('cambiarEstado usa PATCH /boletas/{id}/estado y los estados tienen un texto para mostrar', async () => {
+    api.patch.mockResolvedValue({ data: { id: 1, estado: 'EN_CAMINO' } })
+
+    await cambiarEstado(1, 'EN_CAMINO')
+
+    expect(api.patch).toHaveBeenCalledWith('/boletas/1/estado', { estado: 'EN_CAMINO' })
+    expect(infoEstado('EN_CAMINO').texto).toBe('En camino')
+    expect(infoEstado('CANCELADA').texto).toBe('Cancelado')
   })
 })

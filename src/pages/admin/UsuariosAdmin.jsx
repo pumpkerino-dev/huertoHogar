@@ -55,7 +55,7 @@ function UsuariosAdmin() {
 
   const verHistorial = async (u) => {
     try {
-      setHistorial({ usuario: u, ordenes: await ordenService.getOrdenesDeUsuario(u.email) });
+      setHistorial({ usuario: u, ordenes: await ordenService.getOrdenesDeUsuario(u.id) });
     } catch (err) {
       setError(mensajeDeError(err, "No se pudo cargar el historial"));
     }
@@ -74,6 +74,7 @@ function UsuariosAdmin() {
       <Form.Select className="w-auto mb-3" aria-label="Filtrar por rol" value={filtroRol} onChange={(e) => setFiltroRol(e.target.value)}>
         <option value="">Todos los roles</option>
         <option value="CLIENTE">Clientes</option>
+        <option value="VENDEDOR">Vendedores</option>
         <option value="ADMIN">Administradores</option>
       </Form.Select>
 
@@ -95,7 +96,7 @@ function UsuariosAdmin() {
       {/* HISTORIAL DE COMPRAS (reutiliza OrdenesTabla y BoletaModal) */}
       <Modal show={Boolean(historial) && !boleta} onHide={() => setHistorial(null)} size="lg" centered scrollable>
         <Modal.Header closeButton className="py-2">
-          <Modal.Title as="h5">Historial de compras · {historial?.usuario.nombre}</Modal.Title>
+          <Modal.Title as="h5">Historial de compras · {historial?.usuario.nombre} {historial?.usuario.apellidos}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
           {historial && (

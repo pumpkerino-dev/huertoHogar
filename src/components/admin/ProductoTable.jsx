@@ -1,8 +1,11 @@
 import { Badge, Button, Table } from "react-bootstrap";
-import { formatoCLP, nombreCategoria, STOCK_BAJO } from "../../utils/producto";
+import { formatoCLP, nombreCategoria } from "../../utils/producto";
 
-/** Tabla de productos del panel admin. No hace llamadas: recibe datos y avisa acciones. */
-function ProductoTable({ productos, categorias = [], onEditar, onEliminar }) {
+/**
+ * Tabla de productos del panel admin. No hace llamadas: recibe datos y avisa acciones.
+ * Con onVer (VENDEDOR) solo se muestra el botón "Ver"; con onEditar/onEliminar (ADMIN), los de editar y eliminar.
+ */
+function ProductoTable({ productos, categorias = [], onEditar, onEliminar, onVer }) {
   if (productos.length === 0) {
     return <p className="text-muted">No hay productos registrados.</p>;
   }
@@ -39,15 +42,25 @@ function ProductoTable({ productos, categorias = [], onEditar, onEliminar }) {
               <div className="small text-muted">{p.unidad}</div>
             </td>
             <td className="text-end">
-              {p.stock <= STOCK_BAJO ? <Badge bg="warning" text="dark">{p.stock}</Badge> : p.stock}
+              {p.critico ? <Badge bg="warning" text="dark" title={`Stock crítico: ${p.stockCritico}`}>{p.stock}</Badge> : p.stock}
+              {p.stockCritico != null && <div className="small text-muted">crítico: {p.stockCritico}</div>}
             </td>
             <td className="text-center text-nowrap">
-              <Button size="sm" variant="outline-primary" className="me-1" onClick={() => onEditar(p)} aria-label="Editar">
-                <i className="bi bi-pencil" /> <span className="d-none d-md-inline">Editar</span>
-              </Button>
-              <Button size="sm" variant="outline-danger" onClick={() => onEliminar(p)} aria-label="Eliminar">
-                <i className="bi bi-trash" /> <span className="d-none d-md-inline">Eliminar</span>
-              </Button>
+              {onVer && (
+                <Button size="sm" variant="outline-success" onClick={() => onVer(p)} aria-label={`Ver ${p.nombre}`}>
+                  <i className="bi bi-eye" /> <span className="d-none d-md-inline">Ver</span>
+                </Button>
+              )}
+              {onEditar && (
+                <Button size="sm" variant="outline-primary" className="me-1" onClick={() => onEditar(p)} aria-label="Editar">
+                  <i className="bi bi-pencil" /> <span className="d-none d-md-inline">Editar</span>
+                </Button>
+              )}
+              {onEliminar && (
+                <Button size="sm" variant="outline-danger" onClick={() => onEliminar(p)} aria-label="Eliminar">
+                  <i className="bi bi-trash" /> <span className="d-none d-md-inline">Eliminar</span>
+                </Button>
+              )}
             </td>
           </tr>
         ))}

@@ -11,7 +11,7 @@ import * as productoService from '../../services/productoService'
 import * as usuarioService from '../../services/usuarioService'
 import * as categoriaService from '../../services/categoriaService'
 import * as ordenService from '../../services/ordenService'
-import { formatoCLP, STOCK_BAJO } from '../../utils/producto'
+import { formatoCLP } from '../../utils/producto'
 import { productosCriticos, resumenVentas } from '../../utils/reportes'
 
 /** HOME / DASHBOARD del admin: resumen de la tienda y accesos rápidos. */
@@ -42,12 +42,12 @@ function AdminDashboard() {
       <Row xs={1} sm={2} xl={4} className="g-3 mb-4">
         <Col><StatCard titulo="Productos" valor={productos.length} icono="bi-basket" detalle={`${enOferta} en oferta`} /></Col>
         <Col>
-          <StatCard titulo="Stock bajo" valor={criticos.length} icono="bi-exclamation-triangle"
-            color="warning" detalle={`${STOCK_BAJO} unidades o menos`} />
+          <StatCard titulo="Stock crítico" valor={criticos.length} icono="bi-exclamation-triangle"
+            color="warning" detalle="En o bajo su stock crítico" />
         </Col>
         <Col>
           <StatCard titulo="Usuarios" valor={usuarios.length} icono="bi-people" color="primary"
-            detalle={`${usuarios.filter((u) => u.rol === 'ADMIN').length} administradores`} />
+            detalle={`${usuarios.filter((u) => u.rol === 'ADMIN').length} admin · ${usuarios.filter((u) => u.rol === 'VENDEDOR').length} vendedores`} />
         </Col>
         <Col>
           <StatCard titulo="Ventas" valor={formatoCLP(ventas.total)} icono="bi-cash-coin" color="danger"
@@ -83,13 +83,13 @@ function AdminDashboard() {
               <Button as={Link} to="/admin/productos/criticos" size="sm" variant="outline-success">Ver críticos</Button>
             </Card.Header>
             {criticos.length === 0 ? (
-              <Card.Body className="text-muted">Todo el stock está sobre {STOCK_BAJO} unidades. 🌱</Card.Body>
+              <Card.Body className="text-muted">Ningún producto está en su stock crítico. 🌱</Card.Body>
             ) : (
               <ListGroup variant="flush">
                 {criticos.map((p) => (
                   <ListGroup.Item key={p.id} className="d-flex justify-content-between">
                     <span>{p.nombre}</span>
-                    <span className="badge bg-warning text-dark">{p.stock} {p.unidad}</span>
+                    <span className="badge bg-warning text-dark">{p.stock} / {p.stockCritico} {p.unidad}</span>
                   </ListGroup.Item>
                 ))}
               </ListGroup>

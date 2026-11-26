@@ -9,10 +9,19 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { AuthContext } from '../contexto/authContext'
 import { CartProvider } from '../contexto/CartContext.jsx' // con extensión: en Windows, sin ella se carga cartContext.js
 
+// Valor del contexto de sesión para un usuario de prueba (o null = sin sesión)
+export const sesionDe = (usuario) => ({
+  usuario,
+  esAdmin: usuario?.rol === 'ADMIN',
+  esVendedor: usuario?.rol === 'VENDEDOR',
+  esPersonal: usuario?.rol === 'ADMIN' || usuario?.rol === 'VENDEDOR',
+  cargando: false,
+})
+
 export function renderConProveedores(ui, { ruta = '/', usuario = null, carrito = [], rutasExtra = {} } = {}) {
   // El carrito inicial se lee desde localStorage (igual que en el navegador)
   localStorage.setItem('huertohogar-cart', JSON.stringify(carrito))
-  const sesion = { usuario, esAdmin: usuario?.rol === 'ADMIN', cargando: false }
+  const sesion = sesionDe(usuario)
 
   return render(
     <AuthContext.Provider value={sesion}>
@@ -67,19 +76,32 @@ export const itemCarritoMock = {
   unitPrice: 5000, maxQuantity: 50, originalUnitPrice: null, quantity: 2,
 };
 
+// Datos de envío válidos (formulario del Checkout)
+export const envioMock = {
+  nombre: 'María', apellidos: 'González Silva', correo: 'cliente@gmail.com', calle: 'Av. Providencia 1245',
+  departamento: 'Depto 302', region: 'Región Metropolitana de Santiago', comuna: 'Providencia', indicaciones: '',
+}
+
+// Usuario CLIENTE con todos sus datos (para autocompletar el Checkout)
+export const clienteMock = {
+  id: 3, run: '159876543', nombre: 'María', apellidos: 'González Silva', email: 'cliente@gmail.com',
+  region: 'Región Metropolitana de Santiago', comuna: 'Providencia', direccion: 'Av. Providencia 1245', rol: 'CLIENTE',
+}
+
 // Respuesta simulada de una compra exitosa (boleta)
 export const ordenMock = {
-  id: 'HH-TEST-1', fecha: '2026-11-03T12:00:00', estado: 'PAGADA', fechaEntrega: '',
-  cliente: { id: 2, nombre: 'María González', email: 'maria@correo.cl' },
+  id: 10, numero: 'HH-TEST-1', fecha: '2026-11-03T12:00:00', estado: 'EN_PREPARACION', fechaEntrega: '',
+  cliente: { id: 3, nombre: 'María González Silva', email: 'cliente@gmail.com' },
+  envio: envioMock,
   items: [{ codigo: 'PO001', nombre: 'Miel Orgánica', cantidad: 2, precioUnitario: 5000, categoria: 'organicos' }],
   total: 10000,
 };
 
-// Órdenes de ejemplo con el mismo formato que devuelve GET /api/v1/ordenes
+// Órdenes de ejemplo con el mismo formato que devuelve GET /api/v1/boletas
 export const ordenesMock = [
   {
-    id: 'HH-1001', fecha: '2026-10-28T10:15:00', estado: 'PAGADA', fechaEntrega: '',
-    cliente: { id: 2, nombre: 'María González Silva', email: 'cliente@huertohogar.cl' },
+    id: 1, numero: 'HH-1001', fecha: '2026-10-28T10:15:00', estado: 'ENTREGADO', fechaEntrega: '',
+    cliente: { id: 3, nombre: 'María González Silva', email: 'cliente@gmail.com' }, envio: envioMock,
     items: [
       { codigo: 'FR001', nombre: 'Manzanas Fuji', cantidad: 2, precioUnitario: 900, categoria: 'frutas' },
       { codigo: 'PO001', nombre: 'Miel Orgánica', cantidad: 1, precioUnitario: 5000, categoria: 'organicos' },
@@ -87,8 +109,8 @@ export const ordenesMock = [
     total: 6800,
   },
   {
-    id: 'HH-1002', fecha: '2026-10-30T18:40:00', estado: 'PAGADA', fechaEntrega: '',
-    cliente: { id: 2, nombre: 'María González Silva', email: 'cliente@huertohogar.cl' },
+    id: 2, numero: 'HH-1002', fecha: '2026-10-30T18:40:00', estado: 'EN_CAMINO', fechaEntrega: '',
+    cliente: { id: 3, nombre: 'María González Silva', email: 'cliente@gmail.com' }, envio: envioMock,
     items: [
       { codigo: 'PL001', nombre: 'Leche Entera', cantidad: 3, precioUnitario: 950, categoria: 'lacteos' },
       { codigo: 'VR002', nombre: 'Espinacas Frescas', cantidad: 2, precioUnitario: 700, categoria: 'verduras' },
@@ -99,8 +121,8 @@ export const ordenesMock = [
 
 // Producto tal como lo devuelve el backend (GET /api/v1/productos)
 export const productoBackendMock = {
-  id: 7, codigo: 'PL001', nombre: 'Leche Entera', categoria: 'lacteos', precio: 950, precioOriginal: 1250,
-  unidad: '1 L', stock: 60, origen: 'Osorno', imagen: '/img/leche.png',
+  id: 7, codigo: 'PL001', nombre: 'Leche Entera', categoria: 'lacteos', categoriaNombre: 'Productos Lácteos',
+  precio: 950, precioOriginal: 1250, unidad: '1 L', stock: 60, stockCritico: 10, critico: false, origen: 'Osorno', imagen: '/img/leche.png',
   descripcion: 'Leche entera de origen local.', descripcionCorta: 'Leche fresca de Osorno.',
   estrellas: '⭐⭐⭐⭐⭐', origenFiltro: 'osorno', certificacion: '',
   detalle: '{"thumbnails":["/img/leche-2.png"],"infoTitle":"INFORMACIÓN DE ORIGEN"}',

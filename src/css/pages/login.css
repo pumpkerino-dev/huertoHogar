@@ -182,3 +182,10 @@
     border-bottom: 1px solid var(--border);
   }
 }
+
+/* Región y comuna tienen nombres largos: en celular van una debajo de la otra */
+@media (max-width: 576px) {
+  .field-grid-zona {
+    grid-template-columns: 1fr;
+  }
+}

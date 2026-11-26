@@ -209,7 +209,8 @@ select:focus {
   border-color: var(--green);
 }
 
-input.is-invalid {
+input.is-invalid,
+select.is-invalid {
   border-color: var(--error);
 }
 

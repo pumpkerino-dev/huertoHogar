@@ -21,3 +21,7 @@ export function formatoDiaDespacho(iso) {
   const [anio, mes, dia] = iso.split('-').map(Number);
   return new Date(anio, mes - 1, dia).toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' });
 }
+
+// "Av. Providencia 1245, Depto 302, Providencia, Región Metropolitana de Santiago"
+export const direccionEnvio = (envio) =>
+  [envio?.calle, envio?.departamento, envio?.comuna, envio?.region].filter(Boolean).join(', ');

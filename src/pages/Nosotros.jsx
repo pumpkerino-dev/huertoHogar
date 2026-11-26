@@ -1,6 +1,8 @@
 /*Css Especifico*/
 import '../css/pages/nosotros.css'
 import '../App.css'
+import MapaTiendas from '../components/MapaTiendas'
+import { VIDEO_YOUTUBE } from '../data/tiendas'
 
 function Nosotros() {
     return(
@@ -33,6 +35,29 @@ function Nosotros() {
                 />
             </div>
         </div>
+    </section>
+
+    <section className="my-5">
+        <h2 className="h4 mb-2">Del campo a tu hogar</h2>
+        <p className="text-muted">
+            HuertoHogar conecta a pequeños agricultores de Chile con familias que buscan productos frescos,
+            orgánicos y de temporada. Conoce cómo trabajan quienes cultivan lo que llega a tu mesa.
+        </p>
+        <div className="ratio ratio-16x9 rounded overflow-hidden shadow-sm mx-auto" style={{ maxWidth: 800 }}>
+            <iframe
+                src={VIDEO_YOUTUBE}
+                title="Video: agricultura familiar en Chile"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+            />
+        </div>
+    </section>
+
+    <section className="my-5">
+        <h2 className="h4 mb-2">Nuestras tiendas</h2>
+        <p className="text-muted">Estamos presentes en 7 ciudades. Elige una para verla en el mapa.</p>
+        <MapaTiendas />
     </section>
 </main>
         </>

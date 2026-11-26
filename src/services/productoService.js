@@ -18,3 +18,5 @@ export const crearProducto = (producto) => api.post(RUTA, producto).then((res) =
 export const actualizarProducto = (id, producto) => api.put(`${RUTA}/${id}`, producto).then((res) => res.data);
 
 export const eliminarProducto = (id) => api.delete(`${RUTA}/${id}`);
+
+export const getProductosCriticos = () => api.get(`${RUTA}/criticos`).then((res) => res.data);

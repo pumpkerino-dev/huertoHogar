@@ -174,3 +174,31 @@
 .card > .table > :not(caption) > * > *:last-child {
   padding-right: 1rem;
 }
+
+/* Los estilos globales de input/select de App.css (formularios de la tienda) no deben
+   cambiar el tamaño de los campos de Bootstrap (Form.Control / Form.Select size="sm"). */
+input.form-control.form-control-sm {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-color: var(--bs-border-color);
+  border-radius: var(--bs-border-radius-sm);
+  font-family: inherit;
+}
+
+select.form-select.form-select-sm {
+  font-size: 0.875rem;
+  padding: 0.25rem 2.25rem 0.25rem 0.5rem;
+  border-color: var(--bs-border-color);
+  border-radius: var(--bs-border-radius-sm);
+  font-family: inherit;
+}
+
+input.form-control.form-control-sm.is-invalid {
+  border-color: var(--bs-form-invalid-border-color);
+  padding-right: calc(1.5em + 0.5rem);
+}
+
+select.form-select.form-select-sm.is-invalid {
+  border-color: var(--bs-form-invalid-border-color);
+  padding-right: 4.125rem;
+}

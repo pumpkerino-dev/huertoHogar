@@ -75,7 +75,7 @@ function Home() {
                 <h2 className="section-title">Ofertas Especiales</h2>
                 <p className="section-subtitle">Productos frescos con descuento directo de agricultores</p>
             </div>
-            <a href="/Catalogue" className="link-all">Ver Todas las Ofertas &rarr;</a>
+            <a href="/Ofertas" className="link-all">Ver Todas las Ofertas &rarr;</a>
         </header>
         <div className="grid-4-cols">
             {ofertasDestacadas.map((product) => (

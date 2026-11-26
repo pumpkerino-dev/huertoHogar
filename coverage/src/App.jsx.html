@@ -149,7 +149,26 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,6 +208,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,6 +279,12 @@ import OrdenesAdmin from './pages/admin/OrdenesAdmin'
 import CategoriasAdmin from './pages/admin/CategoriasAdmin'
 import ReportesAdmin from './pages/admin/ReportesAdmin'
 import PerfilAdmin from './pages/admin/PerfilAdmin'
+import MensajesAdmin from './pages/admin/MensajesAdmin'
+import Contacto from './pages/Contacto'
+import Ofertas from './pages/Ofertas'
+import Categorias from './pages/Categorias'
+import CompraExitosa from './pages/CompraExitosa'
+import CompraError from './pages/CompraError'
 &nbsp;
 import { CartProvider } from './contexto/CartContext.jsx';
 &nbsp;
@@ -271,6 +303,12 @@ function <span class="fstat-no" title="function not covered" >App() {</span>
               &lt;Route path='/RecuperarContrasena' element={&lt;RecuperarContrasena /&gt;} /&gt;
               &lt;Route path='/ShoppingCart' element={&lt;ShoppingCart /&gt;} /&gt;
               &lt;Route path="/Checkout" element={&lt;Checkout /&gt;} /&gt;
+              &lt;Route path='/CompraExitosa' element={&lt;CompraExitosa /&gt;} /&gt;
+              &lt;Route path='/CompraError' element={&lt;CompraError /&gt;} /&gt;
+              &lt;Route path='/Contacto' element={&lt;Contacto /&gt;} /&gt;
+              &lt;Route path='/Ofertas' element={&lt;Ofertas /&gt;} /&gt;
+              &lt;Route path='/Categorias' element={&lt;Categorias /&gt;} /&gt;
+              &lt;Route path='/Categorias/:id' element={&lt;Categorias /&gt;} /&gt;
               &lt;Route path='/Profile' element={&lt;Profile /&gt;} /&gt;
               &lt;Route path='/Nosotros' element={&lt;Nosotros /&gt;} /&gt;
               &lt;Route path='/TerminoCondiciones' element={&lt;TerminoCondiciones /&gt;} /&gt;
@@ -282,16 +320,17 @@ function <span class="fstat-no" title="function not covered" >App() {</span>
               &lt;Route path="/EasterEgg" element={&lt;EasterEgg /&gt;} /&gt;
             &lt;/Route&gt;
 &nbsp;
-            {/* Panel de administración (solo rol ADMIN): su propio layout con Bootstrap */}
+            {/* Panel de administración: ADMIN ve todo; VENDEDOR solo productos y órdenes (soloAdmin bloquea el resto) */}
             &lt;Route path='/admin' element={&lt;AdminRoute&gt;&lt;AdminLayout /&gt;&lt;/AdminRoute&gt;}&gt;
-              &lt;Route index element={&lt;AdminDashboard /&gt;} /&gt;
+              &lt;Route index element={&lt;AdminRoute soloAdmin&gt;&lt;AdminDashboard /&gt;&lt;/AdminRoute&gt;} /&gt;
               &lt;Route path='ordenes' element={&lt;OrdenesAdmin /&gt;} /&gt;
               &lt;Route path='productos' element={&lt;ProductosAdmin /&gt;} /&gt;
               &lt;Route path='productos/criticos' element={&lt;ProductosAdmin soloCriticos /&gt;} /&gt;
-              &lt;Route path='categorias' element={&lt;CategoriasAdmin /&gt;} /&gt;
-              &lt;Route path='usuarios' element={&lt;UsuariosAdmin /&gt;} /&gt;
-              &lt;Route path='reportes' element={&lt;ReportesAdmin /&gt;} /&gt;
-              &lt;Route path='perfil' element={&lt;PerfilAdmin /&gt;} /&gt;
+              &lt;Route path='categorias' element={&lt;AdminRoute soloAdmin&gt;&lt;CategoriasAdmin /&gt;&lt;/AdminRoute&gt;} /&gt;
+              &lt;Route path='usuarios' element={&lt;AdminRoute soloAdmin&gt;&lt;UsuariosAdmin /&gt;&lt;/AdminRoute&gt;} /&gt;
+              &lt;Route path='mensajes' element={&lt;AdminRoute soloAdmin&gt;&lt;MensajesAdmin /&gt;&lt;/AdminRoute&gt;} /&gt;
+              &lt;Route path='reportes' element={&lt;AdminRoute soloAdmin&gt;&lt;ReportesAdmin /&gt;&lt;/AdminRoute&gt;} /&gt;
+              &lt;Route path='perfil' element={&lt;AdminRoute soloAdmin&gt;&lt;PerfilAdmin /&gt;&lt;/AdminRoute&gt;} /&gt;
             &lt;/Route&gt;
           &lt;/Routes&gt;
       &lt;/CartProvider&gt;
@@ -306,7 +345,7 @@ export default App
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-11-06T18:26:05.889Z
+                at 2026-11-26T01:56:50.613Z
             </div>
         <script src="../prettify.js"></script>
         <script>

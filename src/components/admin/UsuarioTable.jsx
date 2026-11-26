@@ -1,4 +1,5 @@
 import { Badge, Button, Table } from "react-bootstrap";
+import { infoRol } from "../../utils/roles";
 
 /** Tabla de usuarios del panel admin. */
 function UsuarioTable({ usuarios, idUsuarioActual, onEditar, onEliminar, onHistorial }) {
@@ -11,6 +12,7 @@ function UsuarioTable({ usuarios, idUsuarioActual, onEditar, onEliminar, onHisto
       <thead className="table-success">
         <tr>
           <th>Nombre</th>
+          <th className="d-none d-xl-table-cell">RUN</th>
           <th className="d-none d-md-table-cell">Correo</th>
           <th className="d-none d-lg-table-cell">Teléfono</th>
           <th>Rol</th>
@@ -21,14 +23,14 @@ function UsuarioTable({ usuarios, idUsuarioActual, onEditar, onEliminar, onHisto
         {usuarios.map((u) => (
           <tr key={u.id}>
             <td>
-              {u.nombre} {u.id === idUsuarioActual && <Badge bg="secondary">Tú</Badge>}
+              {u.nombre} {u.apellidos} {u.id === idUsuarioActual && <Badge bg="secondary">Tú</Badge>}
+              {u.comuna && <div className="small text-muted">{u.comuna}</div>}
             </td>
+            <td className="d-none d-xl-table-cell">{u.run}</td>
             <td className="d-none d-md-table-cell">{u.email}</td>
             <td className="d-none d-lg-table-cell">{u.telefono || "—"}</td>
             <td>
-              <Badge bg={u.rol === "ADMIN" ? "danger" : "success"}>
-                {u.rol === "ADMIN" ? "Administrador" : "Cliente"}
-              </Badge>
+              <Badge bg={infoRol(u.rol).color}>{infoRol(u.rol).texto}</Badge>
             </td>
             <td className="text-center text-nowrap">
               {onHistorial && (

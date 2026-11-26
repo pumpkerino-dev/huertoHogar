@@ -1,28 +1,39 @@
-import { Table } from "react-bootstrap";
+import { Badge, Table } from "react-bootstrap";
 import { formatoCLP, formatoFecha } from "../utils/producto";
-import { formatoDiaDespacho } from "../utils/despacho";
+import { direccionEnvio, formatoDiaDespacho } from "../utils/despacho";
+import { infoEstado } from "../services/ordenService";
 
 /**
  * Boleta (comprobante) de una orden de compra.
- * Se reutiliza en: Checkout (compra exitosa), Órdenes/Boletas del admin,
+ * Se reutiliza en: Compra exitosa, Órdenes/Boletas del admin,
  * Historial de compras de un usuario y el perfil del cliente.
  */
 function BoletaDetalle({ orden }) {
   if (!orden) return null;
+  const estado = infoEstado(orden.estado);
   return (
     <div className="boleta">
       <div className="d-flex flex-column flex-sm-row justify-content-between gap-1 mb-3">
         <div>
           <div className="fw-bold">HUERTO HOGAR</div>
           <div className="small text-muted">Comprobante de compra · Simulación</div>
+          <Badge bg={estado.color} text={estado.color === "warning" ? "dark" : undefined} className="mt-1">{estado.texto}</Badge>
         </div>
         <div className="text-sm-end small">
-          <div><strong>N°</strong> {orden.id}</div>
+          <div><strong>N°</strong> {orden.numero ?? orden.id}</div>
           <div>{formatoFecha(orden.fecha)}</div>
           <div>{orden.cliente?.nombre}{orden.cliente?.email ? ` · ${orden.cliente.email}` : ""}</div>
           {orden.fechaEntrega && <div><strong>Despacho:</strong> {formatoDiaDespacho(orden.fechaEntrega)}</div>}
         </div>
       </div>
+
+      {orden.envio && (
+        <div className="small border rounded p-2 mb-3">
+          <div><strong>Enviar a:</strong> {orden.envio.nombre} {orden.envio.apellidos}</div>
+          <div>{direccionEnvio(orden.envio)}</div>
+          {orden.envio.indicaciones && <div className="text-muted">Indicaciones: {orden.envio.indicaciones}</div>}
+        </div>
+      )}
 
       <Table size="sm" responsive className="align-middle mb-2">
         <thead className="table-light">
