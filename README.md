@@ -14,13 +14,13 @@ API REST de la tienda HuertoHogar (DSY1104 Desarrollo Fullstack II). El frontend
 
 ```powershell
 $env:DB_USER="root"; $env:DB_PASSWORD="tu_clave"
-mvnw.cmd spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 
 ### Opción B — H2 en memoria (sin instalar nada)
 
 ```powershell
-mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2"
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2"
 ```
 
 Consola H2 en http://localhost:8089/h2-console (JDBC URL `jdbc:h2:mem:huertohogar`, usuario `sa`, sin contraseña).
@@ -74,7 +74,7 @@ Flujo: `Controller` → `Service` → `Repository` → BD. Los controladores sol
 
 - **Correo:** solo `@duoc.cl`, `@profesor.duoc.cl` y `@gmail.com`, máximo 100 caracteres.
 - **Contraseña:** al iniciar sesión entre 4 y 10 caracteres; al crear una cuenta, entre 8 y 10 con mayúscula, minúscula y número.
-- **RUN:** sin puntos ni guion (ej. `19011022K`), entre 7 y 9 caracteres, dígito verificador por módulo 11.
+- **RUN:** sin puntos ni guion (ej. `123456785`), entre 7 y 9 caracteres, dígito verificador por módulo 11.
 - **Producto:** código mínimo 3 caracteres y único; precio y stock ≥ 0; el precio original de una oferta debe ser mayor que el precio.
 - **Categoría:** nombre único de 3 a 40 caracteres; no se elimina si tiene productos.
 - **Compra:** se valida el stock de todo el carrito, el total se calcula con los precios de la BD y el stock se descuenta en la misma transacción.

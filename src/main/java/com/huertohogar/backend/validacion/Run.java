@@ -15,7 +15,7 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Run {
 
-    String message() default "El RUN no es válido (sin puntos ni guion, ej: 19011022K)";
+    String message() default "El RUN no es válido (sin puntos ni guion, ej: 123456785)";
 
     Class<?>[] groups() default {};
 
