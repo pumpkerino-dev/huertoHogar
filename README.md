@@ -83,9 +83,13 @@ npm run preview
 El frontend toma **todos los datos del backend** (igual que el ejemplo JWT + Spring Boot + React del curso),
 así que primero se levanta el backend y después el frontend:
 
+El backend está en la rama **`react-backend`** de este mismo repositorio:
+<https://github.com/pumpkerino-dev/huertoHogar/tree/react-backend>
+
 ```bash
-# Terminal 1: backend
-cd backEnd
+# Terminal 1: backend (rama react-backend, en otra carpeta)
+git clone -b react-backend https://github.com/pumpkerino-dev/huertoHogar.git huertoHogar-backend
+cd huertoHogar-backend
 mvnw.cmd spring-boot:run      # Windows   (./mvnw spring-boot:run en macOS / Linux)
 
 # Terminal 2: frontend
@@ -112,7 +116,7 @@ El backend usa **H2 en memoria**: al reiniciarlo, los datos vuelven a los inicia
 | Hooks de la tienda | `src/hooks/useCatalogo.js` | `useProductos()` y `useCategorias()` piden los datos e informan si están cargando |
 | Servicios | `src/services/*Service.js` | Llamadas con axios a `/api/v1/...` |
 | Cliente HTTP | `src/api.js` | axios con la URL del backend y el token JWT en cada petición (igual que el ejemplo del curso) |
-| Backend | `backEnd/` | Spring Boot + JPA + H2, con los datos iniciales en `DataInitializer` |
+| Backend | rama `react-backend` | Spring Boot + JPA + H2, con los datos iniciales en `DataInitializer` |
 
 Lo que el admin edita (precios, ofertas, stock, categorías) queda guardado en el backend y se ve en la tienda.
 
