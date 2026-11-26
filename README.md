@@ -103,6 +103,9 @@ Errores: `400` con `{ mensaje, errores }` para validaciones, `401` sin sesión, 
 | POST   | `/api/v1/auth/login`              | Público  | Inicia sesión → `{ token, refreshToken, usuario }` |
 | POST   | `/api/v1/auth/registro`           | Público  | Crea una cuenta CLIENTE y devuelve sus tokens |
 | POST   | `/api/v1/auth/refresh`            | Público  | Renueva los tokens con `{ refreshToken }` |
+| POST   | `/api/v1/auth/recuperar`          | Público  | Genera un código de 6 dígitos (10 min) para recuperar la contraseña; como no hay servidor de correo, se devuelve en `codigoDemo` |
+| POST   | `/api/v1/auth/recuperar/verificar` | Público | Verifica el código `{ email, codigo }` (204) |
+| POST   | `/api/v1/auth/restablecer`        | Público  | Guarda la nueva contraseña `{ email, codigo, password }` (204) |
 | GET    | `/api/v1/auth/me`                 | Sesión   | Usuario dueño del token |
 | PUT    | `/api/v1/auth/me`                 | Sesión   | Edita su perfil (no cambia correo ni rol) |
 | GET    | `/api/v1/productos[?categoria=]`  | Público  | Lista productos |

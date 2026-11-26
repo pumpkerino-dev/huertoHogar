@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.huertohogar.backend.dto.AuthResponse;
 import com.huertohogar.backend.dto.LoginRequest;
 import com.huertohogar.backend.dto.PerfilRequest;
+import com.huertohogar.backend.dto.RecuperarRequest;
+import com.huertohogar.backend.dto.RecuperarResponse;
 import com.huertohogar.backend.dto.RefreshRequest;
 import com.huertohogar.backend.dto.RegistroRequest;
+import com.huertohogar.backend.dto.RestablecerRequest;
 import com.huertohogar.backend.dto.UsuarioResponse;
+import com.huertohogar.backend.dto.VerificarCodigoRequest;
 import com.huertohogar.backend.service.AuthService;
+import com.huertohogar.backend.service.RecuperacionService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,13 +33,15 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@Tag(name = "Autenticación", description = "Login, registro, renovación del token y perfil propio")
+@Tag(name = "Autenticación", description = "Login, registro, renovación del token, recuperación de contraseña y perfil propio")
 public class AuthController {
 
     private final AuthService authService;
+    private final RecuperacionService recuperacionService;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, RecuperacionService recuperacionService) {
         this.authService = authService;
+        this.recuperacionService = recuperacionService;
     }
 
     @PostMapping("/login")
@@ -63,6 +70,36 @@ public class AuthController {
     @ApiResponse(responseCode = "401", description = "Token de refresco inválido o expirado")
     public AuthResponse refrescar(@Valid @RequestBody RefreshRequest request) {
         return authService.refrescar(request.refreshToken());
+    }
+
+    @PostMapping("/recuperar")
+    @SecurityRequirements
+    @Operation(summary = "Pedir código para recuperar la contraseña",
+               description = "Genera un código de 6 dígitos válido por 10 minutos. Como no hay servidor de correo, "
+                       + "el código se devuelve en codigoDemo y se escribe en el log del backend.")
+    @ApiResponse(responseCode = "200", description = "Código generado")
+    public RecuperarResponse recuperar(@Valid @RequestBody RecuperarRequest request) {
+        return recuperacionService.solicitar(request.email());
+    }
+
+    @PostMapping("/recuperar/verificar")
+    @SecurityRequirements
+    @Operation(summary = "Verificar el código de recuperación")
+    @ApiResponse(responseCode = "204", description = "Código correcto")
+    @ApiResponse(responseCode = "400", description = "Código incorrecto o vencido")
+    public ResponseEntity<Void> verificar(@Valid @RequestBody VerificarCodigoRequest request) {
+        recuperacionService.verificar(request.email(), request.codigo());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/restablecer")
+    @SecurityRequirements
+    @Operation(summary = "Guardar la nueva contraseña", description = "Requiere el código vigente; después el código deja de servir.")
+    @ApiResponse(responseCode = "204", description = "Contraseña actualizada")
+    @ApiResponse(responseCode = "400", description = "Código incorrecto o vencido, o contraseña que no cumple las reglas")
+    public ResponseEntity<Void> restablecer(@Valid @RequestBody RestablecerRequest request) {
+        recuperacionService.restablecer(request.email(), request.codigo(), request.password());
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/me")
