@@ -5,60 +5,72 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "producto")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El código es obligatorio")
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true, length = 20)
     private String codigo;
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(length = 1000)
+    @Column(length = 500)
     private String descripcion;
 
-    @NotBlank(message = "La categoría es obligatoria")
-    private String categoria;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
-    @NotNull(message = "El precio es obligatorio")
-    @Min(value = 0, message = "El precio no puede ser negativo")
+    @Column(nullable = false)
     private Integer precio;
 
-    @Min(value = 0, message = "El precio original no puede ser negativo")
     private Integer precioOriginal;
 
+    @Column(length = 50)
     private String unidad;
 
-    @NotNull(message = "El stock es obligatorio")
-    @Min(value = 0, message = "El stock no puede ser negativo")
+    @Column(nullable = false)
     private Integer stock;
 
+    private Integer stockCritico;
+
+    @Column(length = 100)
     private String origen;
 
+    @Column(length = 300)
     private String imagen;
 
     @Column(length = 300)
     private String descripcionCorta;
 
+    @Column(length = 10)
     private String estrellas;
 
+    @Column(length = 50)
     private String origenFiltro;
 
+    @Column(length = 50)
     private String certificacion;
 
     @Column(length = 5000)
     private String detalle;
+
+    public boolean esCritico() {
+        return stockCritico != null && stock != null && stock <= stockCritico;
+    }
 }

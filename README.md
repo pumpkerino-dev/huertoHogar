@@ -1,83 +1,149 @@
-# Backend HuertoHogar — Spring Boot + H2
+# Backend HuertoHogar — Spring Boot + JPA + MySQL
 
-Sigue el mismo esquema del ejemplo *JWT + Spring Boot + React* del curso: Spring Boot, JPA, **H2 en memoria**
-y un `DataInitializer` que carga los datos iniciales al arrancar.
+API REST de la tienda HuertoHogar (DSY1104 Desarrollo Fullstack II). El frontend React vive en la rama `react`.
 
-**Requisito:** Java 21 (JDK). No hace falta instalar una base de datos.
+**Stack:** Java 21 · Spring Boot 4 · Spring Security + JWT · Spring Data JPA · MySQL (H2 opcional) · Swagger (springdoc).
 
-```bash
-# desde la carpeta backEnd/
-mvnw.cmd spring-boot:run      # Windows
-./mvnw spring-boot:run        # macOS / Linux
+## Cómo levantarlo
+
+### Opción A — MySQL (por defecto)
+
+1. Tener MySQL corriendo en `localhost:3306` (XAMPP, Laragon o MySQL Server).
+2. La base `huertohogar` se crea sola (`createDatabaseIfNotExist=true`) y las tablas también (`ddl-auto: update`).
+3. Si tu usuario no es `root` sin contraseña, define las variables antes de arrancar:
+
+```powershell
+$env:DB_USER="root"; $env:DB_PASSWORD="tu_clave"
+mvnw.cmd spring-boot:run
 ```
 
-- API en `http://localhost:8089/api/v1` · Swagger en **http://localhost:8089/swagger-ui.html**
-- Consola de H2 en **http://localhost:8089/h2-console** (JDBC URL `jdbc:h2:mem:testdb`, usuario `sa`, sin contraseña)
-- H2 vive en memoria: **al reiniciar el backend, los datos vuelven a los iniciales.**
+### Opción B — H2 en memoria (sin instalar nada)
 
-Datos iniciales (`config/DataInitializer.java`): 4 categorías, 9 productos, 2 órdenes de ejemplo y estos usuarios:
+```powershell
+mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2"
+```
 
-| Correo                 | Contraseña | Rol     |
-|------------------------|------------|---------|
-| admin@huertohogar.cl   | Admin123   | ADMIN   |
-| cliente@huertohogar.cl | Cliente123 | CLIENTE |
+Consola H2 en http://localhost:8089/h2-console (JDBC URL `jdbc:h2:mem:huertohogar`, usuario `sa`, sin contraseña).
+Con H2 los datos vuelven a los iniciales cada vez que se reinicia.
 
-### Cambiar a MySQL (Ev3)
+### Direcciones
 
-En `src/main/resources/application.yaml` está comentado el bloque de MySQL: reemplazar las líneas de H2 del
-`datasource` por las de MySQL y usar `org.hibernate.dialect.MySQLDialect`. La dependencia `mysql-connector-j`
-ya está en el `pom.xml`.
+- API: `http://localhost:8089/api/v1`
+- Swagger: **http://localhost:8089/swagger-ui.html** (botón *Authorize* → pegar el `token` del login)
+- Colección Postman: `postman/HuertoHogar.postman_collection.json`
 
-## Roles y seguridad (JWT)
+## Datos iniciales
 
-| Rol       | Cómo se obtiene                          | Qué puede hacer |
-|-----------|------------------------------------------|-----------------|
-| `CLIENTE` | Registrándose en "Crear Cuenta"          | Comprar, ver y editar su perfil |
-| `ADMIN`   | Admin inicial, o asignado por otro admin | Todo lo anterior + panel `/admin` (CRUD de productos, ofertas y usuarios) |
+`config/DataInitializer.java` carga, solo si la base está vacía: 4 categorías, 9 productos con su stock crítico,
+2 boletas de ejemplo y estas cuentas:
 
-Implementado según la *Guía Paso a Paso: Autenticación JWT con Spring Boot y React*
-(paquete `security/`: `JwtService`, `JwtFilter`, `CustomUserDetailsService`, `SecurityConfig`):
+| Correo            | Contraseña | Rol      |
+|-------------------|------------|----------|
+| admin@duoc.cl     | Admin123   | ADMIN    |
+| vendedor@duoc.cl  | Vendedor1  | VENDEDOR |
+| cliente@gmail.com | Cliente123 | CLIENTE  |
 
-1. En el login se valida la contraseña (hash **BCrypt**) y se genera un **JWT firmado (HS256)**
-   con el correo como *subject*, válido por 1 día.
-2. El frontend lo envía en cada petición: `Authorization: Bearer <token>`.
-3. `JwtFilter` valida firma y expiración, y carga el usuario y su **rol** desde la BD.
-4. `SecurityConfig`: público = login, registro, `GET` de productos y categorías, confirmar una compra,
-   Swagger y la consola de H2; con sesión = perfil y "mis órdenes";
-   `ADMIN` = crear/editar/eliminar productos y categorías, todas las órdenes y todo `/api/v1/usuarios`.
-   Sin token → **401**; token sin rol ADMIN → **403**.
+## Estructura
 
-La protección existe en los dos lados: en el frontend `AdminRoute` impide ver `/admin`, y en el
-backend Spring Security rechaza la petición aunque alguien se salte el frontend (por ejemplo con Postman).
+```
+src/main/java/com/huertohogar/backend
+├── config/       DataInitializer, GlobalExceptionHandler, OpenApiConfig
+├── controller/   Auth, Producto, Categoria, Boleta, Usuario, Contacto
+├── dto/          Request / Response de cada recurso (las entidades nunca salen al cliente)
+├── model/        Categoria, Producto, Usuario, Boleta, DetalleBoleta, MensajeContacto, Rol, EstadoBoleta
+├── repository/   Interfaces JpaRepository
+├── security/     JwtService, JwtFilter, CustomUserDetailsService, SecurityConfig
+├── service/      Lógica de negocio (validaciones, stock, permisos por dueño)
+└── validacion/   @Run (módulo 11), @CorreoPermitido, reglas de contraseña
+```
 
-**Ajustes respecto de la guía:** rutas con `/api/v1/`;
-roles ADMIN/CLIENTE; clave del JWT fija en `application.yml` (o variable `JWT_SECRET`) para que
-los tokens no se invaliden al reiniciar; `JwtFilter` responde 401 en vez de 500 ante un token
-expirado; un solo mensaje de error en el login para no revelar qué correos existen;
-`DataInitializer` no borra los usuarios al arrancar.
+Flujo: `Controller` → `Service` → `Repository` → BD. Los controladores solo reciben y responden; las reglas están en los servicios.
+
+## Modelo de datos
+
+| Tabla            | Relación                                                  |
+|------------------|-----------------------------------------------------------|
+| `categoria`      | 1 categoría → N productos                                 |
+| `producto`       | N → 1 `categoria` (`categoria_id`), con `stock` y `stock_critico` |
+| `usuario`        | 1 usuario → N boletas                                     |
+| `boleta`         | N → 1 `usuario` (`usuario_id`, nulo si compró sin cuenta) · datos de envío · estado |
+| `detalle_boleta` | N → 1 `boleta` y N → 1 `producto` · cantidad y precio unitario |
+| `mensaje_contacto` | Mensajes del formulario de contacto                     |
+
+## Reglas de validación
+
+- **Correo:** solo `@duoc.cl`, `@profesor.duoc.cl` y `@gmail.com`, máximo 100 caracteres.
+- **Contraseña:** al iniciar sesión entre 4 y 10 caracteres; al crear una cuenta, entre 8 y 10 con mayúscula, minúscula y número.
+- **RUN:** sin puntos ni guion (ej. `19011022K`), entre 7 y 9 caracteres, dígito verificador por módulo 11.
+- **Producto:** código mínimo 3 caracteres y único; precio y stock ≥ 0; el precio original de una oferta debe ser mayor que el precio.
+- **Categoría:** nombre único de 3 a 40 caracteres; no se elimina si tiene productos.
+- **Compra:** se valida el stock de todo el carrito, el total se calcula con los precios de la BD y el stock se descuenta en la misma transacción.
+
+Errores: `400` con `{ mensaje, errores }` para validaciones, `401` sin sesión, `403` sin permiso, `404` no encontrado, `409` conflicto, `402` pago rechazado.
+
+## Seguridad (JWT con renovación)
+
+1. `POST /auth/login` valida la contraseña (BCrypt) y entrega dos tokens firmados HS256:
+   - `token` de **acceso**, dura 15 minutos y lleva el rol.
+   - `refreshToken` de **renovación**, dura 7 días.
+2. El frontend envía el de acceso en cada petición: `Authorization: Bearer <token>`.
+3. Cuando el de acceso vence (401), el frontend llama a `POST /auth/refresh` con el `refreshToken` y recibe un par nuevo.
+4. `JwtFilter` solo acepta tokens de acceso: un `refreshToken` no sirve para llamar a la API.
+
+| Rol        | Puede |
+|------------|-------|
+| `CLIENTE`  | Comprar, ver y editar su perfil, ver sus boletas y el estado de sus pedidos |
+| `VENDEDOR` | Ver productos (y los de stock crítico) y ver todas las boletas con su detalle. No modifica nada |
+| `ADMIN`    | Todo: CRUD de productos, categorías y usuarios, cambiar el estado de los pedidos, ver mensajes de contacto |
 
 ## Endpoints
 
-| Método | Ruta                                | Acceso  | Descripción |
-|--------|-------------------------------------|---------|-------------|
-| POST   | `/api/v1/auth/login`                | Público | Inicia sesión → `{ token, usuario }` |
-| POST   | `/api/v1/auth/registro`             | Público | Crea una cuenta CLIENTE |
-| GET    | `/api/v1/auth/me`                   | Sesión  | Usuario dueño del token |
-| PUT    | `/api/v1/auth/me`                   | Sesión  | El usuario edita su perfil (nombre, teléfono, dirección) |
-| GET    | `/api/v1/productos[?categoria=]`    | Público | Lista productos |
-| GET    | `/api/v1/productos/{id}`            | Público | Producto por id |
+| Método | Ruta | Acceso | Descripción |
+|--------|------|--------|-------------|
+| POST   | `/api/v1/auth/login`              | Público  | Inicia sesión → `{ token, refreshToken, usuario }` |
+| POST   | `/api/v1/auth/registro`           | Público  | Crea una cuenta CLIENTE y devuelve sus tokens |
+| POST   | `/api/v1/auth/refresh`            | Público  | Renueva los tokens con `{ refreshToken }` |
+| GET    | `/api/v1/auth/me`                 | Sesión   | Usuario dueño del token |
+| PUT    | `/api/v1/auth/me`                 | Sesión   | Edita su perfil (no cambia correo ni rol) |
+| GET    | `/api/v1/productos[?categoria=]`  | Público  | Lista productos |
+| GET    | `/api/v1/productos/criticos`      | Público  | Productos con stock ≤ stock crítico |
+| GET    | `/api/v1/productos/{id}`          | Público  | Producto por id |
 | GET    | `/api/v1/productos/codigo/{codigo}` | Público | Producto por código (FR001…) |
-| POST   | `/api/v1/productos`                 | ADMIN   | Crea un producto |
-| PUT    | `/api/v1/productos/{id}`            | ADMIN   | Actualiza un producto (incluye oferta: `precioOriginal`) |
-| DELETE | `/api/v1/productos/{id}`            | ADMIN   | Elimina un producto |
-| GET    | `/api/v1/categorias`                | Público | Lista categorías con su cantidad de productos |
-| POST   | `/api/v1/categorias`                | ADMIN   | Crea una categoría |
-| PUT    | `/api/v1/categorias/{id}`           | ADMIN   | Edita una categoría (el id no cambia) |
-| POST   | `/api/v1/ordenes`                   | Público | Confirma una compra: valida stock, descuenta y guarda la orden (`simularFallo` simula un pago rechazado) |
-| GET    | `/api/v1/ordenes/mias`              | Sesión  | Pedidos del usuario logueado (Mi Cuenta) |
-| GET    | `/api/v1/ordenes`                   | ADMIN   | Todas las órdenes / boletas |
-| GET    | `/api/v1/ordenes/usuario/{email}`   | ADMIN   | Historial de compras de un usuario |
-| GET    | `/api/v1/usuarios`                  | ADMIN   | Lista usuarios |
-| POST   | `/api/v1/usuarios`                  | ADMIN   | Crea usuario (con rol) |
-| PUT    | `/api/v1/usuarios/{id}`             | ADMIN   | Actualiza usuario / rol |
-| DELETE | `/api/v1/usuarios/{id}`             | ADMIN   | Elimina usuario |
+| POST   | `/api/v1/productos`               | ADMIN    | Crea un producto |
+| PUT    | `/api/v1/productos/{id}`          | ADMIN    | Actualiza un producto (oferta = `precioOriginal`) |
+| DELETE | `/api/v1/productos/{id}`          | ADMIN    | Elimina (no si tiene ventas) |
+| GET    | `/api/v1/categorias`              | Público  | Lista categorías con su cantidad de productos |
+| GET    | `/api/v1/categorias/{id}`         | Público  | Categoría por id |
+| POST   | `/api/v1/categorias`              | ADMIN    | Crea una categoría |
+| PUT    | `/api/v1/categorias/{id}`         | ADMIN    | Edita una categoría |
+| DELETE | `/api/v1/categorias/{id}`         | ADMIN    | Elimina (no si tiene productos) |
+| POST   | `/api/v1/boletas`                 | Público  | Confirma una compra (`simularFallo: true` simula pago rechazado) |
+| GET    | `/api/v1/boletas`                 | ADMIN, VENDEDOR | Todas las boletas |
+| GET    | `/api/v1/boletas/mias`            | Sesión   | Boletas del usuario logueado |
+| GET    | `/api/v1/boletas/{id}`            | Sesión   | Detalle (un CLIENTE solo ve las suyas) |
+| GET    | `/api/v1/boletas/usuario/{usuarioId}` | ADMIN | Historial de compras de un usuario |
+| PATCH  | `/api/v1/boletas/{id}/estado`     | ADMIN    | `EN_PREPARACION` → `EN_CAMINO` → `ENTREGADO`, o `CANCELADA` (devuelve stock) |
+| GET    | `/api/v1/usuarios`                | ADMIN    | Lista usuarios |
+| GET    | `/api/v1/usuarios/{id}`           | ADMIN    | Usuario por id |
+| POST   | `/api/v1/usuarios`                | ADMIN    | Crea usuario con rol |
+| PUT    | `/api/v1/usuarios/{id}`           | ADMIN    | Actualiza (password vacío = se mantiene) |
+| DELETE | `/api/v1/usuarios/{id}`           | ADMIN    | Elimina (sus boletas quedan sin usuario) |
+| POST   | `/api/v1/contacto`                | Público  | Envía un mensaje de contacto |
+| GET    | `/api/v1/contacto`                | ADMIN    | Lista los mensajes |
+
+### Ejemplo: confirmar una compra
+
+```json
+POST /api/v1/boletas
+{
+  "items": [ { "codigo": "FR001", "cantidad": 2 } ],
+  "envio": {
+    "nombre": "María", "apellidos": "González Silva", "correo": "cliente@gmail.com",
+    "calle": "Av. Providencia 1245", "departamento": "Depto 302",
+    "region": "Región Metropolitana de Santiago", "comuna": "Providencia",
+    "indicaciones": "Dejar en conserjería"
+  },
+  "fechaEntrega": "2026-12-01",
+  "simularFallo": false
+}
+```

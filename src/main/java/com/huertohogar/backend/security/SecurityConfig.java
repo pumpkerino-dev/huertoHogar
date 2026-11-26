@@ -22,13 +22,11 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *  Público:  login, registro, ver productos (GET), Swagger
- *  ADMIN:    crear / editar / eliminar productos, todo /api/v1/usuarios
- *  Logueado: el resto (ej: /api/v1/auth/me)
- */
 @Configuration
 public class SecurityConfig {
+
+    private static final String ADMIN = "ADMIN";
+    private static final String VENDEDOR = "VENDEDOR";
 
     private final JwtFilter jwtFilter;
     private final UserDetailsService userDetailsService;
@@ -41,15 +39,11 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
     }
 
-    /** BCrypt: hash de 60 caracteres con "salt" aleatorio; no se puede revertir. */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * AuthenticationManager creado a mano con ProviderManager
-     */
     @Bean
     public AuthenticationManager authenticationManager() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
@@ -63,38 +57,39 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(request -> {
                 CorsConfiguration config = new CorsConfiguration();
                 config.setAllowedOriginPatterns(List.of(allowedOrigin, "http://127.0.0.1:[*]"));
-                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
                 config.setAllowedHeaders(List.of("*"));
                 return config;
             }))
-            // API REST con JWT
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/v1/auth/login", "/api/v1/auth/registro").permitAll()
+                .requestMatchers("/api/v1/auth/login", "/api/v1/auth/registro", "/api/v1/auth/refresh").permitAll()
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/error").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/v1/productos", "/api/v1/productos/**").permitAll()
-                .requestMatchers("/api/v1/productos", "/api/v1/productos/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/v1/categorias").permitAll()
-                .requestMatchers("/api/v1/categorias", "/api/v1/categorias/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/v1/ordenes").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/v1/ordenes/mias").authenticated()
-                .requestMatchers("/api/v1/ordenes", "/api/v1/ordenes/**").hasRole("ADMIN")
-                .requestMatchers("/api/v1/usuarios", "/api/v1/usuarios/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/productos", "/api/v1/productos/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.GET, "/api/v1/categorias", "/api/v1/categorias/**").permitAll()
+                .requestMatchers("/api/v1/categorias", "/api/v1/categorias/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.POST, "/api/v1/boletas").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/boletas/mias").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/v1/boletas/usuario/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.GET, "/api/v1/boletas").hasAnyRole(ADMIN, VENDEDOR)
+                .requestMatchers(HttpMethod.GET, "/api/v1/boletas/**").authenticated()
+                .requestMatchers("/api/v1/boletas/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.POST, "/api/v1/contacto").permitAll()
+                .requestMatchers("/api/v1/contacto", "/api/v1/contacto/**").hasRole(ADMIN)
+                .requestMatchers("/api/v1/usuarios", "/api/v1/usuarios/**").hasRole(ADMIN)
                 .anyRequest().authenticated()
             )
-            // STATELESS: el servidor no guarda sesiones; cada petición trae su token
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(e -> e
-                // 401: no hay token, es inválido o expiró
                 .authenticationEntryPoint((req, res, ex) ->
                         responderError(res, HttpStatus.UNAUTHORIZED, "Debes iniciar sesión"))
-                // 403: hay token válido pero el rol no alcanza
                 .accessDeniedHandler((req, res, ex) ->
-                        responderError(res, HttpStatus.FORBIDDEN, "No tienes permisos de administrador")))
+                        responderError(res, HttpStatus.FORBIDDEN, "No tienes permisos para esta acción")))
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
     }

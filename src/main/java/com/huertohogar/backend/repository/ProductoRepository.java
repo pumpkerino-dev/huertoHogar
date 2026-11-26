@@ -11,11 +11,11 @@ import com.huertohogar.backend.model.Producto;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
-    List<Producto> findByCategoriaIgnoreCase(String categoria);
+    List<Producto> findByCategoria_Id(String categoriaId);
 
     Optional<Producto> findByCodigoIgnoreCase(String codigo);
 
     boolean existsByCodigoIgnoreCase(String codigo);
 
-    long countByCategoria(String categoria);
+    long countByCategoria_Id(String categoriaId);
 }

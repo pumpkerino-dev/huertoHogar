@@ -9,13 +9,6 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
-/**
- * Documentación Swagger: http://localhost:8089/swagger-ui.html
- *
- * Para probar rutas de ADMIN desde Swagger:
- *  1. Ejecutar POST /api/v1/auth/login con el admin y copiar el "token".
- *  2. Botón "Authorize" (candado) -> pegar el token -> Authorize.
- */
 @Configuration
 public class OpenApiConfig {
 
@@ -27,8 +20,8 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("API HuertoHogar")
                         .version("v1")
-                        .description("API REST de la tienda HuertoHogar: autenticación JWT, "
-                                + "productos y usuarios con roles CLIENTE / ADMIN."))
+                        .description("API REST de la tienda HuertoHogar: autenticación JWT con renovación de token, "
+                                + "productos, categorías, boletas, usuarios y contacto. Roles ADMIN, VENDEDOR y CLIENTE."))
                 .components(new Components().addSecuritySchemes(ESQUEMA,
                         new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)

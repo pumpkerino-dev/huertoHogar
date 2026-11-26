@@ -4,23 +4,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "categoria")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Categoria {
 
     @Id
+    @Column(length = 50)
     private String id;
 
-    @NotBlank(message = "El nombre es obligatorio.")
-    @Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres.")
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true, length = 40)
     private String nombre;
 
-    @Size(max = 200, message = "La descripción no puede superar los 200 caracteres.")
+    @Column(length = 200)
     private String descripcion;
+
+    public Categoria(String id, String nombre, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
 }
